@@ -1,100 +1,86 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link>
-    </div>
-    <router-view />
-    <button
-      type="button"
-      class="btn btn-primary"
-    >
-      Primary
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary"
-    >
-      Secondary
-    </button>
-    <button
-      type="button"
-      class="btn btn-success"
-    >
-      Success
-    </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-    >
-      Danger
-    </button>
-    <button
-      type="button"
-      class="btn btn-warning"
-    >
-      Warning
-    </button>
-    <button
-      type="button"
-      class="btn btn-info"
-    >
-      Info
-    </button>
-    <button
-      type="button"
-      class="btn btn-light"
-    >
-      Light
-    </button>
-    <button
-      type="button"
-      class="btn btn-dark"
-    >
-      Dark
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          href="#"
+        >居無定所</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon" />
+        </button>
+        <div
+          id="navbarSupportedContent"
+          class="collapse navbar-collapse"
+        >
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link
+                to="/"
+                class="nav-link active"
+              >
+                首頁
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                to="/about"
+                class="nav-link active"
+              >
+                關於我們
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                to="/products"
+                class="nav-link active"
+              >
+                餐點
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                to="/contact"
+                class="nav-link active"
+              >
+                聯絡我們
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link
+                to="/cart"
+                class="nav-link active"
+              >
+                cart
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <button
-      type="button"
-      class="btn btn-link"
-    >
-      Link
-    </button>
+    <router-view />
   </div>
 </template>
 
 <script>
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
+
 export default {
   created () {
-    console.dir(this.$http)
+
   }
 }
 </script>
 <style lang="scss">
 @import "./assets/all.scss";
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

@@ -86,34 +86,32 @@ export default {
   data () {
     return {
       loadingStatus: {
-        fullScreeningLoading: false
+        itemLoading: false
       },
       products: null,
       pagination: null
     }
   },
   mounted () {
-    console.log(process.env.VUE_APP_API)
-    console.log(process.env.VUE_APP_PATH)
     this.getProducts()
   },
   methods: {
     getProducts (page = 1) {
-      this.loadingStatus.fullScreeningLoading = true
+      const loader = this.$loading.show()
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
-          this.loadingStatus.fullScreeningLoading = false
+          loader.hide()
           if (res.data.success) {
             const { products, pagination } = res.data
             this.products = products
             this.pagination = pagination
           } else {
-            this.loadingStatus.fullScreeningLoading = false
             alert(res.data.message)
           }
         })
         .catch((error) => {
+          loader.hide()
           console.log(error)
         })
     }

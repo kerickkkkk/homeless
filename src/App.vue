@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Loading
+      :active="true"
+      color="#00BFFF"
+      loader="dots"
+    />
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a

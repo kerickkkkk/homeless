@@ -11,9 +11,11 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 const app = createApp(App)
 app.use(router)
 app.use(VueAxios, axios)
-// app.use(Loading, {
-//   color: '#00BFFF',
-//   loader: 'dots'
-// })
-app.component('Loading', Loading)
+// 全域帶入變數
+app.use(Loading, {
+  color: '#00BFFF',
+  loader: 'dots'
+})
+// app.component('Loading', Loading)
+
 app.mount('#app')

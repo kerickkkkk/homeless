@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Loading
+    <!-- <Loading
       :active="true"
       color="#00BFFF"
       loader="dots"
-    />
+    /> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a
@@ -81,7 +81,10 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 
 export default {
   created () {
-
+    // const loader = this.$loading.show()
+    // setTimeout(() => {
+    //   loader.hide()
+    // }, 1000)
   }
 }
 </script>

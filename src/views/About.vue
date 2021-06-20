@@ -1,11 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    關於我們
   </div>
 </template>
 
 <script>
 export default {
+  name: 'About',
   data () {
     return {}
   },

@@ -1,18 +1,12 @@
 <template>
   <div>
-    購物車
+    關於我們
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Cart',
-  props: {
-    msg: {
-      type: String,
-      default: 'nothing'
-    }
-  }
+  name: 'Contact'
 }
 </script>
 

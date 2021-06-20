@@ -1,79 +1,5 @@
 <template>
-  <div>
-    <!-- <Loading
-      :active="true"
-      color="#00BFFF"
-      loader="dots"
-    /> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a
-          class="navbar-brand"
-          href="#"
-        >居無定所</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon" />
-        </button>
-        <div
-          id="navbarSupportedContent"
-          class="collapse navbar-collapse"
-        >
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link
-                to="/"
-                class="nav-link active"
-              >
-                首頁
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                to="/about"
-                class="nav-link active"
-              >
-                關於我們
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                to="/products"
-                class="nav-link active"
-              >
-                餐點
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                to="/contact"
-                class="nav-link active"
-              >
-                聯絡我們
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                to="/cart"
-                class="nav-link active"
-              >
-                cart
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
@@ -90,5 +16,24 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/all.scss";
+// $(function(){
+
+//   $(window).scroll(function(){
+//     //var $(window).scrollTop(); 為 scroll
+//     var scroll = $(window).scrollTop();
+//     //當卷軸超過70px，自動加上 .navbar-fixed-top ，如果小於就移除
+//     if( scroll >= 70){
+
+//       $(".navbar-scroll").addClass("navbar-fixed-top");
+
+//     }else{
+
+//       $(".navbar-scroll").removeClass("navbar-fixed-top")
+
+//     }
+
+//   });
+
+// });
 
 </style>

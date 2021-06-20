@@ -1,17 +1,20 @@
 <template>
   <div>
-    購物車
+    單一產品
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Cart',
-  props: {
-    msg: {
-      type: String,
-      default: 'nothing'
-    }
+  name: 'Product',
+  data () {
+    return {}
+  },
+  mounted () {
+    console.log(this.$route.params.id)
+  },
+  methods: {
+
   }
 }
 </script>

@@ -58,6 +58,7 @@
                     </template>
                   </div>
                   <div class="d-flex justify-content-center">
+                    <!-- router-link :to="`/product/${item.id}`" -->
                     <button
                       class="btn btn-outline-primary me-3"
                       type="button"
@@ -141,6 +142,23 @@ export default {
         })
         .catch((error) => {
           this.isLoading = false
+          console.log(error)
+        })
+    },
+    getProductDetail (id) {
+      this.loadingStatus.itemLoading = id
+      this.$http
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
+        .then((res) => {
+          this.loadingStatus.itemLoading = null
+          if (res.data.success) {
+            this.$router.push(`/product/${id}`)
+          } else {
+            alert(res.data.message)
+          }
+        })
+        .catch((error) => {
+          this.loadingStatus.itemLoading = null
           console.log(error)
         })
     }

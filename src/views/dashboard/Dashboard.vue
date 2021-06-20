@@ -8,6 +8,17 @@
         >
           食無定所
         </router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon" />
+        </button>
         <div
           id="navbarSupportedContent"
           class="collapse navbar-collapse"
@@ -64,6 +75,9 @@
         </div>
       </div>
     </nav>
+    <router-view
+      v-if="hasRight"
+    />
   </div>
 </template>
 
@@ -71,10 +85,36 @@
 export default {
   name: 'DashBoard',
   data () {
-    return {}
+    return {
+      hasRight: false
+    }
+  },
+  created () {
+    this.checkLogin()
   },
   methods: {
-
+    checkLogin () {
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)shop\s*=\s*([^;]*).*$)|^.*$/, '$1')
+      if (token !== '') {
+        this.$http.defaults.headers.common.Authorization = token
+        this.$http.post(`${process.env.VUE_APP_API}/api/user/check`)
+          .then((res) => {
+            if (res.data.success) {
+              this.hasRight = true
+            } else {
+              this.hasRight = false
+              alert(res.data.message)
+              this.$router.push('/login')
+            }
+          }).catch((error) => {
+            this.hasRight = false
+            console.log(error)
+          })
+      } else {
+        alert('沒有登入狀態 將導回登入頁面')
+        this.$router.push('/login')
+      }
+    }
   }
 }
 </script>

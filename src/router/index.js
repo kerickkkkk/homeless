@@ -39,12 +39,19 @@ const routes = [
         component: () => import('@/views/frontend/Contact.vue')
       }
     ]
-  }
-
+  },
   // login
-
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/dashboard/Login.vue')
+  },
   // 後臺路由
-
+  {
+    path: '/admin',
+    name: 'Dashboard',
+    component: () => import('@/views/dashboard/Dashboard.vue')
+  }
 ]
 
 const router = createRouter({

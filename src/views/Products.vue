@@ -6,6 +6,19 @@
           分類
         </div>
         <div class="col-md-9">
+          <button class="btn btn-outline-primary me-2">
+            義大利麵
+          </button>
+          <button class="btn btn-outline-primary me-2">
+            飲品
+          </button>
+          <button class="btn btn-outline-primary me-2">
+            義大利麵
+          </button>
+          <button class="btn btn-outline-primary me-2">
+            義大利麵
+          </button>
+          <hr>
           <h3>產品區塊</h3>
           <div class="row">
             <div
@@ -73,6 +86,10 @@
                 </div>
               </div>
             </div>
+            <Pagination
+              :pagination="pagination"
+              @get-products="getProducts"
+            />
           </div>
         </div>
       </div>
@@ -81,8 +98,13 @@
 </template>
 
 <script>
+import Pagination from '@/components/Pagination.vue'
+
 export default {
   name: 'Products',
+  components: {
+    Pagination
+  },
   data () {
     return {
       loadingStatus: {
@@ -107,7 +129,7 @@ export default {
             this.products = products
             this.pagination = pagination
           } else {
-            alert(res.data.message)
+            console.log(res.data.message)
           }
         })
         .catch((error) => {

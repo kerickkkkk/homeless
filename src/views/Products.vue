@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Loading
+      :active="isLoading"
+      color="#00BFFF"
+      loader="dots"
+    />
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -107,6 +112,7 @@ export default {
   },
   data () {
     return {
+      isLoading: false,
       loadingStatus: {
         itemLoading: false
       },
@@ -119,11 +125,12 @@ export default {
   },
   methods: {
     getProducts (page = 1) {
-      const loader = this.$loading.show()
+      this.isLoading = true
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
-          loader.hide()
+          this.isLoading = false
+
           if (res.data.success) {
             const { products, pagination } = res.data
             this.products = products
@@ -133,7 +140,7 @@ export default {
           }
         })
         .catch((error) => {
-          loader.hide()
+          this.isLoading = false
           console.log(error)
         })
     }

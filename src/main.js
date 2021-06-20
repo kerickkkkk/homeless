@@ -12,10 +12,12 @@ const app = createApp(App)
 app.use(router)
 app.use(VueAxios, axios)
 // 全域帶入變數
-app.use(Loading, {
-  color: '#00BFFF',
-  loader: 'dots'
-})
-// app.component('Loading', Loading)
+// 不確定原因
+// Uncaught (in promise) Error: Timed out getting app record for app null
+// app.use(Loading, {
+//   color: '#00BFFF',
+//   loader: 'dots'
+// })
+app.component('Loading', Loading)
 
 app.mount('#app')

@@ -1,10 +1,5 @@
 <template>
   <div class="home">
-    <!-- <Loading
-      :active="true"
-      color="#00BFFF"
-      loader="dots"
-    /> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a
@@ -73,13 +68,22 @@
     </nav>
 
     <router-view />
+
+    <footer>
+      footer
+    </footer>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      isLoading: true
+    }
+  }
 
 }
 </script>

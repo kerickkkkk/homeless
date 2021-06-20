@@ -6,37 +6,37 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/frontend/Home.vue'),
     children: [
       {
         path: '',
         name: 'Index',
-        component: () => import('@/views/Index.vue')
+        component: () => import('@/views/frontend/Index.vue')
       },
       {
         path: 'about',
         name: 'About',
-        component: () => import('@/views/About.vue')
+        component: () => import('@/views/frontend/About.vue')
       },
       {
         path: 'products',
         name: 'Products',
-        component: () => import('@/views/Products.vue')
+        component: () => import('@/views/frontend/Products.vue')
       },
       {
         path: 'product/:id',
         name: 'Product',
-        component: () => import('@/views/Product.vue')
+        component: () => import('@/views/frontend/Product.vue')
       },
       {
         path: 'cart',
         name: 'Cart',
-        component: () => import('@/views/Cart.vue')
+        component: () => import('@/views/frontend/Cart.vue')
       },
       {
         path: 'contact',
         name: 'Contact',
-        component: () => import('@/views/Contact.vue')
+        component: () => import('@/views/frontend/Contact.vue')
       }
     ]
   }

@@ -49,13 +49,19 @@ const routes = [
   // 後臺路由
   {
     path: '/admin',
-    name: 'Dashboard',
     component: () => import('@/views/dashboard/Dashboard.vue'),
     children: [
       {
         path: 'products',
-        name: 'AdminProducts',
         component: () => import('@/views/dashboard/Products.vue')
+      },
+      {
+        path: 'orders',
+        component: () => import('@/views/dashboard/Orders.vue')
+      },
+      {
+        path: 'coupons',
+        component: () => import('@/views/dashboard/Coupons.vue')
       }
     ]
   }

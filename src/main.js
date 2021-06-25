@@ -19,12 +19,26 @@ import SwiperCore, {
   Pagination, Navigation
 } from 'swiper/core'
 
-// install Swiper modules
-SwiperCore.use([Pagination, Navigation])
+// vee validation
+import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate'
+import VeeValidateRules from '@vee-validate/rules'
+import { localize, setLocale } from '@vee-validate/i18n'
+import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 
+configure({
+  generateMessage: localize({ zh_TW: zhTW }),
+  validateOnInput: true
+})
+setLocale('zh_TW')
+
+Object.keys(VeeValidateRules).forEach((rule) => {
+  defineRule(rule, VeeValidateRules[rule])
+})
 // 以上 npm 內容 以下自訂
 
 const app = createApp(App)
+// install Swiper modules
+SwiperCore.use([Pagination, Navigation])
 app.use(router)
 app.use(VueAxios, axios)
 // 全域帶入變數
@@ -37,5 +51,8 @@ app.use(VueAxios, axios)
 app.component('Loading', Loading)
 app.component('Swiper', Swiper)
 app.component('SwiperSlide', SwiperSlide)
+app.component('Form', Form)
+app.component('Field', Field)
+app.component('ErrorMessage', ErrorMessage)
 
 app.mount('#app')

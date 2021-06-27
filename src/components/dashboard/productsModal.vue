@@ -292,7 +292,8 @@ export default {
       newTempImageUrl: '',
       modalType: '',
       tempProduct: {},
-      id: null
+      id: null,
+      currentPage: 1
     }
   },
   mounted () {
@@ -306,7 +307,7 @@ export default {
       this.tempProduct = {}
       this.id = null
     },
-    openModal (type = 'delete', id, tempProduct) {
+    openModal (type = 'delete', id, tempProduct, currentPage) {
       if (type === 'edit' || type === 'add') {
         if (type === 'edit') {
           this.tempProduct = tempProduct
@@ -316,6 +317,8 @@ export default {
       }
       this.modal[type].show()
       this.id = id
+      // 紀錄父層當下頁面 避免更新後跳回第一頁
+      this.current_page = currentPage
     },
     closeModal (type) {
       this.modal[type].hide()
@@ -331,7 +334,7 @@ export default {
           if (res.data.success) {
             this.closeModal('delete')
             this.$swal(res.data.message, '', 'success').then(() => {
-              this.$emit('get-products')
+              this.$emit('get-products', this.current_page)
             })
             this.clearStatus()
           } else {
@@ -385,7 +388,7 @@ export default {
           if (res.data.success) {
             this.closeModal('addEdit')
             this.$swal(res.data.message, '', 'success').then(() => {
-              this.$emit('get-products')
+              this.$emit('get-products', this.current_page)
             })
             this.clearStatus()
           } else {

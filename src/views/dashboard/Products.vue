@@ -186,7 +186,7 @@ export default {
     // modal 控制
     modalHandler (type, id, tempProduct = {}) {
       // 控制往內部送
-      this.$refs.adminProductsModal.openModal(type, id, tempProduct)
+      this.$refs.adminProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
     }
   }
 }

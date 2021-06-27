@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 
 export default {
   created () {

@@ -98,28 +98,34 @@ export default {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)shop\s*=\s*([^;]*).*$)|^.*$/, '$1')
       if (token !== '') {
         this.$http.defaults.headers.common.Authorization = token
+        this.$emitter.emit('fullScreenLoaidng', true)
         this.$http.post(`${process.env.VUE_APP_API}/api/user/check`)
           .then((res) => {
+            this.$emitter.emit('fullScreenLoaidng', false)
             if (res.data.success) {
               this.hasRight = true
             } else {
               this.hasRight = false
-              alert(res.data.message)
-              this.$router.push('/login')
+              this.$swal(res.data.message, '', 'error').then(() => {
+                this.$router.push('/login')
+              })
             }
           }).catch((error) => {
+            this.$emitter.emit('fullScreenLoaidng', false)
             this.hasRight = false
-            console.log(error)
+            this.$swal(error, '', 'error').then(() => {
+              this.$router.push('/login')
+            })
           })
       } else {
-        alert('沒有登入狀態 將導回登入頁面')
-        this.$router.push('/login')
+        this.$swal('沒有登入狀態 將導回登入頁面', '', 'error').then(() => {
+          this.$router.push('/login')
+        })
       }
     },
     signOut () {
       // /logout
       const url = `${process.env.VUE_APP_API}/logout`
-      console.log(url)
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http.post(url)
         .then((res) => {

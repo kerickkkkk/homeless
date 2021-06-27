@@ -11,7 +11,7 @@
           tabindex="-1"
           aria-disabled="true"
           @click.prevent="getProducts(watchPagination.currentPage-1)"
-        >Previous</a>
+        ><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li
         v-for="page in watchPagination.total_pages"
@@ -33,7 +33,7 @@
           class="page-link"
           href="#"
           @click.prevent="getProducts(watchPagination.current_page+1)"
-        >Next</a>
+        ><span aria-hidden="true">&raquo;</span></a>
       </li>
     </ul>
   </nav>

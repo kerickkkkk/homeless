@@ -6,12 +6,13 @@ import router from './router'
 import VueAxios from 'vue-axios'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 // Import Swiper styles
 import 'swiper/swiper.scss'
-
 import 'swiper/components/pagination/pagination.min.css'
 import 'swiper/components/navigation/navigation.min.css'
 
@@ -45,6 +46,8 @@ app.config.globalProperties.$emitter = emitter
 SwiperCore.use([Pagination, Navigation])
 app.use(router)
 app.use(VueAxios, axios)
+app.use(VueSweetalert2)
+
 // 全域帶入變數
 // 不確定原因
 // Uncaught (in promise) Error: Timed out getting app record for app null
@@ -58,5 +61,4 @@ app.component('SwiperSlide', SwiperSlide)
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
-
 app.mount('#app')

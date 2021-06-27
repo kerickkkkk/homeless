@@ -26,6 +26,7 @@ export default {
     this.$emitter.on('fullLoaidng', (status) => {
       this.loading = status
     })
+    this.$swal('Hello Vue world!!!')
   }
 }
 </script>

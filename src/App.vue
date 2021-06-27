@@ -5,12 +5,18 @@
       color="#00BFFF"
       loader="dots"
     />
+    <SweetToast />
     <router-view />
   </div>
 </template>
 
 <script>
+import SweetToast from './components/SweetToast.vue'
+
 export default {
+  components: {
+    SweetToast
+  },
   data () {
     return {
       loading: false
@@ -26,6 +32,8 @@ export default {
     this.$emitter.on('fullScreenLoaidng', (status) => {
       this.loading = status
     })
+    this.$emitter.emit('toast:push', { title: 'title', icon: 'error' })
+    // this.$emitter.emit('toast:push', 'error', 'tes11111t', '123')
   }
 }
 </script>

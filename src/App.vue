@@ -23,10 +23,9 @@ export default {
     // }, 1000)
   },
   mounted () {
-    this.$emitter.on('fullLoaidng', (status) => {
+    this.$emitter.on('fullScreenLoaidng', (status) => {
       this.loading = status
     })
-    this.$swal('Hello Vue world!!!')
   }
 }
 </script>

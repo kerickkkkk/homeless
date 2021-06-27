@@ -16,7 +16,7 @@
       <button
         type="button"
         class="btn btn-sm btn-primary my-3"
-        @click="modalHandler('add')"
+        @click="modalHandler('add', '' )"
       >
         建立新產品
       </button>
@@ -82,14 +82,14 @@
                 <button
                   type="button"
                   class="btn btn-outline-primary"
-                  @click="modalHandler('edit', product)"
+                  @click="modalHandler('edit', product.id ,{...product})"
                 >
                   編輯
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-danger"
-                  @click="modalHandler('delete', product)"
+                  @click="modalHandler('delete', product.id)"
                 >
                   刪除
                 </button>
@@ -111,7 +111,7 @@
       :pagination="pagination"
       @get-products="getProducts"
     />
-
+    <!-- 統一一個 modal 管理 -->
     <!-- <addEditModal
       :api-url="apiUrl"
       :api-path="apiPath"
@@ -121,13 +121,14 @@
       @e-cancel-modal="cancelModal"
     /> -->
     <!-- modal 刪除 -->
-    <!-- <deleteModal
-      :api-url="apiUrl"
+    <!-- :api-url="apiUrl"
       :api-path="apiPath"
       :temp-product="tempProduct"
-      @e-get-products="getProducts"
-      @e-cancel-modal="cancelModal"
-    /> -->
+      @e-cancel-modal="cancelModal" -->
+    <adminProductsModal
+      ref="adminProductsModal"
+      @get-products="getProducts"
+    />
     <!-- modal upload img -->
     <!-- <uploadImgModal
       :api-url="apiUrl"
@@ -138,17 +139,19 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
+import adminProductsModal from '@/components/dashboard/productsModal'
 export default {
   name: 'AdminProducts',
   components: {
-    Pagination
+    Pagination,
+    adminProductsModal
   },
   data () {
     return {
       isLoading: false,
       products: [],
-      tempProduct: {},
-      modalType: '',
+      // tempProductId: '',
+      // modalType: '',
       pagination: {
         category: null,
         current_page: null,
@@ -179,6 +182,11 @@ export default {
 
           console.log(error)
         })
+    },
+    // modal 控制
+    modalHandler (type, id, tempProduct = {}) {
+      // 控制往內部送
+      this.$refs.adminProductsModal.openModal(type, id, tempProduct)
     }
   }
 }

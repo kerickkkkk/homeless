@@ -69,6 +69,7 @@
                 class="nav-link"
                 aria-current="page"
                 href="#"
+                @click.prevent="signOut"
               >登出</a>
             </li>
           </ul>
@@ -114,6 +115,25 @@ export default {
         alert('沒有登入狀態 將導回登入頁面')
         this.$router.push('/login')
       }
+    },
+    signOut () {
+      // /logout
+      const url = `${process.env.VUE_APP_API}/logout`
+      console.log(url)
+      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$http.post(url)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          const status = res.data.success ? 'success' : 'error'
+          this.$swal(res.data.message, '', status).then(() => {
+            this.$router.push('/login')
+          })
+        }).catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error').then(() => {
+            this.$router.push('/login')
+          })
+        })
     }
   }
 }

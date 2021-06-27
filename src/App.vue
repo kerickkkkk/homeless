@@ -1,15 +1,31 @@
 <template>
-  <router-view />
+  <div>
+    <Loading
+      :active="loading"
+      color="#00BFFF"
+      loader="dots"
+    />
+    <router-view />
+  </div>
 </template>
 
 <script>
-
 export default {
+  data () {
+    return {
+      loading: false
+    }
+  },
   created () {
     // const loader = this.$loading.show()
     // setTimeout(() => {
     //   loader.hide()
     // }, 1000)
+  },
+  mounted () {
+    this.$emitter.on('fullLoaidng', (status) => {
+      this.loading = status
+    })
   }
 }
 </script>

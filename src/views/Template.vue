@@ -15,6 +15,9 @@ export default {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/`
       const param = { data: '' }
       this.$emitter.emit('fullScreenLoaidng', true)
+
+      // this.$emitter.emit('toast:push', { icon: 'success', title: 'title' })
+
       this.$http.put(url, param)
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)

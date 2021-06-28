@@ -32,31 +32,11 @@ export default {
     this.$emitter.on('fullScreenLoaidng', (status) => {
       this.loading = status
     })
-    this.$emitter.emit('toast:push', { title: 'title', icon: 'error' })
+    // this.$emitter.emit('toast:push', { title: 'title', icon: 'error' })
     // this.$emitter.emit('toast:push', 'error', 'tes11111t', '123')
   }
 }
 </script>
 <style lang="scss">
 @import "./assets/all.scss";
-// $(function(){
-
-//   $(window).scroll(function(){
-//     //var $(window).scrollTop(); 為 scroll
-//     var scroll = $(window).scrollTop();
-//     //當卷軸超過70px，自動加上 .navbar-fixed-top ，如果小於就移除
-//     if( scroll >= 70){
-
-//       $(".navbar-scroll").addClass("navbar-fixed-top");
-
-//     }else{
-
-//       $(".navbar-scroll").removeClass("navbar-fixed-top")
-
-//     }
-
-//   });
-
-// });
-
 </style>

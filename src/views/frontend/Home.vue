@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      class="navbar fixed-top navbar-expand-lg "
+      :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
+    >
       <div class="container-fluid">
         <a
           class="navbar-brand"
@@ -81,9 +84,40 @@ export default {
   name: 'Home',
   data () {
     return {
-      isLoading: true
+      isLoading: true,
+      navClassList: {
+        nav: 'navbar-dark',
+        bg: 'bg-transparent',
+        padding: 'py-5'
+      }
     }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      const windowY = window.scrollY
+      // 如果需要 dom 可以用 offSetTop
+      if (windowY > 500) {
+        this.navClassList = {
+          nav: 'navbar-light',
+          bg: 'bg-light',
+          padding: 'py-1'
+        }
+      } else {
+        this.navClassList = {
+          nav: 'navbar-dark',
+          bg: 'bg-transparent',
+          padding: 'py-3'
+
+        }
+      }
+    })
   }
 
 }
 </script>
+
+<style scoped>
+.navbar{
+  transition: background-color .8s, padding .5s;
+}
+</style>

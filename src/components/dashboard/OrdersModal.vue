@@ -250,7 +250,6 @@ export default {
       this.id = id
       // 紀錄父層當下頁面 避免更新後跳回第一頁
       this.current_page = currentPage
-      console.log('open', tempOrder.is_paid, tempOrder.id)
     },
     closeModal (type) {
       this.modal[type].hide()
@@ -279,7 +278,6 @@ export default {
     },
     changePayment (id) {
       this.$emitter.emit('fullScreenLoaidng', true)
-      console.log(this.tempOrder.is_paid)
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`, { data: this.tempOrder })
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)

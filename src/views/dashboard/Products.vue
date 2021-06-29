@@ -155,7 +155,7 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
-import adminProductsModal from '@/components/dashboard/productsModal'
+import adminProductsModal from '@/components/dashboard/ProductsModal'
 export default {
   name: 'AdminProducts',
   components: {
@@ -166,8 +166,6 @@ export default {
     return {
       isLoading: false,
       products: [],
-      // tempProductId: '',
-      // modalType: '',
       pagination: {
         category: null,
         current_page: null,

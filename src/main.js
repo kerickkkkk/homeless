@@ -27,6 +27,8 @@ import VeeValidateRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import 'bootstrap'
+// 以上 npm 內容 以下自訂
+import { date, currency } from './assets/javascript/filters'
 
 configure({
   generateMessage: localize({ zh_TW: zhTW }),
@@ -37,10 +39,12 @@ setLocale('zh_TW')
 Object.keys(VeeValidateRules).forEach((rule) => {
   defineRule(rule, VeeValidateRules[rule])
 })
-// 以上 npm 內容 以下自訂
 
 const app = createApp(App)
 app.config.globalProperties.$emitter = emitter
+app.config.globalProperties.$filters = {
+  date, currency
+}
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation])

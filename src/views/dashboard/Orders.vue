@@ -29,7 +29,7 @@
             v-for="order in orders"
             :key="order.id"
           >
-            <td>{{ order.create_at }}</td>
+            <td>{{ $filters.date(order.create_at) }}</td>
             <td>
               {{ order?.user.email }}
             </td>
@@ -44,7 +44,7 @@
               </ul>
             </td>
             <td class="text-end">
-              ${{ order.total }}
+              NT {{ $filters.currency(order.total) }}
             </td>
             <td>
               <div class="form-check form-switch">

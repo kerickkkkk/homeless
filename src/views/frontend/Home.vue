@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <nav
-      class="navbar fixed-top navbar-expand-lg "
+      class="navbar sticky-top navbar-expand-lg "
       :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
     >
-      <div class="container-fluid">
+      <div class="container">
         <a
           class="navbar-brand"
           href="#"
@@ -62,7 +62,9 @@
                 to="/cart"
                 class="nav-link active"
               >
-                購物車
+                <span class="text-danger">
+                  <i class="bi bi-cart" />({{ cartLen }})
+                </span>
               </router-link>
             </li>
           </ul>
@@ -86,31 +88,62 @@ export default {
     return {
       isLoading: true,
       navClassList: {
-        nav: 'navbar-dark',
-        bg: 'bg-transparent',
+        nav: 'navbar-light',
+        bg: 'bg-light',
         padding: 'py-5'
-      }
+      },
+      cartLen: 0
     }
   },
   mounted () {
+    this.$emitter.on('nav-getCarts', () => {
+      this.getCarts()
+    })
+    this.getCarts('init')
     window.addEventListener('scroll', () => {
       const windowY = window.scrollY
       // 如果需要 dom 可以用 offSetTop
-      if (windowY > 500) {
+      if (windowY > 100) {
         this.navClassList = {
-          nav: 'navbar-light',
-          bg: 'bg-light',
-          padding: 'py-1'
+          nav: 'navbar-dark',
+          bg: 'bg-dark',
+          padding: 'py-2'
+
         }
       } else {
         this.navClassList = {
-          nav: 'navbar-dark',
-          bg: 'bg-transparent',
+          nav: 'navbar-light',
+          bg: 'bg-light',
           padding: 'py-3'
 
         }
       }
     })
+  },
+  unmounted () {
+    this.$emitter.off('nav-getCarts')
+  },
+  methods: {
+    getCarts (status) {
+      // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
+      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$http
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          if (res.data.success) {
+            const { data } = res.data
+            this.cartLen = data?.carts.length
+            if (status !== 'init') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
+          } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
+        })
+    }
   }
 
 }

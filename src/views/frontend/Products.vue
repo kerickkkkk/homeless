@@ -77,7 +77,7 @@
                     <button
                       class="btn btn-danger"
                       type="button"
-                      @click="addCart(item.id)"
+                      @click.stop="addCart(item.id)"
                     >
                       <span
                         v-if="loadingStatus.itemLoading === item.id"
@@ -160,6 +160,29 @@ export default {
         .catch((error) => {
           this.loadingStatus.itemLoading = null
           console.log(error)
+        })
+    },
+    addCart (id, qty = 1) {
+      const data = { data: { product_id: id, qty } }
+      this.loadingStatus.itemLoading = id
+      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$http
+        .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.loadingStatus.itemLoading = null
+          if (res.data.success) {
+            this.$emitter.emit('nav-getCarts')
+            // 這邊加入會讓 swal 受影響
+            // this.getCart()
+          } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.loadingStatus.itemLoading = null
+          this.$swal(error, '', 'error')
         })
     }
   }

@@ -42,9 +42,9 @@
                 <button
                   type="button"
                   class="btn btn-primary"
-                  @click="numCountHandler('pluse')"
+                  @click="numCountHandler('minus')"
                 >
-                  +
+                  -
                 </button>
                 <input
                   v-model.number="numRangeLimit"
@@ -53,12 +53,13 @@
                   class="form-control rounded-0"
                   style="width:80px"
                 >
+
                 <button
                   type="button"
                   class="btn btn-primary"
-                  @click="numCountHandler('minus')"
+                  @click="numCountHandler('pluse')"
                 >
-                  -
+                  +
                 </button>
               </div>
               {{ productDetail.unit }}
@@ -66,9 +67,9 @@
             <div class="d-flex justify-content-cnter">
               <div
                 class="btn btn-lg btn-primary"
-                @click="addCart"
+                @click.prevent.stop="addCart"
               >
-                + 加入購物車
+                加入購物車
               </div>
               <router-link
                 to="/cart"
@@ -179,7 +180,8 @@ export default {
     return {
       isLoading: false,
       productDetail: {},
-      num: 1
+      num: 1,
+      id: null
     }
   },
   computed: {
@@ -193,8 +195,8 @@ export default {
     }
   },
   mounted () {
-    const id = this.$route.params.id
-    this.getProductDetail(id)
+    this.id = this.$route.params.id
+    this.getProductDetail(this.id)
   },
   methods: {
     getProductDetail (id) {
@@ -214,17 +216,27 @@ export default {
           console.log(error)
         })
     },
-    // addCart () {
-    //   this.$emit(
-    //     'add-cart',
-    //     this.watchProduct.id,
-    //     this.num
-    //   )
-    //   this.closeModal()
-    // },
+    addCart () {
+      const data = { data: { product_id: this.id, qty: this.numRangeLimit } }
+      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$http
+        .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          if (res.data.success) {
+            this.$emitter.emit('nav-getCarts')
+          } else {
+            const erroMsg = res.data.message.reduce((prev, next) => (`${prev} ${next}`), '')
+            this.$swal(erroMsg, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
+        })
+    },
     numCountHandler (type) {
-      this.numRangeLimit =
-                type === 'pluse' ? ++this.numRangeLimit : --this.numRangeLimit
+      this.numRangeLimit = type === 'pluse' ? ++this.numRangeLimit : --this.numRangeLimit
     }
   }
 }

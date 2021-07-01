@@ -32,11 +32,18 @@
               class="col-md-4 mb-3"
             >
               <div class="card h-100">
-                <img
-                  :src="item.imageUrl"
-                  class="card-img-top"
-                  alt="圖片"
+                <div
+                  class="bg-cover"
+                  style="height:250px"
+                  :style="`background-image: url(${item.imageUrl})`"
                 >
+                  <!-- <img
+                    :src="item.imageUrl"
+                    class="img-cover"
+                    style="height:150px; width:150px"
+                    alt="圖片"
+                  > -->
+                </div>
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">

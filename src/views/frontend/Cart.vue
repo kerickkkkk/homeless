@@ -12,6 +12,10 @@
       <table class="table">
         <thead>
           <tr>
+            <th
+              width="50"
+              scope="col"
+            />
             <th scope="col">
               商品選項
             </th>
@@ -24,9 +28,6 @@
             <th scope="col">
               小計
             </th>
-            <th scope="col">
-              刪除
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,14 @@
             v-for="cart in carts.carts"
             :key="cart.id"
           >
+            <td>
+              <button
+                class="btn btn-outline-danger border-0"
+                @click="cartHandler('delete', cart.id)"
+              >
+                <i class="bi bi-trash" />
+              </button>
+            </td>
             <th>
               <div class="cart__title d-flex">
                 <div class="me-3">
@@ -48,12 +57,11 @@
                   <div class="h6">
                     {{ cart.product.title }}
                   </div>
-                  <p>規格</p>
                 </div>
               </div>
             </th>
             <td class="text-end">
-              NT ${{ cart.product.price }}
+              NT ${{ $filters.currency(cart.product.price) }}
             </td>
             <td>
               <div
@@ -64,10 +72,10 @@
                 <button
                   :disabled="currentCartId === cart.id"
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-outline-primary border-0"
                   @click="cartHandler('put', cart.id , cart.product.id , --cart.qty)"
                 >
-                  -
+                  －
                 </button>
                 <input
                   v-model="cart.qty"
@@ -82,23 +90,15 @@
                 <button
                   :disabled="currentCartId === cart.id"
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-outline-primary border-0"
                   @click="cartHandler('put', cart.id , cart.product.id , ++cart.qty)"
                 >
-                  +
+                  ＋
                 </button>
               </div>
             </td>
             <td class="text-end">
-              NT ${{ cart.final_total }}
-            </td>
-            <td>
-              <button
-                class="btn btn-sm btn-outline-danger"
-                @click="cartHandler('delete', cart.id)"
-              >
-                刪除
-              </button>
+              NT ${{ $filters.currency(cart.final_total) }}
             </td>
           </tr>
         </tbody>
@@ -121,6 +121,20 @@
           </tr>
         </tfoot>
       </table>
+      <div class="text-end">
+        <router-link
+          to="/products"
+          class="btn btn-outline-primary me-3"
+        >
+          繼續選購
+        </router-link>
+        <router-link
+          to="/checkout"
+          class="btn btn-danger"
+        >
+          結帳
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -130,14 +144,15 @@ export default {
   name: 'Cart',
   data () {
     return {
-      carts: {}
+      carts: {},
+      currentCartId: null
     }
   },
   created () {
-    this.getCarts()
+    this.getCart()
   },
   methods: {
-    getCarts () {
+    getCart () {
       // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http
@@ -148,6 +163,33 @@ export default {
             const { data } = res.data
             this.carts = data
           } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
+        })
+    },
+    cartHandler (type, id, productId, qty) {
+      this.currentCartId = id
+      if (type === 'put') {
+        qty = qty < 1 ? 1 : qty > 999 ? 999 : qty
+      }
+      const data = type === 'put' ? { product_id: productId, qty } : null
+
+      this.$emitter.emit('fullScreenLoaidng', true)
+
+      this.$http[type](`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`, { data })
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+
+          this.currentCartId = null
+          if (res.data.success) {
+            this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
+            this.getCart()
+          } else {
+            this.currentCartId = null
             this.$swal(res.data.message, '', 'error')
           }
         })

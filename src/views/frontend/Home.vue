@@ -96,10 +96,10 @@ export default {
     }
   },
   mounted () {
-    this.$emitter.on('nav-getCarts', () => {
-      this.getCarts()
+    this.$emitter.on('nav-getCarts', (status) => {
+      this.getCarts(status)
     })
-    this.getCarts('init')
+    this.getCarts('updateOnly')
     window.addEventListener('scroll', () => {
       const windowY = window.scrollY
       // 如果需要 dom 可以用 offSetTop
@@ -134,7 +134,7 @@ export default {
           if (res.data.success) {
             const { data } = res.data
             this.cartLen = data?.carts.length
-            if (status !== 'init') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
+            if (status !== 'updateOnly') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
           } else {
             this.$swal(res.data.message, '', 'error')
           }

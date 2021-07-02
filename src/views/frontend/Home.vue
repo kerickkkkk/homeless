@@ -100,28 +100,11 @@ export default {
       this.getCarts(status)
     })
     this.getCarts('updateOnly')
-    window.addEventListener('scroll', () => {
-      const windowY = window.scrollY
-      // 如果需要 dom 可以用 offSetTop
-      if (windowY > 100) {
-        this.navClassList = {
-          nav: 'navbar-dark',
-          bg: 'bg-dark',
-          padding: 'py-2'
-
-        }
-      } else {
-        this.navClassList = {
-          nav: 'navbar-light',
-          bg: 'bg-light',
-          padding: 'py-3'
-
-        }
-      }
-    })
+    window.addEventListener('scroll', this.navStyle)
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')
+    window.removeEventListener('scroll', this.navStyle)
   },
   methods: {
     getCarts (status) {
@@ -143,6 +126,25 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
         })
+    },
+    navStyle () {
+      const windowY = window.scrollY
+      // 如果需要 dom 可以用 offSetTop
+      if (windowY > 100) {
+        this.navClassList = {
+          nav: 'navbar-dark',
+          bg: 'bg-dark',
+          padding: 'py-2'
+
+        }
+      } else {
+        this.navClassList = {
+          nav: 'navbar-light',
+          bg: 'bg-light',
+          padding: 'py-3'
+
+        }
+      }
     }
   }
 

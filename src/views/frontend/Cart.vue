@@ -32,13 +32,13 @@
         </thead>
         <tbody>
           <tr
-            v-for="cart in carts.carts"
-            :key="cart.id"
+            v-for="item in carts.carts"
+            :key="item.id"
           >
             <td>
               <button
                 class="btn btn-outline-danger border-0"
-                @click="cartHandler('delete', cart.id)"
+                @click="cartHandler('delete', item.id)"
               >
                 <i class="bi bi-trash" />
               </button>
@@ -47,21 +47,21 @@
               <div class="cart__title d-flex">
                 <div class="me-3">
                   <img
-                    :src="cart.product.imageUrl"
-                    :alt="cart.product.title"
+                    :src="item.product.imageUrl"
+                    :alt="item.product.title"
                     width="50"
                     class="img-fluid"
                   >
                 </div>
                 <div class="cart__title__content">
                   <div class="h6">
-                    {{ cart.product.title }}
+                    {{ item.product.title }}
                   </div>
                 </div>
               </div>
             </th>
             <td class="text-end">
-              NT ${{ $filters.currency(cart.product.price) }}
+              NT ${{ $filters.currency(item.product.price) }}
             </td>
             <td>
               <div
@@ -70,35 +70,35 @@
                 aria-label="Basic checkbox toggle button group"
               >
                 <button
-                  :disabled="currentCartId === cart.id"
+                  :disabled="currentCartId === item.id"
                   type="button"
                   class="btn btn-outline-primary border-0"
-                  @click="cartHandler('put', cart.id , cart.product.id , --cart.qty)"
+                  @click="cartHandler('put', item.id , item.product.id , --item.qty)"
                 >
                   －
                 </button>
                 <input
-                  v-model="cart.qty"
-                  :disabled="currentCartId === cart.id"
+                  v-model="item.qty"
+                  :disabled="currentCartId === item.id"
                   type="number"
                   min="1"
                   class="form-control rounded-0"
                   style="width: 80px"
-                  @change="cartHandler('put', cart.id , cart.product.id , ++cart.qty)"
+                  @change="cartHandler('put', item.id , item.product.id , ++item.qty)"
                 >
 
                 <button
-                  :disabled="currentCartId === cart.id"
+                  :disabled="currentCartId === item.id"
                   type="button"
                   class="btn btn-outline-primary border-0"
-                  @click="cartHandler('put', cart.id , cart.product.id , ++cart.qty)"
+                  @click="cartHandler('put', item.id , item.product.id , ++item.qty)"
                 >
                   ＋
                 </button>
               </div>
             </td>
             <td class="text-end">
-              NT ${{ $filters.currency(cart.final_total) }}
+              NT ${{ $filters.currency(item.final_total) }}
             </td>
           </tr>
         </tbody>
@@ -108,7 +108,7 @@
               class="text-end"
               colspan="100"
             >
-              原價 NT $ {{ carts.total }}
+              原價 NT $ {{ $filters.currency(carts.total) }}
             </td>
           </tr>
           <tr>
@@ -116,7 +116,7 @@
               class="text-end"
               colspan="100"
             >
-              總價 NT $ {{ carts.final_total }}
+              總價 NT $ {{ $filters.currency( carts.final_total) }}
             </td>
           </tr>
         </tfoot>
@@ -145,14 +145,15 @@ export default {
   data () {
     return {
       carts: {},
+      cartLen: 0,
       currentCartId: null
     }
   },
   created () {
-    this.getCart()
+    this.getCarts()
   },
   methods: {
-    getCart () {
+    getCarts () {
       // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http
@@ -162,6 +163,7 @@ export default {
           if (res.data.success) {
             const { data } = res.data
             this.carts = data
+            this.cartLen = data.length
           } else {
             this.$swal(res.data.message, '', 'error')
           }
@@ -187,7 +189,7 @@ export default {
           this.currentCartId = null
           if (res.data.success) {
             this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
-            this.getCart()
+            this.getCarts()
           } else {
             this.currentCartId = null
             this.$swal(res.data.message, '', 'error')

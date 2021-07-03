@@ -2,7 +2,7 @@
   <div>
     <Loading
       :active="loading"
-      color="#00BFFF"
+      color="#A13E1E"
       loader="dots"
     />
     <SweetToast />
@@ -38,5 +38,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "./assets/all.scss";
+@import "./assets/stylesheet/all.scss";
 </style>

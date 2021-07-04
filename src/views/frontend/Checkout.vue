@@ -153,22 +153,22 @@ export default {
   name: 'Checkout',
   data () {
     return {
-      // user: {
-      //   name: 'this.user.name',
-      //   email: '1@1.cccc',
-      //   tel: '0123456789',
-      //   addr: '111',
-      //   payMethod: 'ATM',
-      //   msg: ''
-      // }
       user: {
-        name: '',
-        email: '',
-        tel: '',
-        addr: '',
-        payMethod: '',
+        name: 'this.user.name',
+        email: '1@1.cccc',
+        tel: '0123456789',
+        addr: '111',
+        payMethod: 'ATM',
         msg: ''
       }
+      // user: {
+      //   name: '',
+      //   email: '',
+      //   tel: '',
+      //   addr: '',
+      //   payMethod: '',
+      //   msg: ''
+      // }
     }
   },
   methods: {
@@ -194,7 +194,7 @@ export default {
             const { message, total, orderId } = res.data
             this.$emitter.emit('nav-getCarts', 'updateOnly')
             this.$swal(`${message}, \n共$${total}元, \n訂單編號: \n ${orderId} \n 付款去!`, '', 'success').then(() => {
-              this.$router.push('/payment')
+              this.$router.push(`/payment/${orderId}`)
             })
           } else {
             this.$swal(res.data.message, '', 'error')

@@ -98,7 +98,7 @@
     </table>
     <Pagination
       :pagination="pagination"
-      @get-orders="getOrders"
+      @get-items="getOrders"
     />
     <adminOrdersModal
       ref="adminOrdersModal"

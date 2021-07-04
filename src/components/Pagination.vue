@@ -10,7 +10,7 @@
           href="#"
           tabindex="-1"
           aria-disabled="true"
-          @click.prevent="getProducts(watchPagination.currentPage-1)"
+          @click.prevent="getProducts(watchPagination.current_page-1)"
         ><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li
@@ -49,6 +49,12 @@ export default {
         return {}
       }
 
+    },
+    isAllProducts: {
+      type: Boolean,
+      default () {
+        return false
+      }
     }
   },
   data () {
@@ -67,12 +73,17 @@ export default {
       handler () {
         this.watchPagination = { ...this.pagination }
       },
-      immediate: true
+      // immediate: true
+      deep: true
     }
   },
   methods: {
     getProducts (page) {
-      this.$emit('get-products', page)
+      if (!this.isAllProducts) {
+        this.$emit('get-items', page)
+      } else {
+        this.$emit('changePage', page)
+      }
     }
   }
 }

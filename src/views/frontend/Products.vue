@@ -25,7 +25,7 @@
               :class="{active: list.currentCategory === 'all'}"
               class="list-group-item list-group-item-action"
               aria-current="true"
-              @click.prevent="list.currentCategory = 'all'"
+              @click.prevent="categoryHandler('all')"
             >
               全部
             </a>
@@ -36,7 +36,7 @@
               :class="{active: list.currentCategory === item}"
               class="list-group-item list-group-item-action"
               aria-current="true"
-              @click.prevent="list.currentCategory = item"
+              @click.prevent="categoryHandler(item)"
             >
               {{ item }}
             </a>
@@ -45,7 +45,7 @@
         <div class="col-md-9">
           <div class="row">
             <div
-              v-for="item in filterProduct"
+              v-for="item in filterProducts"
               :key="item.id"
               class="col-lg-4 col-md-6 mb-3"
             >
@@ -117,9 +117,9 @@
               </div>
             </div>
             <Pagination
-              v-if="list.currentCategory === 'all'"
               :pagination="pagination"
-              @get-products="getProducts"
+              :is-all-products="true"
+              @change-page="changePage"
             />
           </div>
         </div>
@@ -145,31 +145,36 @@ export default {
       // list
       list: {
         currentCategory: 'all',
-        ary: []
+        ary: [],
+        changeCategory: false
       },
       products: null,
       pagination: null
     }
   },
   computed: {
-    filterProduct () {
+    filterProducts () {
+      // 每頁 10 筆 有需要操作再拉出去
+      const itemsPerPage = 10
       return this.products?.filter(product => this.list.currentCategory === 'all' || product.category === this.list.currentCategory)
+        ?.slice((this.pagination.current_page - 1) * itemsPerPage, this.pagination.current_page * itemsPerPage)
     }
   },
   created () {
     this.getProducts()
   },
   methods: {
-    getProducts (page = 1) {
+    // 取得所有產品 處理分類問題
+    getProducts () {
       this.$emitter.emit('fullScreenLoaidng', true)
 
       this.$http
-        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
         .then((res) => {
           if (res.data.success) {
-            const { products, pagination } = res.data
+            const { products } = res.data
             this.products = products
-            this.pagination = pagination
+            this.paginationHandler(products)
             this.getCategory()
           } else {
             this.$swal(res.data.message, '', 'error')
@@ -181,6 +186,27 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
         })
     },
+    // getProducts (page = 1) {
+    //   this.$emitter.emit('fullScreenLoaidng', true)
+
+    //   this.$http
+    //     .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
+    //     .then((res) => {
+    //       if (res.data.success) {
+    //         const { products, pagination } = res.data
+    //         this.products = products
+    //         this.pagination = pagination
+    //         this.getCategory()
+    //       } else {
+    //         this.$swal(res.data.message, '', 'error')
+    //       }
+    //       this.$emitter.emit('fullScreenLoaidng', false)
+    //     })
+    //     .catch((error) => {
+    //       this.$swal(error, '', 'error')
+    //       this.$emitter.emit('fullScreenLoaidng', false)
+    //     })
+    // },
     getProductDetail (id) {
       this.loadingStatus.itemLoading = id
       this.$http
@@ -223,8 +249,27 @@ export default {
     },
     getCategory () {
       const categorys = this.products?.map(product => product.category)
-      console.log(categorys)
       this.list.ary = [...new Set(categorys)]
+    },
+    paginationHandler (products, currentPage = 1) {
+      // {"total_pages":2,"current_page":1,"has_pre":false,"has_next":true,"category":null}
+      const productsPerPage = 10
+      console.log(products, products.length / productsPerPage)
+      this.pagination = {
+        total_pages: Math.ceil(products.length / productsPerPage),
+        current_page: currentPage,
+        has_pre: currentPage > 1,
+        has_next: currentPage < Math.ceil(products.length / productsPerPage),
+        category: null
+      }
+    },
+    changePage (page) {
+      this.paginationHandler(this.products, page)
+    },
+    categoryHandler (type) {
+      this.list.currentCategory = type
+      const tempPorducts = this.products.filter(product => type === 'all' || product.category === type)
+      this.paginationHandler(tempPorducts)
     }
   }
 }
@@ -232,13 +277,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import '@/assets/stylesheet/all';
-.list-group-item{
-  cursor: pointer;
-  color: $primary;
-  &:hover , &.active{
-    background-color: $primary;
-    color:#fff;
-  }
-}
+// @import '@/assets/stylesheet/all';
+// .list-group-item{
+//   cursor: pointer;
+//   color: $primary;
+//   &:hover , &.active{
+//     background-color: $primary;
+//     color:#fff;
+//   }
+// }
 </style>

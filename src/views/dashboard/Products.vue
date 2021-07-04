@@ -125,7 +125,7 @@
     </table>
     <Pagination
       :pagination="pagination"
-      @get-products="getProducts"
+      @get-items="getProducts"
     />
     <!-- 統一一個 modal 管理 -->
     <!-- <addEditModal
@@ -143,7 +143,7 @@
       @e-cancel-modal="cancelModal" -->
     <adminProductsModal
       ref="adminProductsModal"
-      @get-products="getProducts"
+      @get-items="getProducts"
     />
     <!-- modal upload img -->
     <!-- <uploadImgModal

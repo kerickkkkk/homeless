@@ -1,35 +1,53 @@
 <template>
   <div>
-    <Loading
-      :active="isLoading"
-      color="#00BFFF"
-      loader="dots"
-    />
-    <div class="container">
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">
+          Punny headline
+        </h1>
+        <p class="lead fw-normal">
+          And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.
+        </p>
+        <a
+          class="btn btn-outline-secondary"
+          href="#"
+        >Coming soon</a>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block" />
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block" />
+    </div>
+    <div class="container py-5">
       <div class="row">
         <div class="col-md-3">
-          分類
+          <div class="list-group">
+            <a
+              href="#"
+              :class="{active: list.currentCategory === 'all'}"
+              class="list-group-item list-group-item-action"
+              aria-current="true"
+              @click.prevent="list.currentCategory = 'all'"
+            >
+              全部
+            </a>
+            <a
+              v-for="item in list.ary"
+              :key="item"
+              href="#"
+              :class="{active: list.currentCategory === item}"
+              class="list-group-item list-group-item-action"
+              aria-current="true"
+              @click.prevent="list.currentCategory = item"
+            >
+              {{ item }}
+            </a>
+          </div>
         </div>
         <div class="col-md-9">
-          <button class="btn btn-outline-primary me-2">
-            義大利麵
-          </button>
-          <button class="btn btn-outline-primary me-2">
-            飲品
-          </button>
-          <button class="btn btn-outline-primary me-2">
-            義大利麵
-          </button>
-          <button class="btn btn-outline-primary me-2">
-            義大利麵
-          </button>
-          <hr>
-          <h3>產品區塊</h3>
           <div class="row">
             <div
-              v-for="item in products"
+              v-for="item in filterProduct"
               :key="item.id"
-              class="col-md-4 mb-3"
+              class="col-lg-4 col-md-6 mb-3"
             >
               <div class="card h-100">
                 <div
@@ -92,14 +110,14 @@
                         role="status"
                         aria-hidden="true"
                       />
-
-                      加入購物車
+                      <i class="bi bi-cart-plus" />
                     </button>
                   </div>
                 </div>
               </div>
             </div>
             <Pagination
+              v-if="list.currentCategory === 'all'"
               :pagination="pagination"
               @get-products="getProducts"
             />
@@ -120,36 +138,47 @@ export default {
   },
   data () {
     return {
-      isLoading: false,
+      // isLoading: false,
       loadingStatus: {
         itemLoading: false
+      },
+      // list
+      list: {
+        currentCategory: 'all',
+        ary: []
       },
       products: null,
       pagination: null
     }
   },
-  mounted () {
+  computed: {
+    filterProduct () {
+      return this.products?.filter(product => this.list.currentCategory === 'all' || product.category === this.list.currentCategory)
+    }
+  },
+  created () {
     this.getProducts()
   },
   methods: {
     getProducts (page = 1) {
-      this.isLoading = true
+      this.$emitter.emit('fullScreenLoaidng', true)
+
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
-          this.isLoading = false
-
           if (res.data.success) {
             const { products, pagination } = res.data
             this.products = products
             this.pagination = pagination
+            this.getCategory()
           } else {
-            console.log(res.data.message)
+            this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoaidng', false)
         })
         .catch((error) => {
-          this.isLoading = false
-          console.log(error)
+          this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoaidng', false)
         })
     },
     getProductDetail (id) {
@@ -161,12 +190,12 @@ export default {
           if (res.data.success) {
             this.$router.push(`/product/${id}`)
           } else {
-            alert(res.data.message)
+            this.$swal(res.data.message, '', 'error')
           }
         })
         .catch((error) => {
+          this.$swal(error, '', 'error')
           this.loadingStatus.itemLoading = null
-          console.log(error)
         })
     },
     addCart (id, qty = 1) {
@@ -191,6 +220,11 @@ export default {
           this.loadingStatus.itemLoading = null
           this.$swal(error, '', 'error')
         })
+    },
+    getCategory () {
+      const categorys = this.products?.map(product => product.category)
+      console.log(categorys)
+      this.list.ary = [...new Set(categorys)]
     }
   }
 }
@@ -198,5 +232,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+@import '@/assets/stylesheet/all';
+.list-group-item{
+  cursor: pointer;
+  color: $primary;
+  &:hover , &.active{
+    background-color: $primary;
+    color:#fff;
+  }
+}
 </style>

@@ -138,13 +138,15 @@
             aria-describedby="message"
           />
         </div>
-        <button
-          :disabled="!checkSubmit(errors)"
-          class="btn btn-primary"
-          :type="checkSubmit(errors) ? 'submit' : 'button'"
-        >
-          送出訂單
-        </button>
+        <div :class="{'cursor-notAllow':!checkSubmit(errors)}">
+          <button
+            :disabled="!checkSubmit(errors)"
+            class="btn btn-primary"
+            :type="checkSubmit(errors) ? 'submit' : 'button'"
+          >
+            送出訂單
+          </button>
+        </div>
       </Form>
     </div>
   </div>

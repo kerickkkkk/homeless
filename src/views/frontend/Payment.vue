@@ -1,10 +1,25 @@
 <template>
   <div class="payment">
+    <CheckOutStep :step="order.is_paid ? 'paid' : 'payment'" />
+
     <div class="container">
       <div class="row">
         付款狀態 : {{ order.is_paid ? '已付款' : '未付款' }}
-        <button @click="pay(orderId)">
+        <button
+          v-if="!order.is_paid"
+          type="button"
+          class="btn btn-primary"
+          @click="pay(orderId)"
+        >
           付款
+        </button>
+        <button
+          v-else
+          type="button"
+          class="btn btn-primary"
+          @click="goShop"
+        >
+          購買去
         </button>
       </div>
     </div>
@@ -12,8 +27,13 @@
 </template>
 
 <script>
+import CheckOutStep from '@/components/CheckOutStep'
+
 export default {
   name: 'Payment',
+  components: {
+    CheckOutStep
+  },
   data () {
     return {
       orderId: null,
@@ -50,12 +70,14 @@ export default {
       this.$http
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${id}`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
+            this.$emitter.emit('fullScreenLoaidng', false)
             const { message } = res.data
-            this.$swal(`${message}!! \n 繼續選購`, '', 'success').then(() => {
-              this.$router.push('/products')
-            })
+            this.$swal(`${message}!! \n`, '', 'success')
+            this.getOrder(id)
+            // this.$swal(`${message}!! \n 繼續選購`, '', 'success').then(() => {
+            //   this.$router.push('/products')
+            // })
           } else {
             this.$swal(res.data.message, '', 'error')
           }
@@ -64,8 +86,11 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
         })
-    }
+    },
     // 更新附款狀態
+    goShop () {
+      this.$router.push('/products')
+    }
   }
 }
 </script>

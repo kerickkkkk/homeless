@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <div class="container">
+      <CheckOutStep step="checkout" />
       <Form
         v-slot="{ errors }"
         @submit="submitOrder"
@@ -131,15 +132,16 @@
           >留言</label>
           <textarea
             id="message"
-            v-model="user.msg"
+            v-model="msg"
             class="form-control"
             placeholder="請輸入留言"
             aria-describedby="message"
           />
         </div>
         <button
+          :disabled="!checkSubmit(errors)"
           class="btn btn-primary"
-          type="submit"
+          :type="checkSubmit(errors) ? 'submit' : 'button'"
         >
           送出訂單
         </button>
@@ -149,8 +151,12 @@
 </template>
 
 <script>
+import CheckOutStep from '@/components/CheckOutStep'
 export default {
   name: 'Checkout',
+  components: {
+    CheckOutStep
+  },
   data () {
     return {
       user: {
@@ -158,9 +164,9 @@ export default {
         email: '1@1.cccc',
         tel: '0123456789',
         addr: '111',
-        payMethod: 'ATM',
-        msg: ''
-      }
+        payMethod: 'ATM'
+      },
+      msg: ''
       // user: {
       //   name: '',
       //   email: '',
@@ -172,6 +178,11 @@ export default {
     }
   },
   methods: {
+    checkSubmit (hasError) {
+      const noError = Object.values(hasError).length <= 0
+      const hasNoEmpty = Object.values(this.user).every(info => info !== '')
+      return (noError && hasNoEmpty)
+    },
     submitOrder () {
       const data = {
         data: {
@@ -189,7 +200,6 @@ export default {
       this.$http
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`, data)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { message, total, orderId } = res.data
             this.$emitter.emit('nav-getCarts', 'updateOnly')
@@ -199,6 +209,7 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoaidng', false)
         })
         .catch((error) => {
           this.$emitter.emit('fullScreenLoaidng', false)

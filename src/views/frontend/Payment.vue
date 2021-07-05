@@ -4,14 +4,87 @@
 
     <div class="container">
       <div class="row">
-        付款狀態 : {{ order.is_paid ? '已付款' : '未付款' }}
+        <div class="col-md-6">
+          <h2 class="text-center mb-3">
+            購物清單
+          </h2>
+          <table class="table table-secondary table-striped ">
+            <thead>
+              <tr>
+                <th>品名</th>
+                <th>數量</th>
+                <th>單價</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(v,k) in order.products"
+                :key="k"
+              >
+                <td>{{ v.product.title }}</td>
+                <td>{{ v.qty }}</td>
+                <td class="text-end">
+                  {{ v.product.price }} 元
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <td
+                class="text-end"
+                colspan="2"
+              >
+                總計
+              </td>
+              <td class="text-end">
+                {{ order.total }} 元
+              </td>
+            </tfoot>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2 class="text-center mb-3">
+            訂購人資訊
+          </h2>
+          <table class="table text-center table-striped">
+            <tbody>
+              <tr>
+                <th>姓名：</th>
+                <td>{{ order.user.name }}</td>
+              </tr>
+              <tr>
+                <th>電話：</th>
+                <td>{{ order.user.tel }}</td>
+              </tr>
+              <tr>
+                <th>住址：</th>
+                <td>{{ order.user.address }}</td>
+              </tr>
+              <tr>
+                <th>電子信箱：</th>
+                <td>{{ order.user.email }}</td>
+              </tr>
+              <tr>
+                <th>訂購日期：</th>
+                <td>{{ $filters.date(order.create_at) }}</td>
+              </tr>
+              <tr>
+                <th>付款狀態：</th>
+                <td :class="[order.is_paid ? 'text-success' : 'text-danger']">
+                  {{ order.is_paid ? '已' :' 未' }}付款
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-end my-5">
         <button
           v-if="!order.is_paid"
           type="button"
           class="btn btn-primary"
           @click="pay(orderId)"
         >
-          付款
+          確認付款去
         </button>
         <button
           v-else
@@ -37,7 +110,10 @@ export default {
   data () {
     return {
       orderId: null,
-      order: {}
+      order: {
+        user: {}
+
+      }
     }
   },
   created () {

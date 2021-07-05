@@ -36,7 +36,7 @@
             <li class="nav-item">
               <router-link
                 to="/about"
-                class="nav-link active"
+                class="nav-link"
               >
                 關於我們
               </router-link>
@@ -44,7 +44,7 @@
             <li class="nav-item">
               <router-link
                 to="/products"
-                class="nav-link active"
+                class="nav-link"
               >
                 餐點
               </router-link>
@@ -52,20 +52,21 @@
             <li class="nav-item">
               <router-link
                 to="/contact"
-                class="nav-link active"
+                class="nav-link"
               >
                 聯絡我們
               </router-link>
             </li>
-            <li class="nav-item">
-              <router-link
-                to="/cart"
-                class="nav-link active"
+            <li class="nav-item ">
+              <a
+                class="nav-link"
+                href="#"
+                @click.prevent="cartHandler"
               >
-                <span class="text-danger">
+                <span>
                   <i class="bi bi-cart" />({{ cartLen }})
                 </span>
-              </router-link>
+              </a>
             </li>
           </ul>
         </div>
@@ -74,8 +75,8 @@
 
     <router-view />
 
-    <footer>
-      footer
+    <footer class="bg-dark  py-4 text-center text-white">
+      ⓒ 2021 HomeLess All Right Reserved . 練習用，無商業用途
     </footer>
   </div>
 </template>
@@ -89,8 +90,8 @@ export default {
       isLoading: true,
       navClassList: {
         nav: 'navbar-light',
-        bg: 'bg-light',
-        padding: 'py-5'
+        bg: '',
+        padding: 'py-3'
       },
       cartLen: 0
     }
@@ -140,10 +141,19 @@ export default {
       } else {
         this.navClassList = {
           nav: 'navbar-light',
-          bg: 'bg-light',
+          bg: '',
           padding: 'py-3'
 
         }
+      }
+    },
+    cartHandler () {
+      if (this.cartLen > 0) {
+        this.$router.push('/cart')
+      } else {
+        this.$swal('購物車是空', '請選購產品', 'info').then(() => {
+          this.$router.push('/products')
+        })
       }
     }
   }

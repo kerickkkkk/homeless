@@ -66,16 +66,16 @@
             </div>
             <div class="d-flex justify-content-cnter">
               <div
-                class="btn btn-lg btn-primary"
+                class="btn btn-lg btn-outline-primary mr-3"
                 @click.prevent.stop="addCart"
               >
                 加入購物車
               </div>
               <router-link
                 to="/cart"
-                class="btn btn-danger"
+                class="btn btn-primary"
               >
-                結帳
+                直接購買
               </router-link>
             </div>
           </div>

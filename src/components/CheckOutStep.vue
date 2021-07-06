@@ -1,5 +1,5 @@
 <template>
-  <ul class="row justify-content-center list-unstyled px-3 ">
+  <ul class="row justify-content-center list-unstyled py-5 px-3">
     <li class="col-md-3">
       <div
         class="bg-primary p-3 badge rounded-pill fs-3 w-100 mb-2"

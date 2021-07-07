@@ -130,6 +130,8 @@ export default {
       this.$http.post(url)
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)
+          // 清空 cookies
+          document.cookie = 'shop=;expires=;'
           const status = res.data.success ? 'success' : 'error'
           this.$swal(res.data.message, '', status).then(() => {
             this.$router.push('/login')

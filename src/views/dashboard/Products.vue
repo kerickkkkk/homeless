@@ -141,13 +141,19 @@
       :api-path="apiPath"
       :temp-product="tempProduct"
       @e-cancel-modal="cancelModal" -->
-    <adminProductsModal
-      ref="adminProductsModal"
+    <AdminProductsModal
+      ref="AdminProductsModal"
       @get-items="getProducts"
     />
+
+    <UploadImgModal
+      ref="UploadImgModal"
+    />
+
     <!-- modal upload img -->
-    <!-- <uploadImgModal
-      :api-url="apiUrl"
+    <!-- <UploadImgModal
+      :api-url="
+      apiUrl"
       :api-path="apiPath"
     /> -->
   </div>
@@ -155,12 +161,14 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
-import adminProductsModal from '@/components/dashboard/ProductsModal'
+import AdminProductsModal from '@/components/dashboard/ProductsModal.vue'
+import UploadImgModal from '@/components/dashboard/UploadImgModal.vue'
 export default {
   name: 'AdminProducts',
   components: {
     Pagination,
-    adminProductsModal
+    AdminProductsModal,
+    UploadImgModal
   },
   data () {
     return {
@@ -219,7 +227,12 @@ export default {
     // modal 控制
     modalHandler (type, id, tempProduct = {}) {
       // 控制往內部送
-      this.$refs.adminProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
+      if (type === 'uploadImg') {
+        this.$refs.UploadImgModal.openModal()
+        console.log(this.$refs)
+      } else {
+        this.$refs.AdminProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
+      }
     }
   }
 }

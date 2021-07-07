@@ -334,7 +334,7 @@ export default {
           if (res.data.success) {
             this.closeModal('delete')
             this.$swal(res.data.message, '', 'success').then(() => {
-              this.$emit('get-products', this.current_page)
+              this.$emit('get-items', this.current_page)
             })
             this.clearStatus()
           } else {
@@ -388,7 +388,7 @@ export default {
           if (res.data.success) {
             this.closeModal('addEdit')
             this.$swal(res.data.message, '', 'success').then(() => {
-              this.$emit('get-products', this.current_page)
+              this.$emit('get-items', this.current_page)
             })
             this.clearStatus()
           } else {

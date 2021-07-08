@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group my-2">
-                      <label for="#mainImg">主要圖片</label>
+                      <label for="mainImg">主要圖片</label>
                       <input
                         id="mainImg"
                         v-model.lazy="tempProduct.imageUrl"
@@ -145,7 +145,7 @@
                     </div>
                     <div class="form-row mb-2">
                       <div class="form-group col-md-6">
-                        <label for="price">
+                        <label for="origin_price">
                           <span class="text-danger">*</span>
                           原價
                         </label>

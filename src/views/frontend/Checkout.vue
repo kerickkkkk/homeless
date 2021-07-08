@@ -96,7 +96,7 @@
             </div>
             <div class="mb-3">
               <label
-                for="addr"
+                for="payMethod"
                 class="form-label"
               >付款方式
                 <span class="text-danger">*</span></label>

@@ -264,7 +264,7 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.closeModal('delete')
-            this.$swal('res.data.message', '', 'success').then(() => {
+            this.$swal(res.data.message, '', 'success').then(() => {
               this.$emit('get-orders', this.current_page)
             })
             this.clearStatus()

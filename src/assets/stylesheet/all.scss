@@ -5,6 +5,16 @@
 
 @import '~bootstrap/scss/bootstrap';
 
+// base 
+ul{
+  list-style: none;
+}
+
+img{
+  vertical-align: middle;
+}
+
+//
 
 .bg-cover{
   background-size: cover;
@@ -16,6 +26,10 @@
   object-position: center center;
 }
 
-.disabled{
+.cursor-notAllow{
   cursor: not-allowed;
+}
+
+.parallax{
+  background-attachment: fixed; /* 固定圖像 */
 }

@@ -81,13 +81,13 @@
                       －
                     </button>
                     <input
-                      v-model="item.qty"
+                      v-model.number="item.qty"
                       :disabled="currentCartId === item.id"
                       type="number"
                       min="1"
                       class="form-control rounded-0"
                       style="width: 80px"
-                      @change="cartHandler('put', item.id , item.product.id , ++item.qty)"
+                      @change="cartHandler('put', item.id , item.product.id , item.qty)"
                     >
 
                     <button
@@ -198,6 +198,7 @@ export default {
         })
     },
     cartHandler (type, id, productId, qty) {
+      qty = parseInt(qty)
       this.currentCartId = id
       if (type === 'put') {
         qty = qty < 1 ? 1 : qty > 999 ? 999 : qty

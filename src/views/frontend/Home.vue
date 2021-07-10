@@ -118,7 +118,7 @@ export default {
           if (res.data.success) {
             const { data } = res.data
             this.cartLen = data?.carts.length
-            if (status !== 'updateOnly') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
+            // if (status !== 'updateOnly') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
           } else {
             this.$swal(res.data.message, '', 'error')
           }

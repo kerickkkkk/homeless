@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderPic title="購物車內容" />
-    <div class="container">
+    <div class="container my-5">
       <div class="row">
         <!-- <div class="text-end">
         <button
@@ -123,15 +123,21 @@
                       v-model="coupon"
                       type="text"
                       class="form-control"
-                      placeholder="輸入優惠券"
+                      placeholder="輸入優惠券: code_20"
                     >
                     <button
                       class="btn btn-outline-primary"
                       type="button"
-                      @click="checkCoupon"
+                      @click="useCoupon"
                     >
                       套用
                     </button>
+                  </div>
+                  <div
+                    v-if="couponCode"
+                    class="text-end"
+                  >
+                    <span class="text-danger">{{ couponCode }}</span> <br>
                   </div>
                 </td>
               </tr>
@@ -168,7 +174,7 @@
             快來去選產品吧
           </p>
           <router-link
-            class="btn btn-primary"
+            class="btn btn-primary my-4"
             to="/products"
           >
             前往產品列表
@@ -176,23 +182,27 @@
         </template>
       </div>
     </div>
+    <SubScribe />
   </div>
 </template>
 
 <script>
 import HeaderPic from '@/components/HeaderPic.vue'
+import SubScribe from '@/components/SubScribe.vue'
 
 export default {
   name: 'Cart',
   components: {
-    HeaderPic
+    HeaderPic,
+    SubScribe
   },
   data () {
     return {
       carts: {},
       cartLen: 0,
       currentCartId: null,
-      coupon: ''
+      coupon: '',
+      couponCode: ''
     }
   },
   created () {
@@ -247,7 +257,7 @@ export default {
           this.$swal(error, '', 'error')
         })
     },
-    checkCoupon () {
+    useCoupon () {
       // /api/:api_path/coupon
       this.$emitter.emit('fullScreenLoaidng', true)
       const data = {
@@ -262,6 +272,9 @@ export default {
           if (res.data.success) {
             this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
             // console.log(res.data.data.final_total)
+            this.coupon = ''
+            this.couponCode = res.data.message
+            this.getCarts()
           } else {
             this.$swal(res.data.message, '', 'error')
           }

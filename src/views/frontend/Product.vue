@@ -1,10 +1,12 @@
 <template>
   <div>
+    <HeaderPic title="商品介紹" />
     <Loading
       :active="isLoading"
       color="#00BFFF"
       loader="dots"
     />
+
     <div class="container">
       <div class="row mb-3">
         <div class="col-md-6">
@@ -174,8 +176,13 @@
 </template>
 
 <script>
+import HeaderPic from '@/components/HeaderPic.vue'
+
 export default {
   name: 'Product',
+  components: {
+    HeaderPic
+  },
   data () {
     return {
       isLoading: false,

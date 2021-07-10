@@ -131,7 +131,6 @@ export default {
 
       this.$http.post(url, formData)
         .then((res) => {
-          console.log(res)
           this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.imageUrl = res.data.imageUrl

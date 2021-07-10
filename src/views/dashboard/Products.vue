@@ -229,7 +229,6 @@ export default {
       // 控制往內部送
       if (type === 'uploadImg') {
         this.$refs.UploadImgModal.openModal()
-        console.log(this.$refs)
       } else {
         this.$refs.AdminProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
       }

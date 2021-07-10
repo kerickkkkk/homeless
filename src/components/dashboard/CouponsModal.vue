@@ -234,7 +234,7 @@ export default {
     sendCoupon () {
       // 檢查必填欄位
       // title(String)、is_enabled(Number)、percent(Number)、due_date(Number)、code(String) 為必填欄位
-      if (this.modalType === 'add') this.tempCoupon.is_enabled = 0
+      this.tempCoupon.is_enabled = this.tempCoupon.is_enabled ? 1 : 0
       const inputMap = [
         { name: 'title', columnName: '名稱' },
         { name: 'is_enabled', columnName: '啟用' },

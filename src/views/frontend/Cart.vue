@@ -116,6 +116,27 @@
               </tr>
               <tr>
                 <td
+                  colspan="100"
+                >
+                  <div class="input-group ms-auto w-25">
+                    <input
+                      v-model="coupon"
+                      type="text"
+                      class="form-control"
+                      placeholder="輸入優惠券"
+                    >
+                    <button
+                      class="btn btn-outline-primary"
+                      type="button"
+                      @click="checkCoupon"
+                    >
+                      套用
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td
                   class="text-end"
                   colspan="100"
                 >
@@ -135,7 +156,7 @@
               to="/checkout"
               class="btn btn-danger"
             >
-              結帳
+              填寫訂單
             </router-link>
           </div>
         </template>
@@ -170,7 +191,8 @@ export default {
     return {
       carts: {},
       cartLen: 0,
-      currentCartId: null
+      currentCartId: null,
+      coupon: ''
     }
   },
   created () {
@@ -217,6 +239,30 @@ export default {
             this.getCarts()
           } else {
             this.currentCartId = null
+            this.$swal(res.data.message, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
+        })
+    },
+    checkCoupon () {
+      // /api/:api_path/coupon
+      this.$emitter.emit('fullScreenLoaidng', true)
+      const data = {
+        data: {
+          code: this.coupon
+        }
+      }
+      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/coupon`, data)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+
+          if (res.data.success) {
+            this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
+            // console.log(res.data.data.final_total)
+          } else {
             this.$swal(res.data.message, '', 'error')
           }
         })

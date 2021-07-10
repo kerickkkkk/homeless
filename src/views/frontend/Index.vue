@@ -20,49 +20,70 @@
       </swiper-slide>
     </swiper> -->
 
-    <section class="about container my-4 ">
-      <div class="row featurette align-items-center">
-        <div class="col-md-7 order-1 order-md-0">
-          <div class="p-3">
-            <h2 class="featurette-heading">
-              原裝進口<span class="text-muted"> 取材絕不妥協</span>
-            </h2>
-            <p class="lead">
-              採純淨農場所栽種出的作物，經典農莊嚴格把關，創造出最重要的核心麵條。
-            </p>
-            <button class="btn btn-outline-primary">
-              關於我們 >>
-            </button>
+    <section class="about  my-4 bg-light ">
+      <div class="container py-4">
+        <div class="row featurette align-items-center">
+          <div class="col-md-7 order-1 order-md-0">
+            <div class="p-3">
+              <h2 class="featurette-heading">
+                原裝進口<span class="text-muted"> 取材絕不妥協</span>
+              </h2>
+              <p class="lead">
+                採純淨農場所栽種出的作物，經典農莊嚴格把關，創造出最重要的核心麵條。
+              </p>
+              <router-link
+                to="/about"
+                class="btn btn-outline-primary"
+              >
+                關於我們 >>
+              </router-link>
+            </div>
+          </div>
+          <div class="col-md-5 oreder-0 order-md-1">
+            <div
+              class="bg-cover"
+              style="background-image:url(https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80); height:300px"
+            />
           </div>
         </div>
-        <div class="col-md-5 oreder-0 order-md-1">
-          <div
-            class="bg-cover"
-            style="background-image:url(https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80); height:300px"
-          />
-        </div>
-      </div>
-      <div class="row featurette align-items-center">
-        <div class="col-md-5  order-md-1">
-          <div
-            class="bg-cover"
-            style="background-image:url(https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80); height:300px"
-          />
-        </div>
-        <div class="col-md-7 order-0 order-md-1">
-          <div class="p-3">
-            <h2 class="featurette-heading">
-              產地鮮採<span class="text-muted"> 鮮多少買多少</span>
-            </h2>
-            <p class="lead">
-              絕不囤貨，當天訂購賣完為止，出餐多寡，全看鮮材多寡。
-            </p>
-            <button class="btn btn-outline-primary">
-              關於我們 >>
-            </button>
+        <div class="row featurette align-items-center">
+          <div class="col-md-5  order-md-1">
+            <div
+              class="bg-cover"
+              style="background-image:url(https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80); height:300px"
+            />
+          </div>
+          <div class="col-md-7 order-0 order-md-1">
+            <div class="p-3">
+              <h2 class="featurette-heading">
+                產地鮮採<span class="text-muted"> 鮮多少買多少</span>
+              </h2>
+              <p class="lead">
+                絕不囤貨，當天訂購賣完為止，出餐多寡，全看鮮材多寡。
+              </p>
+              <router-link
+                to="/about"
+                class="btn btn-outline-primary"
+              >
+                關於我們 >>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+    <section class="container">
+      <h2 class="text-center">
+        今日在哪裡
+      </h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2705.754019597818!2d121.78844174966153!3d25.144199846253624!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8258934b8536e5ba!2z5YWr5paX5a2Q5ryB5riv!5e0!3m2!1szh-TW!2stw!4v1625921326345!5m2!1szh-TW!2stw"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      />
     </section>
     <SubScribe />
   </div>

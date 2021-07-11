@@ -39,11 +39,14 @@
         <tfoot class="">
           <td
             class="text-end py-2"
-            colspan="3"
+            colspan="2"
           >
             總計
           </td>
-          <td class="text-end">
+          <td
+            class="text-end"
+            colspan="2"
+          >
             <span>{{ order.total }}</span> 元
           </td>
         </tfoot>

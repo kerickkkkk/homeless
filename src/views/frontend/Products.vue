@@ -49,18 +49,24 @@
               :key="item.id"
               class="col-lg-4 col-md-6 mb-3"
             >
-              <div class="card h-100">
-                <div
-                  class="bg-cover"
-                  style="height:250px"
-                  :style="`background-image: url(${item.imageUrl})`"
-                >
+              <div
+                class="card h-100"
+                role="button"
+                @click="getProductDetail(item.id)"
+              >
+                <div class="card__imgWrap">
+                  <div
+                    class="card__img bg-cover"
+                    style="height:250px"
+                    :style="`background-image: url(${item.imageUrl})`"
+                  >
                   <!-- <img
                     :src="item.imageUrl"
                     class="img-cover"
                     style="height:150px; width:150px"
                     alt="圖片"
                   > -->
+                  </div>
                 </div>
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
@@ -75,11 +81,11 @@
                   </div>
                   <div class="d-flex justify-content-between">
                     <template v-if="item.origin_price === item.price">
-                      <span class="h5 ms-auto">${{ item.origin_price }}</span>
+                      <span class="h5 ms-auto">原價： {{ item.origin_price }} 元</span>
                     </template>
                     <template v-else>
-                      <del>${{ item.origin_price }}</del>
-                      <span class="text-danger h5 ms-auto">${{ item.price }}</span>
+                      <del>原價： {{ item.origin_price }} 元</del>
+                      <span class="text-danger h5 ms-auto">特價： {{ item.price }} 元</span>
                     </template>
                   </div>
                   <div class="d-flex justify-content-center">

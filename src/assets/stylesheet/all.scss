@@ -11,6 +11,8 @@ ul{
 }
 
 img{
+  max-width: 100%;
+  height: auto;
   vertical-align: middle;
 }
 
@@ -32,4 +34,37 @@ img{
 
 .parallax{
   background-attachment: fixed; /* 固定圖像 */
+}
+
+// cmp 行為調整
+.card{
+  &__imgWrap{
+    overflow: hidden;
+  }
+  &__img{
+    transition: transform .5s;
+  }
+  &:hover{
+    .card__img{
+      position: relative;
+      transform : scale(1.25);
+      &:before{
+        content:"";
+        position: absolute;
+        left: 0 ;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,.3);
+      }
+      &:after{
+        content:'看詳細';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+      }
+    }
+  }
 }

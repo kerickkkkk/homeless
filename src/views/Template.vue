@@ -26,7 +26,8 @@ export default {
               this.$emit('get-products', this.pagination.current_page)
             })
           } else {
-            this.$swal(res.data.message, '', 'error')
+            const erroMsg = res.data.message.reduce((prev, next) => (`${prev} ${next}`), '')
+            this.$swal(erroMsg, '', 'error')
           }
         }).catch((error) => {
           this.$emitter.emit('fullScreenLoaidng', false)

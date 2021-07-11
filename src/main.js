@@ -18,7 +18,7 @@ import 'swiper/components/navigation/navigation.min.css'
 
 // import Swiper core and required modules
 import SwiperCore, {
-  Pagination, Navigation
+  Autoplay, Pagination, Navigation
 } from 'swiper/core'
 
 // vee validation
@@ -47,7 +47,7 @@ app.config.globalProperties.$filters = {
 }
 
 // install Swiper modules
-SwiperCore.use([Pagination, Navigation])
+SwiperCore.use([Autoplay, Pagination, Navigation])
 app.use(router)
 app.use(VueAxios, axios)
 app.use(VueSweetalert2)

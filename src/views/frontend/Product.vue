@@ -1,12 +1,6 @@
 <template>
   <div>
     <HeaderPic title="商品介紹" />
-    <Loading
-      :active="isLoading"
-      color="#00BFFF"
-      loader="dots"
-    />
-
     <div class="container">
       <div class="row mb-3">
         <div class="col-md-6">
@@ -21,9 +15,12 @@
         </div>
         <div class="col-md-6">
           <div class="d-flex flex-column justify-content-between h-100">
-            <h1 class="p-3">
-              #{{ productDetail.title }}
+            <h1 class="text-primary p-3">
+              {{ productDetail.title }}
             </h1>
+            <section>
+              {{ productDetail.description }}
+            </section>
             <!-- <div class="d-flex mb-3">
                         <div class="me-3">口味:</div>
                         <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
@@ -32,6 +29,9 @@
                         <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
                         <div><button class="btn btn-sm btn-primary">青</button></div>
                       </div> -->
+            <section>
+              付款方式： ATM 、 信用卡
+            </section>
             <div class="d-flex mb-3 align-items-center">
               <div class="me-2">
                 數量:
@@ -66,129 +66,96 @@
               </div>
               {{ productDetail.unit }}
             </div>
-            <div class="d-flex justify-content-cnter">
+            <div class="d-flex align-items-end">
               <div
-                class="btn btn-lg btn-outline-primary mr-3"
+                :class="{'text-decoration-line-through' :
+                  productDetail.origin_price !== productDetail.price
+                }"
+              >
+                原價： {{ productDetail.origin_price }} 元
+              </div>
+              <div
+                v-if="productDetail.origin_price !== productDetail.price"
+                class="ms-auto text-danger"
+              >
+                特價： <span class="h4">
+                  {{ productDetail.price }}
+                </span> 元
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <div
+                class="btn btn-primary me-2"
                 @click.prevent.stop="addCart"
               >
                 加入購物車
               </div>
-              <router-link
-                to="/cart"
-                class="btn btn-primary"
+              <button
+                to="/products"
+                class="btn btn-danger "
+                @clcik="addCart(true)"
               >
-                直接購買
-              </router-link>
+                直接結帳
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <ul
-          id="pills-tab"
-          class="nav nav-pills mb-3"
-          role="tablist"
-        >
-          <li
-            class="nav-item"
-            role="presentation"
-          >
-            <button
-              id="pills-home-tab"
-              class="nav-link active"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-home"
-              type="button"
-              role="tab"
-              aria-controls="pills-home"
-              aria-selected="true"
-            >
-              簡介
-            </button>
-          </li>
-          <li
-            class="nav-item"
-            role="presentation"
-          >
-            <button
-              id="pills-profile-tab"
-              class="nav-link"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-profile"
-              type="button"
-              role="tab"
-              aria-controls="pills-profile"
-              aria-selected="false"
-            >
-              詳細
-            </button>
-          </li>
-          <li
-            class="nav-item"
-            role="presentation"
-          >
-            <button
-              id="pills-contact-tab"
-              class="nav-link"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-contact"
-              type="button"
-              role="tab"
-              aria-controls="pills-contact"
-              aria-selected="false"
-            >
-              購買流程
-            </button>
-          </li>
-        </ul>
-        <div
-          id="pills-tabContent"
-          class="tab-content"
-        >
-          <div
-            id="pills-home"
-            class="tab-pane fade show active"
-            role="tabpanel"
-            aria-labelledby="pills-home-tab"
-          >
-            {{ productDetail.description }}
-          </div>
-          <div
-            id="pills-profile"
-            class="tab-pane fade"
-            role="tabpanel"
-            aria-labelledby="pills-profile-tab"
-          >
-            {{ productDetail.content }}
-          </div>
-          <div
-            id="pills-contact"
-            class="tab-pane fade"
-            role="tabpanel"
-            aria-labelledby="pills-contact-tab"
-          >
-            購買流程 ...
-          </div>
-        </div>
-      </div>
+      <section class="bg-light p-3 mb-5">
+        <section class="productDetail__content">
+          <h4 class="text-primary">
+            產品詳細
+          </h4>
+          <p>{{ productDetail.content }}</p>
+        </section>
+        <section>
+          <h4 class="text-primary">
+            訂購及其他說明
+          </h4>
+          <ul>
+            <li>
+              取餐時間：
+              <span class="text-danger">
+                提前一個小時
+              </span>
+            </li>
+            <li>
+              外送服務： 請提早確認是否人手充足可以外送，運送範圍為該天販售地點 10 公里以內。
+            </li>
+          </ul>
+        </section>
+      </section>
     </div>
+    <section class="mb-5">
+      <div class="container">
+        <h3 class="text-primary mb-3">
+          買了這些商品也買了...
+        </h3>
+        <PorductsSwiper
+          :category="category"
+          @get-product-detail="getProductDetail"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import HeaderPic from '@/components/HeaderPic.vue'
+import PorductsSwiper from '@/components/PorductsSwiper.vue'
 
 export default {
   name: 'Product',
   components: {
-    HeaderPic
+    HeaderPic,
+    PorductsSwiper
   },
   data () {
     return {
-      isLoading: false,
       productDetail: {},
       num: 1,
-      id: null
+      id: null,
+      category: ''
     }
   },
   computed: {
@@ -206,24 +173,40 @@ export default {
     this.getProductDetail(this.id)
   },
   methods: {
+    scrollToTop () {
+      // 更換產品不刷新頁面要把卷軸往上拉
+      // vue scroll to top of same route
+      window.scrollTo(0, 0)
+    },
     getProductDetail (id) {
-      this.isLoading = true
+      this.$emitter.emit('fullScreenLoaidng', true)
+
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then((res) => {
-          this.isLoading = false
+          this.$emitter.emit('fullScreenLoaidng', false)
+
           if (res.data.success) {
             this.productDetail = res.data.product
+            this.category = res.data.product.category
+            this.scrollToTop()
           } else {
-            alert(res.data.message)
+            const config = {
+              title: res.data.message,
+              icon: 'error',
+              confirmButtonText: '回產品頁'
+            }
+            this.$swal(config).then(() => {
+              this.$router.push('/products')
+            })
           }
         })
         .catch((error) => {
-          this.isLoading = false
-          console.log(error)
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
         })
     },
-    addCart () {
+    addCart (goCheckOut) {
       const data = { data: { product_id: this.id, qty: this.numRangeLimit } }
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http
@@ -231,6 +214,11 @@ export default {
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
+            this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message }).then(() => {
+              if (goCheckOut) {
+                this.$router.push('/cart')
+              }
+            })
             this.$emitter.emit('nav-getCarts')
           } else {
             const erroMsg = res.data.message.reduce((prev, next) => (`${prev} ${next}`), '')

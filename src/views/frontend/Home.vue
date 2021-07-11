@@ -164,6 +164,7 @@ export default {
 <style scoped>
 .navbar{
   transition: background-color .8s, padding .5s;
-  z-index: 2000;
+  /* sweet alert 1060 */
+  z-index: 1030;
 }
 </style>

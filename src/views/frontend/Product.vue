@@ -91,9 +91,9 @@
                 加入購物車
               </div>
               <button
-                to="/products"
+                type="button"
                 class="btn btn-danger "
-                @clcik="addCart(true)"
+                @click.prevent="addCart(true)"
               >
                 直接結帳
               </button>
@@ -173,11 +173,11 @@ export default {
     this.getProductDetail(this.id)
   },
   methods: {
-    scrollToTop () {
-      // 更換產品不刷新頁面要把卷軸往上拉
-      // vue scroll to top of same route
-      window.scrollTo(0, 0)
-    },
+    // scrollToTop () {
+    //   // 更換產品不刷新頁面要把卷軸往上拉
+    //   // vue scroll to top of same route
+    //   window.scrollTo(0, 0)
+    // },
     getProductDetail (id) {
       this.$emitter.emit('fullScreenLoaidng', true)
 
@@ -189,7 +189,7 @@ export default {
           if (res.data.success) {
             this.productDetail = res.data.product
             this.category = res.data.product.category
-            this.scrollToTop()
+            this.$tools.goTop()
           } else {
             const config = {
               title: res.data.message,
@@ -214,11 +214,12 @@ export default {
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
-            this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message }).then(() => {
-              if (goCheckOut) {
-                this.$router.push('/cart')
-              }
-            })
+            // 預設會傳物件 會爆掉
+            if (goCheckOut === true) {
+              this.$router.push('/cart')
+            } else {
+              this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
+            }
             this.$emitter.emit('nav-getCarts')
           } else {
             const erroMsg = res.data.message.reduce((prev, next) => (`${prev} ${next}`), '')

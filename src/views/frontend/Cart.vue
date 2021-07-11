@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderPic title="購物車內容" />
+    <HeaderPic title="確認購物車內容" />
     <div class="container my-5">
       <div class="row">
         <!-- <div class="text-end">

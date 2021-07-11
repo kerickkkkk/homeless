@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     getProducts (page) {
+      this.$tools.goTop()
       if (!this.isAllProducts) {
         this.$emit('get-items', page)
       } else {

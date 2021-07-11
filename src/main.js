@@ -29,6 +29,7 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import 'bootstrap'
 // 以上 npm 內容 以下自訂
 import { date, currency } from './assets/javascript/filters'
+import { goTop } from './assets/javascript/tools'
 
 configure({
   generateMessage: localize({ zh_TW: zhTW }),
@@ -44,6 +45,9 @@ const app = createApp(App)
 app.config.globalProperties.$emitter = emitter
 app.config.globalProperties.$filters = {
   date, currency
+}
+app.config.globalProperties.$tools = {
+  goTop
 }
 
 // install Swiper modules

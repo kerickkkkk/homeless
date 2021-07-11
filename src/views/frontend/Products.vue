@@ -19,7 +19,9 @@
     <div class="container py-5">
       <div class="row">
         <div class="col-md-3">
-          <div class="list-group">
+          <div
+            class="list-group sticky-top mb-3"
+          >
             <a
               href="#"
               :class="{active: list.currentCategory === 'all'}"
@@ -283,6 +285,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.list-group {
+  top: 70px;
+}
 // @import '@/assets/stylesheet/all';
 // .list-group-item{
 //   cursor: pointer;

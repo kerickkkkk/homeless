@@ -105,7 +105,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-danger"
-                  @click="modalHandler('delete', product.id)"
+                  @click="modalHandler('delete', product.id ,{...product})"
                 >
                   刪除
                 </button>

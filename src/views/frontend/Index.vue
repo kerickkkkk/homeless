@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <!-- <swiper
+    <swiper
       :slides-per-view="1"
       :space-between="30"
       :loop="true"
@@ -12,13 +12,49 @@
       class="mySwiper"
     >
       <swiper-slide>
-        <img
-          src="https://images.unsplash.com/photo-1624038030386-f3970b0c9c04?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-          class="card-img-top"
-          alt="..."
+        <div
+          class="position-relative overflow-hidden py-5 m-md-3 text-center bg-cover"
+          style="background-image:url(https://images.unsplash.com/photo-1495293453185-532fbd0a872c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80)"
         >
+          <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 fw-normal">
+              食材不能妥協
+            </h1>
+            <p class="lead fw-normal">
+              老闆瘋到會下海去捕魚，不是在食物堆內，就是在尋找好的食材的路上。
+            </p>
+            <router-link
+              class="btn btn-outline-primary"
+              to="/products"
+            >
+              看菜單
+            </router-link>
+          </div>
+        </div>
       </swiper-slide>
-    </swiper> -->
+      <swiper-slide>
+        <div
+          class="position-relative overflow-hidden py-5 m-md-3 text-center bg-cover text-white"
+          style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url(https://images.unsplash.com/photo-1622082671199-bdea11a6174c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80) "
+        >
+          <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h2 class="display-4 fw-normal ">
+              新鮮咖啡到貨
+            </h2>
+            <p class="lead fw-normal">
+              想喝就要快~
+            </p>
+            <router-link
+              class="btn btn-secondary"
+              to="/products"
+            >
+              看菜單
+            </router-link>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper>
+    <!--車子上釣魚 https://images.unsplash.com/photo-1523268847884-e86b91f40024?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80 -->
 
     <section class="about  my-4 bg-light ">
       <div class="container py-4">
@@ -76,14 +112,29 @@
       <h2 class="text-center">
         今日在哪裡
       </h2>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2705.754019597818!2d121.78844174966153!3d25.144199846253624!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8258934b8536e5ba!2z5YWr5paX5a2Q5ryB5riv!5e0!3m2!1szh-TW!2stw!4v1625921326345!5m2!1szh-TW!2stw"
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-      />
+      <div class="row">
+        <div class="col-md-6">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2705.754019597818!2d121.78844174966153!3d25.144199846253624!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8258934b8536e5ba!2z5YWr5paX5a2Q5ryB5riv!5e0!3m2!1szh-TW!2stw!4v1625921326345!5m2!1szh-TW!2stw"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+          />
+        </div>
+        <div class="col-md-6">
+          <div>
+            <img
+              src="https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+              alt=""
+            >
+          </div>
+          <h4 class="text-center">
+            乾杯~
+          </h4>
+        </div>
+      </div>
     </section>
     <SubScribe />
   </div>

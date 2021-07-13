@@ -59,7 +59,7 @@
             </li>
             <li class="nav-item ">
               <a
-                class="nav-link"
+                class="nav-link text-danger"
                 href="#"
                 @click.prevent="cartHandler"
               >

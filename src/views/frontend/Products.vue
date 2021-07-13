@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-      <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 fw-normal">
-          Punny headline
-        </h1>
+    <div
+      style="background-image:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)"
+      class="bg-cover position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+    >
+      <div class="col-md-5 p-lg-5 mx-auto my-5 text-white">
+        <h2 class="display-4 fw-normal">
+          今天想補充點咖啡因嗎?
+        </h2>
         <p class="lead fw-normal">
-          And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.
+          這裡提供各式的精品咖啡!!
         </p>
-        <a
-          class="btn btn-outline-secondary"
-          href="#"
-        >Coming soon</a>
       </div>
       <div class="product-device shadow-sm d-none d-md-block" />
       <div class="product-device product-device-2 shadow-sm d-none d-md-block" />
@@ -262,7 +261,6 @@ export default {
     paginationHandler (products, currentPage = 1) {
       // {"total_pages":2,"current_page":1,"has_pre":false,"has_next":true,"category":null}
       const productsPerPage = 10
-      console.log(products, products.length / productsPerPage)
       this.pagination = {
         total_pages: Math.ceil(products.length / productsPerPage),
         current_page: currentPage,

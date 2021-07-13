@@ -67,7 +67,27 @@ export default {
       }
     }
   },
+  created () {
+    this.checkLogin()
+  },
   methods: {
+    checkLogin () {
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)shop\s*=\s*([^;]*).*$)|^.*$/, '$1')
+      if (token !== '') {
+        this.$http.defaults.headers.common.Authorization = token
+        this.$emitter.emit('fullScreenLoaidng', true)
+        this.$http.post(`${process.env.VUE_APP_API}/api/user/check`)
+          .then((res) => {
+            this.$emitter.emit('fullScreenLoaidng', false)
+            if (res.data.success) {
+              this.$router.push('/admin/products')
+            }
+          }).catch((error) => {
+            this.$emitter.emit('fullScreenLoaidng', false)
+            this.$swal(error, '', 'error')
+          })
+      }
+    },
     login () {
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http.post(`${process.env.VUE_APP_API}/admin/signin`, this.user).then((res) => {

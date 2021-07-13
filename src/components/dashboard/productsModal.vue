@@ -154,6 +154,7 @@
                           v-model.number="tempProduct.origin_price"
                           type="number"
                           class="form-control"
+                          min="1"
                           placeholder="原價"
                         >
                       </div>
@@ -165,6 +166,7 @@
                           v-model.number="tempProduct.price"
                           type="number"
                           class="form-control"
+                          min="1"
                           placeholder="售價"
                         >
                       </div>
@@ -249,7 +251,7 @@
           </div>
           <div class="modal-body">
             <p class="h3">
-              是否要<span class="text-danger">刪除</span>??
+              是否要<span class="text-danger">將 {{ tempProduct.title }} 刪除</span>??
             </p>
           </div>
           <div class="modal-footer">
@@ -299,6 +301,12 @@ export default {
   mounted () {
     this.modal.delete = new Modal(this.$refs.adminDeleteProductModal)
     this.modal.addEdit = new Modal(this.$refs.adminAddEdittModal)
+    this.$refs.adminDeleteProductModal.addEventListener('hidePrevented.bs.modal', this.clearStatus)
+    this.$refs.adminAddEdittModal.addEventListener('hidePrevented.bs.modal', this.clearStatus)
+  },
+  unmouted () {
+    this.$refs.adminDeleteProductModal.removeEventListener('hidePrevented.bs.modal', this.clearStatus)
+    this.$refs.adminAddEdittModal.removeEventListener('hidePrevented.bs.modal', this.clearStatus)
   },
   methods: {
     clearStatus () {
@@ -309,12 +317,10 @@ export default {
     },
     openModal (type = 'delete', id, tempProduct, currentPage) {
       if (type === 'edit' || type === 'add') {
-        if (type === 'edit') {
-          this.tempProduct = tempProduct
-        }
         this.modalType = type
         type = 'addEdit'
       }
+      this.tempProduct = tempProduct
       this.modal[type].show()
       this.id = id
       // 紀錄父層當下頁面 避免更新後跳回第一頁

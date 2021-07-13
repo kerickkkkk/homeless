@@ -45,7 +45,8 @@
                     <input
                       id="percent"
                       v-model.number="tempCoupon.percent"
-                      type="text"
+                      type="number"
+                      min="1"
                       class="form-control"
                       placeholder="折扣百分比"
                     >
@@ -259,7 +260,9 @@ export default {
         return false
       }
 
-      this.tempCoupon.due_date = new Date(this.tempCoupon.due_date).getTime() / 1000
+      // 處理 編輯時日期顯示有問題
+      const data = { ...this.tempCoupon }
+      data.due_date = new Date(this.tempCoupon.due_date).getTime() / 1000
 
       const url = {
         add: `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/`,
@@ -270,9 +273,9 @@ export default {
         edit: 'put'
       }
       this.$emitter.emit('fullScreenLoaidng', true)
-      console.log(url[this.modalType], appMethod[this.modalType], this.tempCoupon)
+
       // pass
-      this.$http[appMethod[this.modalType]](url[this.modalType], { data: this.tempCoupon })
+      this.$http[appMethod[this.modalType]](url[this.modalType], { data })
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {

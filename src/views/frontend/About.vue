@@ -15,17 +15,22 @@
               逐食而居
             </h2>
             <p class="lead">
-              只要待著就會渾身不舒服，再某個轉彎點，毅然地跨出舒適圈選擇了，走到哪吃到哪？一台車，一群朋友，開啟了走到哪賣到哪，吃到哪的旅程，決心要吃爆，也以這種心情和顧客分享，每個地方的特色。
+              只要待著就會渾身不舒服，再某個轉彎點，毅然地跨出舒適圈選擇了，走到哪吃到哪？ 一台車，一群朋友，開啟了走到哪賣到哪，以這種心情和顧客分享，每個地方的特色。
             </p>
           </div>
         </div>
       </div>
     </div>
     <!-- 手工製麵 -->
-    <section class="container-fluid mb-5">
-      <h2 class="text-center mb-3">
-        特製麵條
-      </h2>
+    <section class="container-fluid mb-5 text-center ">
+      <div class="featurette">
+        <h2 class="mb-3 featurette-heading">
+          特製麵條
+        </h2>
+        <p class="lead">
+          以最簡單的配方，高級麵粉、水、加上陽光炙熱的雙手，所製作出來最純粹的好吃的麵條。
+        </p>
+      </div>
       <div class="row justify-content-center">
         <div class="col-2">
           <div>

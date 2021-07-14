@@ -12,145 +12,155 @@
         </button>
       </div> -->
         <template v-if="cartLen > 0">
-          <table class="table">
-            <thead>
-              <tr>
-                <th
-                  width="50"
-                  scope="col"
-                />
-                <th scope="col">
-                  商品選項
-                </th>
-                <th scope="col">
-                  單價
-                </th>
-                <th scope="col">
-                  數量
-                </th>
-                <th scope="col">
-                  小計
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="item in carts.carts"
-                :key="item.id"
-              >
-                <td>
-                  <button
-                    class="btn btn-outline-danger border-0"
-                    @click="cartHandler('delete', item.id)"
+          <div class="table-responsive">
+            <table class="table ">
+              <thead class="text-center">
+                <tr>
+                  <th
+                    width="50"
+                    scope="col"
+                  />
+                  <th
+                    class="d-sm-table-cell d-none"
+                    scope="col"
                   >
-                    <i class="bi bi-trash" />
-                  </button>
-                </td>
-                <th>
-                  <div class="cart__title d-flex">
-                    <div class="me-3">
-                      <img
-                        :src="item.product.imageUrl"
-                        :alt="item.product.title"
-                        width="50"
-                        class="img-fluid"
-                      >
-                    </div>
-                    <div class="cart__title__content">
-                      <div class="h6">
-                        {{ item.product.title }}
+                    商品名稱
+                  </th>
+                  <th
+                    class="d-sm-table-cell d-none"
+                    scope="col"
+                  >
+                    單價
+                  </th>
+                  <th scope="col">
+                    <span class="d-sm-none d-inline-block">商品/</span>
+                    數量
+                  </th>
+                  <th scope="col">
+                    小計
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in carts.carts"
+                  :key="item.id"
+                >
+                  <td>
+                    <button
+                      class="btn btn-outline-danger border-0"
+                      @click="cartHandler('delete', item.id)"
+                    >
+                      <i class="bi bi-trash" />
+                    </button>
+                  </td>
+                  <th class="d-sm-table-cell d-none">
+                    <div class="cart__title d-flex justify-content-center">
+                      <div class="me-3 d-md-block d-none">
+                        <img
+                          :src="item.product.imageUrl"
+                          :alt="item.product.title"
+                          width="50"
+                          class="img-fluid"
+                        >
+                      </div>
+                      <div class="cart__title__content">
+                        <div class="h6">
+                          {{ item.product.title }}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </th>
-                <td class="text-end">
-                  NT ${{ $filters.currency(item.product.price) }}
-                </td>
-                <td>
-                  <div
-                    class="btn-group"
-                    role="group"
-                    aria-label="Basic checkbox toggle button group"
-                  >
-                    <button
-                      :disabled="currentCartId === item.id || item.qty <2"
-                      type="button"
-                      class="btn btn-outline-primary border-0"
-                      @click="cartHandler('put', item.id , item.product.id , --item.qty)"
+                  </th>
+                  <td class="text-end d-none d-sm-table-cell">
+                    ${{ $filters.currency(item.product.price) }}
+                  </td>
+                  <td class="text-center">
+                    <span class="d-sm-none d-block">{{ item.product.title }}</span>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Basic checkbox toggle button group"
                     >
-                      －
-                    </button>
-                    <input
-                      v-model.number="item.qty"
-                      :disabled="currentCartId === item.id"
-                      type="number"
-                      min="1"
-                      class="form-control rounded-0"
-                      style="width: 80px"
-                      @change="cartHandler('put', item.id , item.product.id , item.qty)"
-                    >
+                      <button
+                        :disabled="currentCartId === item.id || item.qty <2"
+                        type="button"
+                        class="btn btn-outline-primary border-0"
+                        @click="cartHandler('put', item.id , item.product.id , --item.qty)"
+                      >
+                        －
+                      </button>
+                      <input
+                        v-model.number="item.qty"
+                        :disabled="currentCartId === item.id"
+                        type="number"
+                        min="1"
+                        class="form-control rounded-0"
+                        style="width: 50px"
+                        @change="cartHandler('put', item.id , item.product.id , item.qty)"
+                      >
 
-                    <button
-                      :disabled="currentCartId === item.id"
-                      type="button"
-                      class="btn btn-outline-primary border-0"
-                      @click="cartHandler('put', item.id , item.product.id , ++item.qty)"
-                    >
-                      ＋
-                    </button>
-                  </div>
-                </td>
-                <td class="text-end">
-                  NT ${{ $filters.currency(item.final_total) }}
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td
-                  class="text-end"
-                  colspan="100"
-                >
-                  原價 NT $ {{ $filters.currency(carts.total) }}
-                </td>
-              </tr>
-              <tr>
-                <td
-                  colspan="100"
-                >
-                  <div class="input-group ms-auto w-25">
-                    <input
-                      v-model="coupon"
-                      type="text"
-                      class="form-control"
-                      placeholder="輸入優惠券: code_20"
-                    >
-                    <button
-                      class="btn btn-outline-primary"
-                      type="button"
-                      @click="useCoupon"
-                    >
-                      套用
-                    </button>
-                  </div>
-                  <div
-                    v-if="couponCode"
+                      <button
+                        :disabled="currentCartId === item.id"
+                        type="button"
+                        class="btn btn-outline-primary border-0"
+                        @click="cartHandler('put', item.id , item.product.id , ++item.qty)"
+                      >
+                        ＋
+                      </button>
+                    </div>
+                  </td>
+                  <td class="text-end">
+                    ${{ $filters.currency(item.final_total) }}
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td
                     class="text-end"
+                    colspan="100"
                   >
-                    <span class="text-danger">{{ couponCode }}</span> <br>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="text-end"
-                  colspan="100"
-                >
-                  總價 NT $ {{ $filters.currency( carts.final_total) }}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+                    原價  $ {{ $filters.currency(carts.total) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    colspan="100"
+                  >
+                    <div class="input-group ms-auto w-75 w-sm-50">
+                      <input
+                        v-model="coupon"
+                        type="text"
+                        class="form-control"
+                        placeholder="輸入優惠券: code_20"
+                      >
+                      <button
+                        class="btn btn-outline-primary"
+                        type="button"
+                        @click="useCoupon"
+                      >
+                        套用
+                      </button>
+                    </div>
+                    <div
+                      v-if="couponCode"
+                      class="text-end"
+                    >
+                      <span class="text-danger">{{ couponCode }}</span> <br>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="text-end"
+                    colspan="100"
+                  >
+                    總價  $ {{ $filters.currency( carts.final_total) }}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
           <div class="text-end">
             <router-link
               to="/products"
@@ -290,5 +300,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  @import '@/assets/stylesheet/all';
+  @include media-breakpoint-up(sm) {
+    .d-sm-table-cell{
+      display: table-cell !important;
+    }
+    .w-sm-50{
+      width: 50% !important;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    .d-md-table-cell{
+      display: table-cell !important;
+    }
+  }
 </style>

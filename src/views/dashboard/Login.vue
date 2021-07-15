@@ -1,6 +1,9 @@
 <template>
   <div class="contaienr">
-    <div class="d-flex justify-content-center align-items-center vh-100">
+    <div
+      class="d-flex justify-content-center align-items-center vh-100 bg-cover"
+      style="background-image: url(https://images.unsplash.com/reserve/m6rT4MYFQ7CT8j9m2AEC_JakeGivens%20-%20Sunset%20in%20the%20Park.JPG?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80)"
+    >
       <!-- values, validate -->
       <Form
         id="formLogin"
@@ -12,7 +15,7 @@
             請先登入
           </h1>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="email">帳號</label>
           <Field
             id="email"
@@ -43,14 +46,13 @@
             name="password"
             class="invalid-feedback"
           />
-
-          <button
-            type="submit"
-            class="btn btn-primary btn-block"
-          >
-            登入
-          </button>
         </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+        >
+          登入
+        </button>
       </Form>
     </div>
   </div>

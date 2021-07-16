@@ -3,15 +3,15 @@
     <HeaderPic title="確認購物車內容" />
     <div class="container my-5">
       <div class="row">
-        <!-- <div class="text-end">
-        <button
-          class="btn btn-sm btn-outline-danger"
-          @click="deleteAllCart"
-        >
-          清空購物車
-        </button>
-      </div> -->
         <template v-if="cartLen > 0">
+          <div class="text-end">
+            <button
+              class="btn btn-sm btn-outline-danger"
+              @click="deleteAllCart"
+            >
+              清空購物車
+            </button>
+          </div>
           <div class="table-responsive">
             <table class="table ">
               <thead class="text-center">
@@ -293,7 +293,28 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
         })
+    },
+    deleteAllCart () {
+      // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
+      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$http
+        .delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`)
+        .then((res) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          if (res.data.success) {
+            this.$emitter.emit('nav-getCarts')
+            this.$swal(res.data.message, '', 'success')
+            this.getCarts()
+          } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+        })
+        .catch((error) => {
+          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$swal(error, '', 'error')
+        })
     }
+
   }
 }
 </script>

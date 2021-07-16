@@ -5,10 +5,12 @@
       :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
     >
       <div class="container">
-        <a
-          class="navbar-brand"
-          href="#"
-        >居無定所</a>
+        <h1>
+          <a
+            class="navbar-brand"
+            href="#"
+          >HomeLess</a>
+        </h1>
         <button
           class="navbar-toggler"
           type="button"
@@ -49,14 +51,14 @@
                 餐點
               </router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link
                 to="/contact"
                 class="nav-link"
               >
                 聯絡我們
               </router-link>
-            </li>
+            </li> -->
             <li class="nav-item ">
               <a
                 class="nav-link text-danger"
@@ -72,6 +74,15 @@
         </div>
       </div>
     </nav>
+
+    <a
+      class="goTop__fixed btn btn-link p-0 fs-2"
+      :class="[goTop ? 'd-block' : 'd-none']"
+      href="#"
+      @click.prevent="gogoTop"
+    >
+      <i class="bi bi-arrow-up-square-fill" />
+    </a>
 
     <router-view />
 
@@ -93,6 +104,7 @@ export default {
         bg: '',
         padding: 'py-3'
       },
+      goTop: false,
       cartLen: 0
     }
   },
@@ -138,6 +150,7 @@ export default {
           padding: 'py-2'
 
         }
+        this.goTop = true
       } else {
         this.navClassList = {
           nav: 'navbar-light',
@@ -145,6 +158,7 @@ export default {
           padding: 'py-3'
 
         }
+        this.goTop = false
       }
     },
     cartHandler () {
@@ -155,6 +169,9 @@ export default {
           this.$router.push('/products')
         })
       }
+    },
+    gogoTop () {
+      this.$tools.goTop()
     }
   }
 
@@ -162,9 +179,20 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 .navbar{
   transition: background-color .8s, padding .5s;
   /* sweet alert 1060 */
   z-index: 1030;
+}
+.goTop__fixed{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1000;
+}
+.navbar-brand{
+  font-family: 'Gloria Hallelujah', cursive;
 }
 </style>

@@ -33,11 +33,11 @@ const routes = [
         name: 'Cart',
         component: () => import('@/views/frontend/Cart.vue')
       },
-      {
-        path: 'contact',
-        name: 'Contact',
-        component: () => import('@/views/frontend/Contact.vue')
-      },
+      // {
+      //   path: 'contact',
+      //   name: 'Contact',
+      //   component: () => import('@/views/frontend/Contact.vue')
+      // },
       {
         path: 'checkout',
         name: 'Checkout',

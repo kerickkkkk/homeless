@@ -239,9 +239,10 @@ export default {
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
         .then((res) => {
           this.$emitter.emit('fullScreenLoaidng', false)
-          this.loadingStatus.itemLoading = null
           if (res.data.success) {
+            this.loadingStatus.itemLoading = null
             this.$emitter.emit('nav-getCarts')
+            this.$emitter.emit('toast:push', { icon: 'success', title: `${res.data.data.product.title} ${res.data.message}` })
             // 這邊加入會讓 swal 受影響
             // this.getCart()
           } else {

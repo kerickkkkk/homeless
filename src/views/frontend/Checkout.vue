@@ -168,22 +168,21 @@ export default {
   },
   data () {
     return {
-      user: {
-        name: 'this.user.name',
-        email: '1@1.cccc',
-        tel: '0123456789',
-        addr: '111',
-        payMethod: 'ATM'
-      },
-      msg: ''
       // user: {
-      //   name: '',
-      //   email: '',
-      //   tel: '',
-      //   addr: '',
-      //   payMethod: '',
-      //   msg: ''
-      // }
+      //   name: 'this.user.name',
+      //   email: '1@1.cccc',
+      //   tel: '0123456789',
+      //   addr: '111',
+      //   payMethod: 'ATM'
+      // },
+      msg: '',
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        addr: '',
+        payMethod: ''
+      }
     }
   },
   methods: {

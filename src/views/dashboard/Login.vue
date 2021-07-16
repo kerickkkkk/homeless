@@ -98,7 +98,7 @@ export default {
           const { expired, token } = res.data
           // 寫入 cookie
           document.cookie = `shop=${token}; expires=${new Date(expired)}`
-          this.$router.push('/admin')
+          this.$router.push('/admin/products')
         } else {
           this.$swal(res.data.message, '', 'error')
         }

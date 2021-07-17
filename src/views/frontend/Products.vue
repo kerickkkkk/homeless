@@ -52,6 +52,7 @@
             >
               <div
                 class="card h-100"
+                :class="{moveToCart: moveToCart === item.id}"
                 role="button"
                 @click="getProductDetail(item.id)"
               >
@@ -110,6 +111,8 @@
                       class="btn btn-danger"
                       type="button"
                       @click.stop="addCart(item.id)"
+                      @mouseenter="cartBtnMoveHandler(item.id)"
+                      @mouseleave="cartBtnMoveHandler(null)"
                     >
                       <span
                         v-if="loadingStatus.itemLoading === item.id"
@@ -149,6 +152,7 @@ export default {
       loadingStatus: {
         itemLoading: false
       },
+      moveToCart: null,
       // list
       list: {
         currentCategory: 'all',
@@ -277,6 +281,10 @@ export default {
       this.list.currentCategory = type
       const tempPorducts = this.products.filter(product => type === 'all' || product.category === type)
       this.paginationHandler(tempPorducts)
+    },
+    // 是否移動到加入購物車按鈕
+    cartBtnMoveHandler (id) {
+      this.moveToCart = id
     }
   }
 }

@@ -67,4 +67,11 @@ img{
       }
     }
   }
+  &.moveToCart{
+    .card__img{
+      &:after{
+        content:'加入購物車 !!!';
+      }
+    }
+  }
 }

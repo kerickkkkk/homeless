@@ -151,7 +151,8 @@ export default {
 
         }
         this.goTop = true
-      } else {
+        // 避免 縮小的時候會擠去 100 造成閃頻
+      } else if (windowY < 80) {
         this.navClassList = {
           nav: 'navbar-light',
           bg: '',
@@ -182,7 +183,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 
 .navbar{
-  transition: background-color .8s, padding .5s;
+  transition: background-color .8s, padding .8s;
   /* sweet alert 1060 */
   z-index: 1030;
 }

@@ -95,7 +95,14 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  // 統一路由些換就切到最上方
+  scrollBehavior () {
+    return {
+      top: 0,
+      behavior: 'smooth'
+    }
+  }
 })
 
 export default router

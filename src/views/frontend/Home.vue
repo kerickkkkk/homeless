@@ -5,12 +5,6 @@
       :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
     >
       <div class="container">
-        <h1>
-          <a
-            class="navbar-brand"
-            href="#"
-          >HomeLess</a>
-        </h1>
         <button
           class="navbar-toggler"
           type="button"
@@ -22,6 +16,24 @@
         >
           <span class="navbar-toggler-icon" />
         </button>
+        <h1>
+          <a
+            class="navbar-brand"
+            href="#"
+          >HomeLess</a>
+        </h1>
+        <a
+          class="nav-link text-danger d-block d-lg-none "
+          href="#"
+          @click.prevent="cartHandler"
+        >
+          <span class="position-relative">
+            <i class="bi bi-cart" />
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ cartLen }}
+            </span>
+          </span>
+        </a>
         <div
           id="navbarSupportedContent"
           class="collapse navbar-collapse"
@@ -65,8 +77,11 @@
                 href="#"
                 @click.prevent="cartHandler"
               >
-                <span>
-                  <i class="bi bi-cart" />({{ cartLen }})
+                <span class="position-relative">
+                  <i class="bi bi-cart" />
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ cartLen }}
+                  </span>
                 </span>
               </a>
             </li>

@@ -63,6 +63,18 @@
                 餐點
               </router-link>
             </li>
+            <li class="nav-item">
+              <a
+                ref="searchOrder"
+                class="nav-link"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="搜尋訂單"
+                role="button"
+              >
+                <i class="bi bi-journal-text" />
+              </a>
+            </li>
             <!-- <li class="nav-item">
               <router-link
                 to="/contact"
@@ -122,7 +134,7 @@
 </template>
 
 <script>
-
+import { Tooltip } from 'bootstrap'
 export default {
   name: 'Home',
   data () {
@@ -154,6 +166,9 @@ export default {
     this.getFavorite()
     this.getCarts('updateOnly')
     window.addEventListener('scroll', this.navStyle)
+    // 增加提示 搜尋訂單
+    const tooltip = new Tooltip(this.$refs.searchOrder)
+    tooltip.enable()
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')

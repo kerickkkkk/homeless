@@ -51,18 +51,27 @@
               class="col-lg-4 col-md-6 mb-3"
             >
               <div
-                class="card h-100"
+                class="card h-100 position-relative"
                 :class="{moveToCart: moveToCart === item.id}"
                 role="button"
                 @click="getProductDetail(item.id)"
               >
-                <div class="card__imgWrap">
+                <div
+                  class="card__Favorite pe fs-2 text-secondary position-absolute"
+                  @click.stop=" setFavorite(item.id, item.title)"
+                >
+                  <i
+                    class="bi"
+                    :class="[favoriteList.includes(item.id)? 'bi-heart-fill' : 'bi-heart']"
+                  />
+                </div>
+                <div class="card__imgWrap ">
                   <div
                     class="card__img bg-cover"
                     style="height:250px"
                     :style="`background-image: url(${item.imageUrl})`"
                   >
-                  <!-- <img
+                    <!-- <img
                     :src="item.imageUrl"
                     class="img-cover"
                     style="height:150px; width:150px"
@@ -160,7 +169,8 @@ export default {
         changeCategory: false
       },
       products: null,
-      pagination: null
+      pagination: null,
+      favoriteList: []
     }
   },
   computed: {
@@ -173,6 +183,9 @@ export default {
   },
   created () {
     this.getProducts()
+  },
+  mounted () {
+    this.getFavorite()
   },
   methods: {
     // 取得所有產品 處理分類問題
@@ -285,6 +298,26 @@ export default {
     // 是否移動到加入購物車按鈕
     cartBtnMoveHandler (id) {
       this.moveToCart = id
+    },
+    getFavorite () {
+      const favoriteList = localStorage.getItem('homeLessFavorite') || []
+      this.favoriteList = JSON.parse(favoriteList)
+      this.$emitter.emit('nav-getfavorite')
+    },
+    setFavorite (id, title) {
+      if (this.favoriteList.includes(id)) {
+        const index = this.favoriteList.findIndex(item => item === id)
+        this.favoriteList.splice(index, 1)
+        this.$emitter.emit('toast:push', { icon: 'error', title: `${title}已 移除 我的最愛` })
+      } else {
+        this.favoriteList.push(id)
+        this.$emitter.emit('toast:push', { icon: 'success', title: `${title}已 加入 我的最愛` })
+      }
+
+      const favoriteStr = JSON.stringify(this.favoriteList)
+      localStorage.setItem('homeLessFavorite', '')
+      localStorage.setItem('homeLessFavorite', favoriteStr)
+      this.getFavorite()
     }
   }
 }
@@ -292,6 +325,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "@/assets/stylesheet/all.scss";
+
 .list-group {
   top: 70px;
 }

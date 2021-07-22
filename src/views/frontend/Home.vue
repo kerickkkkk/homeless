@@ -72,6 +72,20 @@
               </router-link>
             </li> -->
             <li class="nav-item ">
+              <router-link
+                class="nav-link text-secondary"
+                href="#"
+                to="/favorite"
+              >
+                <span class="position-relative">
+                  <i class="bi bi-heart" />
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                    {{ favoriteLen }}
+                  </span>
+                </span>
+              </router-link>
+            </li>
+            <li class="nav-item ">
               <a
                 class="nav-link text-danger"
                 href="#"
@@ -120,21 +134,37 @@ export default {
         padding: 'py-3'
       },
       goTop: false,
-      cartLen: 0
+      cartLen: 0,
+      favoriteList: []
+    }
+  },
+  computed: {
+    favoriteLen () {
+      return this.favoriteList?.length
     }
   },
   mounted () {
     this.$emitter.on('nav-getCarts', (status) => {
       this.getCarts(status)
     })
+    this.$emitter.on('nav-getfavorite', () => {
+      this.getFavorite()
+    })
+
+    this.getFavorite()
     this.getCarts('updateOnly')
     window.addEventListener('scroll', this.navStyle)
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')
+    this.$emitter.off('nav-getfavorite')
     window.removeEventListener('scroll', this.navStyle)
   },
   methods: {
+    getFavorite () {
+      const favoriteList = localStorage.getItem('homeLessFavorite') || []
+      this.favoriteList = JSON.parse(favoriteList)
+    },
     getCarts (status) {
       // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
       this.$emitter.emit('fullScreenLoaidng', true)

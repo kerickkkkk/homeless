@@ -35,6 +35,15 @@
             role="button"
             @click="getProductDetail(item.id)"
           >
+            <div
+              class="card__Favorite pe fs-2 text-secondary position-absolute"
+              @click.stop=" setFavorite(item.id, item.title)"
+            >
+              <i
+                class="bi"
+                :class="[favoriteList.includes(item.id)? 'bi-heart-fill' : 'bi-heart']"
+              />
+            </div>
             <div class="card__imgWrap">
               <div
                 class="card__img bg-cover"
@@ -88,7 +97,8 @@ export default {
   },
   data () {
     return {
-      products: []
+      products: [],
+      favoriteList: []
 
     }
   },
@@ -100,6 +110,7 @@ export default {
     }
   },
   created () {
+    this.getFavorite()
     this.getProducts()
   },
   methods: {
@@ -123,28 +134,46 @@ export default {
         })
     },
     getProductDetail (id) {
-      this.$emit('get-product-detail', id)
-      //  以下使用 vue router 轉換 comonent 沒有轉換無法使 component 刷新
+      if (this.category === '') {
+        this.$emitter.emit('fullScreenLoaidng', true)
+        this.$http
+          .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
+          .then((res) => {
+            this.$emitter.emit('fullScreenLoaidng', false)
+            if (res.data.success) {
+              this.$router.push(`/product/${id}`)
+            } else {
+              this.$swal(res.data.message, '', 'error')
+            }
+          })
+          .catch((error) => {
+            this.$swal(error, '', 'error')
+            this.$emitter.emit('fullScreenLoaidng', false)
+          })
+      } else {
+        this.$emit('get-product-detail', id)
+      }
+    },
+    getFavorite () {
+      const favoriteList = localStorage.getItem('homeLessFavorite') || []
+      this.favoriteList = JSON.parse(favoriteList)
+      this.$emitter.emit('nav-getfavorite')
+      this.$emit('get-favorite')
+    },
+    setFavorite (id, title) {
+      if (this.favoriteList.includes(id)) {
+        const index = this.favoriteList.findIndex(item => item === id)
+        this.favoriteList.splice(index, 1)
+        this.$emitter.emit('toast:push', { icon: 'error', title: `${title}已 移除 我的最愛` })
+      } else {
+        this.favoriteList.push(id)
+        this.$emitter.emit('toast:push', { icon: 'success', title: `${title}已 加入 我的最愛` })
+      }
 
-      // this.$emitter.emit('fullScreenLoaidng', true)
-      // this.$http
-      //   .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
-      //   .then((res) => {
-      //     this.$emitter.emit('fullScreenLoaidng', false)
-      //     if (res.data.success) {
-      //       // console.log(`/product/${id}`)
-      //       // this.$router.push(`/product/${id}`)
-      //       this.$router.push(
-      //         { name: 'Product', params: { id } }
-      //       )
-      //     } else {
-      //       this.$swal(res.data.message, '', 'error')
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     this.$swal(error, '', 'error')
-      //     this.$emitter.emit('fullScreenLoaidng', false)
-      //   })
+      const favoriteStr = JSON.stringify(this.favoriteList)
+      localStorage.setItem('homeLessFavorite', '')
+      localStorage.setItem('homeLessFavorite', favoriteStr)
+      this.getFavorite()
     }
   }
 }

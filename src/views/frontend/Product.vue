@@ -9,7 +9,7 @@
               class="bg-cover img-fluid"
               :style="`background-image: url(${productDetail.imageUrl})`"
               style="min-height: 350px ;"
-              alt="productDetail.title"
+              :alt="productDetail.title"
             />
           </div>
         </div>

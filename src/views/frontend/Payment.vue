@@ -2,7 +2,12 @@
   <div class="payment">
     <div class="container">
       <CheckOutStep :step="order.is_paid ? 'paid' : 'payment'" />
-
+      <p
+        v-if="order.is_paid"
+        class="text-danger text-center h1"
+      >
+        付款完成 !
+      </p>
       <h2 class="text-center mb-3">
         購物清單
       </h2>
@@ -98,10 +103,10 @@
         <button
           v-else
           type="button"
-          class="btn btn-primary"
+          class="btn btn-primary col-md-3"
           @click="goShop"
         >
-          購買去
+          返回菜單
         </button>
       </div>
     </div>
@@ -132,7 +137,6 @@ export default {
   methods: {
     // 取得某筆訂單
     getOrder (id) {
-      // /api/:api_path/order/:order_id
       this.$emitter.emit('fullScreenLoaidng', true)
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${id}`)
@@ -160,9 +164,6 @@ export default {
             const { message } = res.data
             this.$swal(`${message}!! \n`, '', 'success')
             this.getOrder(id)
-            // this.$swal(`${message}!! \n 繼續選購`, '', 'success').then(() => {
-            //   this.$router.push('/products')
-            // })
           } else {
             this.$swal(res.data.message, '', 'error')
           }

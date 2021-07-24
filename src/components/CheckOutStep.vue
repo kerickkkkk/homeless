@@ -1,24 +1,25 @@
 <template>
   <ul class="row justify-content-center list-unstyled py-5 px-3">
-    <li class="col-lg-3 col-md-4">
+    <li class="col-md-4">
       <div
-        class="bg-primary p-3 badge rounded-pill fs-3 w-100 mb-2"
+        :class="[step === 'fill' ? 'text-primary' : 'text-muted']"
+        class="bg-primary p-3 badge rounded-pill fs-3 w-100 mb-2 bg-light"
       >
         1. 填寫訂單
       </div>
     </li>
-    <li class="col-lg-3 col-md-4 ">
+    <li class="col-md-4 ">
       <div
-        class=" p-3  badge rounded-pill fs-3 w-100 w-100 mb-2"
-        :class="payment"
+        :class="[step === 'payment' ? 'text-primary' : 'text-muted']"
+        class="p-3 badge rounded-pill fs-3 w-100 mb-2 bg-light"
       >
         2. 訂單結帳
       </div>
     </li>
-    <li class="col-lg-3 col-md-4 ">
+    <li class="col-md-4">
       <div
-        :class="paid"
-        class="p-3 badge rounded-pill fs-3 w-100 w-100 mb-2"
+        :class="[step === 'paid' ? 'text-primary' : 'text-muted']"
+        class="p-3 badge rounded-pill fs-3 w-100 mb-2 bg-light"
       >
         3. 付款完成
       </div>
@@ -32,15 +33,6 @@ export default {
     step: {
       type: String,
       default: ''
-    }
-  },
-
-  computed: {
-    payment () {
-      return (this.step === 'payment' || this.step === 'paid') ? 'text-light bg-primary' : 'text-primary bg-light'
-    },
-    paid () {
-      return this.step === 'paid' ? 'text-light bg-primary' : 'text-primary bg-light'
     }
   }
 }

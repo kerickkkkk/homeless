@@ -2,7 +2,7 @@
 <template>
   <!-- 使用 區域loading  -->
   <div>
-    <swiper
+    <Swiper
       :breakpoints="{
         '767': {
           'slidesPerView': 1,
@@ -19,14 +19,15 @@
       }"
       :autoplay="{
         'delay': 2500,
-        'disableOnInteraction': false
+        'disableOnInteraction': true,
+        'pauseOnMouseEnter': true
       }"
       :navigation="true"
       :loop="true"
       class="productsSwiper"
     >
       <template v-if="products.length > 0">
-        <swiper-slide
+        <SwiperSlide
           v-for="item in filterProducts"
           :key="item.id"
         >
@@ -73,14 +74,14 @@
               </div>
             </div>
           </div>
-        </swiper-slide>
+        </SwiperSlide>
       </template>
       <template v-else>
-        <swiper-slide>
+        <SwiperSlide>
           載入中...
-        </swiper-slide>
+        </SwiperSlide>
       </template>
-    </swiper>
+    </Swiper>
   </div>
 </template>
 
@@ -99,7 +100,6 @@ export default {
     return {
       products: [],
       favoriteList: []
-
     }
   },
   computed: {

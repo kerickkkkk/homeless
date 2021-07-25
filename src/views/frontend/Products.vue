@@ -65,19 +65,12 @@
                     :class="[favoriteList.includes(item.id)? 'bi-heart-fill' : 'bi-heart']"
                   />
                 </div>
-                <div class="card__imgWrap ">
+                <div class="card__imgWrap">
                   <div
                     class="card__img bg-cover"
                     style="height:250px"
                     :style="`background-image: url(${item.imageUrl})`"
-                  >
-                    <!-- <img
-                    :src="item.imageUrl"
-                    class="img-cover"
-                    style="height:150px; width:150px"
-                    alt="圖片"
-                  > -->
-                  </div>
+                  />
                 </div>
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
@@ -100,7 +93,6 @@
                     </template>
                   </div>
                   <div class="d-flex justify-content-center">
-                    <!-- router-link :to="`/product/${item.id}`" -->
                     <button
                       class="btn btn-outline-primary me-3"
                       type="button"
@@ -113,10 +105,10 @@
                         aria-hidden="true"
                       />
                       <!-- Loading... -->
-
                       看詳細
                     </button>
                     <button
+                      :ref="`cart-${item.id}`"
                       class="btn btn-danger"
                       type="button"
                       @click.stop="addCart(item.id)"
@@ -210,27 +202,6 @@ export default {
           this.$emitter.emit('fullScreenLoaidng', false)
         })
     },
-    // getProducts (page = 1) {
-    //   this.$emitter.emit('fullScreenLoaidng', true)
-
-    //   this.$http
-    //     .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
-    //     .then((res) => {
-    //       if (res.data.success) {
-    //         const { products, pagination } = res.data
-    //         this.products = products
-    //         this.pagination = pagination
-    //         this.getCategory()
-    //       } else {
-    //         this.$swal(res.data.message, '', 'error')
-    //       }
-    //       this.$emitter.emit('fullScreenLoaidng', false)
-    //     })
-    //     .catch((error) => {
-    //       this.$swal(error, '', 'error')
-    //       this.$emitter.emit('fullScreenLoaidng', false)
-    //     })
-    // },
     getProductDetail (id) {
       this.loadingStatus.itemLoading = id
       this.$http
@@ -323,20 +294,10 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "@/assets/stylesheet/all.scss";
 
 .list-group {
   top: 70px;
 }
-// @import '@/assets/stylesheet/all';
-// .list-group-item{
-//   cursor: pointer;
-//   color: $primary;
-//   &:hover , &.active{
-//     background-color: $primary;
-//     color:#fff;
-//   }
-// }
 </style>

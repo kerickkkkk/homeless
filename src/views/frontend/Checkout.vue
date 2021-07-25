@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <div class="container">
       <CheckOutStep step="checkout" />
       <div class="row justify-content-center">
@@ -138,6 +138,7 @@
                 class="form-control"
                 placeholder="請輸入留言"
                 aria-describedby="message"
+                rows="5"
               />
             </div>
             <div
@@ -168,13 +169,6 @@ export default {
   },
   data () {
     return {
-      // user: {
-      //   name: 'this.user.name',
-      //   email: '1@1.cccc',
-      //   tel: '0123456789',
-      //   addr: '111',
-      //   payMethod: 'ATM'
-      // },
       msg: '',
       user: {
         name: '',

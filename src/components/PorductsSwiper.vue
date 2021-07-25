@@ -155,7 +155,7 @@ export default {
       }
     },
     getFavorite () {
-      const favoriteList = localStorage.getItem('homeLessFavorite') || []
+      const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'
       this.favoriteList = JSON.parse(favoriteList)
       this.$emitter.emit('nav-getfavorite')
       this.$emit('get-favorite')

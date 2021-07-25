@@ -1,7 +1,8 @@
 <template>
-  <div class="home">
+  <div>
+    <OrderSearch ref="orderSearch" />
     <nav
-      class="navbar sticky-top navbar-expand-lg "
+      class="navbar sticky-top navbar-expand-lg"
       :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
     >
       <div class="container">
@@ -23,7 +24,7 @@
           >HomeLess</a>
         </h1>
         <a
-          class="nav-link text-danger d-block d-lg-none "
+          class="nav-link text-danger d-block d-lg-none"
           href="#"
           @click.prevent="cartHandler"
         >
@@ -71,6 +72,7 @@
                 data-bs-placement="bottom"
                 title="搜尋訂單"
                 role="button"
+                @click.prevent="orderSearchShow"
               >
                 <i class="bi bi-journal-text" />
               </a>
@@ -97,7 +99,7 @@
                 </span>
               </router-link>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <a
                 class="nav-link text-danger"
                 href="#"
@@ -135,8 +137,12 @@
 
 <script>
 import { Tooltip } from 'bootstrap'
+import OrderSearch from '@/components/OrderSearch.vue'
 export default {
   name: 'Home',
+  components: {
+    OrderSearch
+  },
   data () {
     return {
       isLoading: true,
@@ -177,7 +183,7 @@ export default {
   },
   methods: {
     getFavorite () {
-      const favoriteList = localStorage.getItem('homeLessFavorite') || []
+      const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'
       this.favoriteList = JSON.parse(favoriteList)
     },
     getCarts (status) {
@@ -233,6 +239,10 @@ export default {
     },
     gogoTop () {
       this.$tools.goTop()
+    },
+    orderSearchShow () {
+      console.log(this.$refs)
+      this.$refs.orderSearch.show()
     }
   }
 

@@ -54,8 +54,6 @@
         </div>
       </swiper-slide>
     </swiper>
-    <!--車子上釣魚 https://images.unsplash.com/photo-1523268847884-e86b91f40024?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80 -->
-
     <section class="about  my-4 bg-light ">
       <div class="container py-4">
         <div class="row featurette align-items-center">
@@ -171,13 +169,7 @@
             <div
               class="bg-cover"
               style="background-image:url(https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80); height:450px"
-            >
-              <!-- <img
-                src=""
-                class="card-img-top"
-                alt="旅程照片"
-              > -->
-            </div>
+            />
             <div class="card-body">
               <h4 class="card-title">
                 老闆分享照

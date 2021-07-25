@@ -22,7 +22,7 @@
       </div>
     </div>
     <!-- 手工製麵 -->
-    <section class="container-fluid mb-5 text-center ">
+    <section class="container-fluid mb-5 text-center">
       <div class="featurette">
         <h2 class="mb-3 featurette-heading">
           特製麵條

@@ -27,7 +27,7 @@
                   :class="[favoriteList.includes(item.id)? 'bi-heart-fill' : 'bi-heart']"
                 />
               </div>
-              <div class="card__imgWrap ">
+              <div class="card__imgWrap">
                 <div
                   class="card__img bg-cover"
                   style="height:250px"
@@ -55,7 +55,6 @@
                   </template>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <!-- router-link :to="`/product/${item.id}`" -->
                   <button
                     class="btn btn-outline-primary me-3"
                     type="button"
@@ -68,7 +67,6 @@
                       aria-hidden="true"
                     />
                     <!-- Loading... -->
-
                     看詳細
                   </button>
                   <button

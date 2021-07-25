@@ -2,7 +2,7 @@
   <nav v-if="watchPagination.total_pages > 0">
     <ul class="pagination justify-content-center">
       <li
-        class="page-item "
+        class="page-item"
         :class="{disabled: !watchPagination.has_pre}"
       >
         <a

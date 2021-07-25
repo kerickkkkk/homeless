@@ -3,7 +3,7 @@
     <!-- 檢視 -->
     <div
       ref="adminEditOrdersModal"
-      class="modal "
+      class="modal"
       tabindex="-1"
     >
       <div class="modal-dialog modal-xl">

@@ -22,18 +22,10 @@ export default {
       loading: false
     }
   },
-  created () {
-    // const loader = this.$loading.show()
-    // setTimeout(() => {
-    //   loader.hide()
-    // }, 1000)
-  },
   mounted () {
     this.$emitter.on('fullScreenLoaidng', (status) => {
       this.loading = status
     })
-    // this.$emitter.emit('toast:push', { title: 'title', icon: 'error' })
-    // this.$emitter.emit('toast:push', 'error', 'tes11111t', '123')
   }
 }
 </script>

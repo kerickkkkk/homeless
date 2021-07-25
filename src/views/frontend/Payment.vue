@@ -11,7 +11,7 @@
       <h2 class="text-center mb-3">
         購物清單
       </h2>
-      <table class="table text-center table-striped ">
+      <table class="table text-center table-striped">
         <thead>
           <tr>
             <th>商品名稱</th>
@@ -41,7 +41,7 @@
             </td>
           </tr>
         </tbody>
-        <tfoot class="">
+        <tfoot>
           <td
             class="text-end py-2"
             colspan="2"

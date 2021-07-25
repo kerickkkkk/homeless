@@ -13,7 +13,7 @@
             </button>
           </div>
           <div class="table-responsive">
-            <table class="table ">
+            <table class="table">
               <thead class="text-center">
                 <tr>
                   <th

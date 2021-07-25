@@ -21,7 +21,7 @@
         建立新產品
       </button>
     </div>
-    <table class="table mb-3 ">
+    <table class="table mb-3">
       <thead>
         <tr>
           <th width="150">

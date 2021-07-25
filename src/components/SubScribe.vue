@@ -1,6 +1,6 @@
 <template>
   <div
-    class="parallax bg-cover "
+    class="parallax bg-cover"
     style="background-image:linear-gradient(to right,rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6) ,rgba(255, 255, 255, 0)), url('https://images.unsplash.com/photo-1612966874574-e0a92ad2bc43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')"
   >
     <div class="container">

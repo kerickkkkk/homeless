@@ -23,7 +23,6 @@
             <div class="container-fluid">
               <form id="productForm">
                 <div class="form-group mb-2">
-                  <!-- title(String)、is_enabled(Number)、percent(Number)、due_date(Number)、code(String) 為必填欄位 -->
                   <label for="title">
                     <span class="text-danger">*</span>
                     名稱
@@ -66,7 +65,6 @@
                   </div>
                 </div>
                 <div class="form-group mb-2">
-                  <!-- title(String)、is_enabled(Number)、percent(Number)、due_date(Number)、code(String) 為必填欄位 -->
                   <label for="due_date">
                     <span class="text-danger">*</span>
                     到期日
@@ -173,7 +171,6 @@ export default {
       },
       modalType: '',
       tempCoupon: {},
-      // id: null,
       currentPage: 1
     }
   },

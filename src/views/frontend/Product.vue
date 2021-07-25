@@ -21,14 +21,6 @@
             <section>
               {{ productDetail.description }}
             </section>
-            <!-- <div class="d-flex mb-3">
-                        <div class="me-3">口味:</div>
-                        <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
-                        <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
-                        <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
-                        <div class="me-3"><button class="btn btn-sm btn-primary">青</button></div>
-                        <div><button class="btn btn-sm btn-primary">青</button></div>
-                      </div> -->
             <section>
               付款方式： ATM 、 信用卡
             </section>
@@ -92,7 +84,7 @@
               </div>
               <button
                 type="button"
-                class="btn btn-danger "
+                class="btn btn-danger"
                 @click.prevent="addCart(true)"
               >
                 直接結帳

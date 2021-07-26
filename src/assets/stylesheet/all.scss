@@ -83,3 +83,8 @@ img{
     }
   }
 }
+
+.btn:disabled, .btn.disabled{
+  cursor: not-allowed;
+  pointer-events: auto;
+}

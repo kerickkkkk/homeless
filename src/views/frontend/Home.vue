@@ -241,7 +241,6 @@ export default {
       this.$tools.goTop()
     },
     orderSearchShow () {
-      console.log(this.$refs)
       this.$refs.orderSearch.show()
     }
   }

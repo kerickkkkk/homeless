@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap'
+import Modal from 'bootstrap/js/dist/modal'
 const reader = new FileReader()
 export default {
   data () {

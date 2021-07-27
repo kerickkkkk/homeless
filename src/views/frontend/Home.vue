@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import { Tooltip } from 'bootstrap'
+import Tooltip from 'bootstrap/js/dist/tooltip'
 import OrderSearch from '@/components/OrderSearch.vue'
 export default {
   name: 'Home',

@@ -110,7 +110,7 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
-import adminOrdersModal from '@/components/dashboard/OrdersModal'
+import adminOrdersModal from '@/components/dashboard/OrdersModal.vue'
 
 export default {
   name: 'AdminOrders',

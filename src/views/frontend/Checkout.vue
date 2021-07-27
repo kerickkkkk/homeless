@@ -161,7 +161,7 @@
 </template>
 
 <script>
-import CheckOutStep from '@/components/CheckOutStep'
+import CheckOutStep from '@/components/CheckOutStep.vue'
 export default {
   name: 'Checkout',
   components: {

@@ -24,7 +24,6 @@
       }"
       :navigation="true"
       :loop="true"
-      class="productsSwiper"
     >
       <template v-if="products.length > 0">
         <SwiperSlide
@@ -87,7 +86,7 @@
 
 <script>
 export default {
-  name: 'PorductsSwiper',
+  name: 'ProductsSwiper',
   props: {
     category: {
       type: String,
@@ -115,8 +114,6 @@ export default {
   },
   methods: {
     getProducts () {
-      // this.$emitter.emit('fullScreenLoaidng', true)
-
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
         .then((res) => {
@@ -126,11 +123,9 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
-          // this.$emitter.emit('fullScreenLoaidng', false)
         })
         .catch((error) => {
           this.$swal(error, '', 'error')
-          // this.$emitter.emit('fullScreenLoaidng', false)
         })
     },
     getProductDetail (id) {

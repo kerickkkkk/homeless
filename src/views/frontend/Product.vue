@@ -131,7 +131,7 @@
         <h3 class="text-primary mb-3">
           買了這些商品也買了...
         </h3>
-        <PorductsSwiper
+        <ProductsSwiper
           :category="category"
           @get-product-detail="getProductDetail"
         />
@@ -142,13 +142,13 @@
 
 <script>
 import HeaderPic from '@/components/HeaderPic.vue'
-import PorductsSwiper from '@/components/PorductsSwiper.vue'
+import ProductsSwiper from '@/components/ProductsSwiper.vue'
 
 export default {
   name: 'Product',
   components: {
     HeaderPic,
-    PorductsSwiper
+    ProductsSwiper
   },
   data () {
     return {

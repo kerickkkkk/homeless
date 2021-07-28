@@ -116,7 +116,7 @@
         <h3 class="text-primary mb-3">
           忘了我了嗎? 快把我加上去
         </h3>
-        <PorductsSwiper
+        <ProductsSwiper
           ref="productSwiper"
           @get-favorite="getFavorite"
         />
@@ -127,13 +127,13 @@
 
 <script>
 import HeaderPic from '@/components/HeaderPic.vue'
-import PorductsSwiper from '@/components/PorductsSwiper.vue'
+import ProductsSwiper from '@/components/ProductsSwiper.vue'
 
 export default {
   name: 'Favorite',
   components: {
     HeaderPic,
-    PorductsSwiper
+    ProductsSwiper
   },
   data () {
     return {

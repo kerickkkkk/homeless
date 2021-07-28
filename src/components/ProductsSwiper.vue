@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     filterProducts () {
-      return this.products?.filter((item) => {
+      return this.products.filter((item) => {
         return this.category === '' || item.category === this.category
       })
     }

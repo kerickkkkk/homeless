@@ -133,13 +133,12 @@ export default {
     getCoupons (page = 1) {
       // /api/:api_path/admin/coupons?page=:page
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       // this.$emitter.emit('toast:push', { icon: 'success', title: 'title' })
 
       this.$http.get(url)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { coupons, pagination } = res.data
             this.coupons = coupons
@@ -147,9 +146,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     // modal 控制
@@ -161,10 +161,9 @@ export default {
       //  修正型別
       this.coupons[index].is_enabled = !this.coupons[index].is_enabled ? 1 : 0
 
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`, { data: this.coupons[index] })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.$swal(res.data.message, '', 'success').then(() => {
               this.getCoupons()
@@ -173,9 +172,10 @@ export default {
             const eorrorMSg = (typeof res.data.message) === 'string' ? res.data.message : res.data.message.join('，')
             this.$swal(eorrorMSg, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     }
   }

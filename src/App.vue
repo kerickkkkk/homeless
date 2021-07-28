@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    this.$emitter.on('fullScreenLoaidng', (status) => {
+    this.$emitter.on('fullScreenLoading', (status) => {
       this.loading = status
     })
   }

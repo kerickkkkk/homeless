@@ -98,10 +98,9 @@ export default {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)shop\s*=\s*([^;]*).*$)|^.*$/, '$1')
       if (token !== '') {
         this.$http.defaults.headers.common.Authorization = token
-        this.$emitter.emit('fullScreenLoaidng', true)
+        this.$emitter.emit('fullScreenLoading', true)
         this.$http.post(`${process.env.VUE_APP_API}/api/user/check`)
           .then((res) => {
-            this.$emitter.emit('fullScreenLoaidng', false)
             if (res.data.success) {
               this.hasRight = true
             } else {
@@ -110,12 +109,13 @@ export default {
                 this.$router.push('/login')
               })
             }
+            this.$emittser.emit('fullScreenLoading', false)
           }).catch((error) => {
-            this.$emitter.emit('fullScreenLoaidng', false)
             this.hasRight = false
             this.$swal(error, '', 'error').then(() => {
               this.$router.push('/login')
             })
+            this.$emitter.emit('fullScreenLoading', false)
           })
       } else {
         this.$swal('沒有登入狀態 將導回登入頁面', '', 'error').then(() => {
@@ -126,21 +126,21 @@ export default {
     signOut () {
       // /logout
       const url = `${process.env.VUE_APP_API}/logout`
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.post(url)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           // 清空 cookies
           document.cookie = 'shop=;expires=;'
           const status = res.data.success ? 'success' : 'error'
           this.$swal(res.data.message, '', status).then(() => {
             this.$router.push('/login')
           })
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error').then(() => {
             this.$router.push('/login')
           })
+          this.$emitter.emit('fullScreenLoading', false)
         })
     }
   }

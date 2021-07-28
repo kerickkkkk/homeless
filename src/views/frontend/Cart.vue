@@ -221,11 +221,10 @@ export default {
   methods: {
     getCarts () {
       // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { data } = res.data
             this.carts = data
@@ -233,10 +232,11 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     cartHandler (type, id, productId, qty) {
@@ -247,11 +247,10 @@ export default {
       }
       const data = type === 'put' ? { product_id: productId, qty } : null
 
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       this.$http[type](`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`, { data })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$emitter.emit('nav-getCarts')
           this.currentCartId = null
           if (res.data.success) {
@@ -261,15 +260,16 @@ export default {
             this.currentCartId = null
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     useCoupon () {
       // /api/:api_path/coupon
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       const data = {
         data: {
           code: this.coupon
@@ -277,8 +277,6 @@ export default {
       }
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/coupon`, data)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
-
           if (res.data.success) {
             this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
             // console.log(res.data.data.final_total)
@@ -288,19 +286,18 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     deleteAllCart () {
-      // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.$emitter.emit('nav-getCarts')
             this.$swal(res.data.message, '', 'success')
@@ -308,10 +305,11 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     }
 

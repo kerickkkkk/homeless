@@ -210,12 +210,10 @@ export default {
       this.clearStatus()
     },
     deleteCoupon (tempCoupon) {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${tempCoupon.id}`
-      console.log(url, tempCoupon, 'DELETE')
       this.$http.delete(url)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.$swal(`${tempCoupon.title} ${res.data.message}`, '', 'success').then(() => {
               this.$emit('get-items', this.current_page)
@@ -225,10 +223,11 @@ export default {
             this.$swal(res.data.message, '', 'error')
             this.closeModal('delete')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
           this.closeModal('delete')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     sendCoupon () {
@@ -271,12 +270,10 @@ export default {
         add: 'post',
         edit: 'put'
       }
-      this.$emitter.emit('fullScreenLoaidng', true)
-
+      this.$emitter.emit('fullScreenLoading', true)
       // pass
       this.$http[appMethod[this.modalType]](url[this.modalType], { data })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.closeModal('addEdit')
             this.$swal(res.data.message, '', 'success').then(() => {
@@ -287,9 +284,10 @@ export default {
             const errorMsg = res.data.message.join('，')
             this.$swal(errorMsg, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     }
 

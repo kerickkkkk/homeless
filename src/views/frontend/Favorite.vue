@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     getProducts () {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
@@ -174,11 +174,11 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
           this.$swal(error, '', 'error')
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     getFavorite () {

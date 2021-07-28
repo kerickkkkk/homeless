@@ -77,23 +77,22 @@ export default {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)shop\s*=\s*([^;]*).*$)|^.*$/, '$1')
       if (token !== '') {
         this.$http.defaults.headers.common.Authorization = token
-        this.$emitter.emit('fullScreenLoaidng', true)
+        this.$emitter.emit('fullScreenLoading', true)
         this.$http.post(`${process.env.VUE_APP_API}/api/user/check`)
           .then((res) => {
-            this.$emitter.emit('fullScreenLoaidng', false)
             if (res.data.success) {
               this.$router.push('/admin/products')
             }
+            this.$emitter.emit('fullScreenLoading', false)
           }).catch((error) => {
-            this.$emitter.emit('fullScreenLoaidng', false)
             this.$swal(error, '', 'error')
+            this.$emitter.emit('fullScreenLoading', false)
           })
       }
     },
     login () {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.post(`${process.env.VUE_APP_API}/admin/signin`, this.user).then((res) => {
-        this.$emitter.emit('fullScreenLoaidng', false)
         if (res.data.success) {
           const { expired, token } = res.data
           // 寫入 cookie
@@ -102,9 +101,10 @@ export default {
         } else {
           this.$swal(res.data.message, '', 'error')
         }
+        this.$emitter.emit('fullScreenLoading', false)
       }).catch((error) => {
-        this.$emitter.emit('fullScreenLoaidng', false)
         this.$swal(error, '', 'error')
+        this.$emitter.emit('fullScreenLoading', false)
       })
     }
   }

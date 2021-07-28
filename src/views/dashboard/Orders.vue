@@ -137,13 +137,12 @@ export default {
     getOrders (page = 1) {
       // /api/:api_path/admin/orders?page=:page
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       // this.$emitter.emit('toast:push', { icon: 'success', title: 'title' })
 
       this.$http.get(url)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { orders, pagination } = res.data
             this.orders = orders
@@ -151,9 +150,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     changePayment (id) {
@@ -161,10 +161,9 @@ export default {
       const index = this.orders.findIndex((product) => product.id === id)
       this.orders[index].is_paid = !this.orders[index].is_paid
 
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`, { data: this.orders[index] })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.$swal('付款狀態已修改', '', 'success').then(() => {
               this.getOrders()
@@ -172,9 +171,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     // modal 控制

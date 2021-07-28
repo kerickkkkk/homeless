@@ -188,10 +188,9 @@ export default {
   },
   methods: {
     getProducts (page = 1) {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { products, pagination } = res.data
             this.products = products
@@ -199,19 +198,19 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     enableProduct (selectId) {
       const index = this.products.findIndex((product) => product.id === selectId)
       this.products[index].is_enabled = !this.products[index].is_enabled
 
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${selectId}`, { data: this.products[index] })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.$swal(res.data.message, '', 'success').then(() => {
               this.$emit('get-products', this.pagination.current_page)
@@ -219,9 +218,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     // modal 控制

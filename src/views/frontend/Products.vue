@@ -182,7 +182,7 @@ export default {
   methods: {
     // 取得所有產品 處理分類問題
     getProducts () {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
@@ -195,11 +195,11 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
           this.$swal(error, '', 'error')
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     getProductDetail (id) {
@@ -222,11 +222,10 @@ export default {
     addCart (id, qty = 1) {
       const data = { data: { product_id: id, qty } }
       this.loadingStatus.itemLoading = id
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.loadingStatus.itemLoading = null
             this.$emitter.emit('nav-getCarts')
@@ -236,11 +235,12 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.loadingStatus.itemLoading = null
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     getCategory () {

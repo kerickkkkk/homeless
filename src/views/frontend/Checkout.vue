@@ -198,7 +198,7 @@ export default {
           message: this.user.msg
         }
       }
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`, data)
         .then((res) => {
@@ -211,10 +211,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
           this.$swal(error, '', 'error')
         })
     }

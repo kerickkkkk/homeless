@@ -179,13 +179,11 @@ export default {
     //   window.scrollTo(0, 0)
     // },
     getProductDetail (id) {
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
 
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
-
           if (res.data.success) {
             this.productDetail = res.data.product
             this.category = res.data.product.category
@@ -200,19 +198,18 @@ export default {
               this.$router.push('/products')
             })
           }
-        })
-        .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
+          this.$emitter.emit('fullScreenLoading', false)
+        }).catch((error) => {
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     addCart (goCheckOut) {
       const data = { data: { product_id: this.id, qty: this.numRangeLimit } }
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             // 預設會傳物件 會爆掉
             if (goCheckOut === true) {
@@ -225,10 +222,11 @@ export default {
             const erroMsg = res.data.message.reduce((prev, next) => (`${prev} ${next}`), '')
             this.$swal(erroMsg, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     numCountHandler (type) {

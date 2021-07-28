@@ -332,11 +332,10 @@ export default {
     },
     deleteProduct (id) {
       // /api/:api_path/admin/product/:product_id
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${id}`
       this.$http.delete(url)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.closeModal('delete')
             this.$swal(res.data.message, '', 'success').then(() => {
@@ -346,9 +345,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     sendProduct (type) {
@@ -386,11 +386,10 @@ export default {
         add: 'post',
         edit: 'put'
       }
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       // pass
       this.$http[appMethod[this.modalType]](url[this.modalType], { data: this.tempProduct })
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             this.closeModal('addEdit')
             this.$swal(res.data.message, '', 'success').then(() => {
@@ -400,9 +399,10 @@ export default {
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         }).catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     addTempImage () {

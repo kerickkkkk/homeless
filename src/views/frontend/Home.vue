@@ -187,23 +187,21 @@ export default {
       this.favoriteList = JSON.parse(favoriteList)
     },
     getCarts (status) {
-      // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
-      this.$emitter.emit('fullScreenLoaidng', true)
+      this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           if (res.data.success) {
             const { data } = res.data
             this.cartLen = data?.carts.length
-            // if (status !== 'updateOnly') { this.$emitter.emit('toast:push', { icon: 'success', title: '已加入購物車' }) }
           } else {
             this.$swal(res.data.message, '', 'error')
           }
+          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
-          this.$emitter.emit('fullScreenLoaidng', false)
           this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
         })
     },
     navStyle () {

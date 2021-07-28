@@ -109,7 +109,7 @@ export default {
                 this.$router.push('/login')
               })
             }
-            this.$emittser.emit('fullScreenLoading', false)
+            this.$emitter.emit('fullScreenLoading', false)
           }).catch((error) => {
             this.hasRight = false
             this.$swal(error, '', 'error').then(() => {

@@ -3,27 +3,13 @@
   <!-- 使用 區域loading  -->
   <div>
     <Swiper
-      :breakpoints="{
-        '767': {
-          'slidesPerView': 1,
-          'spaceBetween': 20
-        },
-        '768': {
-          'slidesPerView': 3,
-          'spaceBetween': 20
-        },
-        '1024': {
-          'slidesPerView': 4,
-          'spaceBetween': 20
-        }
-      }"
-      :autoplay="{
-        'delay': 2500,
-        'disableOnInteraction': true,
-        'pauseOnMouseEnter': true
-      }"
+      ref="swiperaa"
+      :breakpoints="swiper.breakpoints"
+      :autoplay="swiper.autoplay"
       :navigation="true"
       :loop="true"
+      @swiper="controlSwiper"
+      @mouseleave="startSwiper"
     >
       <template v-if="products.length > 0">
         <SwiperSlide
@@ -97,6 +83,27 @@ export default {
   },
   data () {
     return {
+      swiper: {
+        breakpoints: {
+          767: {
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20
+          }
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true
+        }
+      },
       products: [],
       favoriteList: []
     }
@@ -169,6 +176,13 @@ export default {
       localStorage.setItem('homeLessFavorite', '')
       localStorage.setItem('homeLessFavorite', favoriteStr)
       this.getFavorite()
+    },
+    controlSwiper (e) {
+      this.swiperInstance = e
+    },
+    startSwiper () {
+      // 滑鼠移出畫面重新啟動
+      this.swiperInstance.autoplay.start()
     }
   }
 }

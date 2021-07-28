@@ -141,8 +141,8 @@
       :api-path="apiPath"
       :temp-product="tempProduct"
       @e-cancel-modal="cancelModal" -->
-    <AdminProductsModal
-      ref="AdminProductsModal"
+    <ProductsModal
+      ref="ProductsModal"
       @get-items="getProducts"
     />
 
@@ -161,13 +161,13 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
-import AdminProductsModal from '@/components/dashboard/ProductsModal.vue'
+import ProductsModal from '@/components/dashboard/ProductsModal.vue'
 import UploadImgModal from '@/components/dashboard/UploadImgModal.vue'
 export default {
   name: 'AdminProducts',
   components: {
     Pagination,
-    AdminProductsModal,
+    ProductsModal,
     UploadImgModal
   },
   data () {
@@ -230,7 +230,7 @@ export default {
       if (type === 'uploadImg') {
         this.$refs.UploadImgModal.openModal()
       } else {
-        this.$refs.AdminProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
+        this.$refs.ProductsModal.openModal(type, id, tempProduct, this.pagination.current_page)
       }
     }
   }

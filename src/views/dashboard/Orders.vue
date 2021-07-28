@@ -1,6 +1,6 @@
 <template>
-  <div class="orders container my-3">
-    <table class="table mb-3 ">
+  <div class="container my-3">
+    <table class="table mb-3">
       <thead>
         <tr>
           <th width="100">
@@ -100,8 +100,8 @@
       :pagination="pagination"
       @get-items="getOrders"
     />
-    <adminOrdersModal
-      ref="adminOrdersModal"
+    <OrdersModal
+      ref="OrdersModal"
       @change-payment="changePayment"
       @get-orders="getOrders"
     />
@@ -110,13 +110,13 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
-import adminOrdersModal from '@/components/dashboard/OrdersModal.vue'
+import OrdersModal from '@/components/dashboard/OrdersModal.vue'
 
 export default {
-  name: 'AdminOrders',
+  name: 'Orders',
   components: {
     Pagination,
-    adminOrdersModal
+    OrdersModal
   },
   data () {
     return {
@@ -180,7 +180,7 @@ export default {
     // modal 控制
     modalHandler (type, id, tempOrder = {}) {
       // 控制往內部送
-      this.$refs.adminOrdersModal.openModal(type, id, tempOrder, this.pagination.current_page)
+      this.$refs.OrdersModal.openModal(type, id, tempOrder, this.pagination.current_page)
     }
   }
 }

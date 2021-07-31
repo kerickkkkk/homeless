@@ -151,6 +151,14 @@
                     class="text-end"
                     colspan="100"
                   >
+                    折扣  $ {{ $filters.currency( totalOriginPrice - carts.final_total) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="text-end"
+                    colspan="100"
+                  >
                     總價  $ {{ $filters.currency( carts.final_total) }}
                   </td>
                 </tr>

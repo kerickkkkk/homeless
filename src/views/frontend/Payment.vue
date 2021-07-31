@@ -28,32 +28,42 @@
         </thead>
         <tbody>
           <tr
-            v-for="(v,k) in order.products"
-            :key="k"
+            v-for="item in order.products"
+            :key="item.id"
           >
-            <td>{{ v.product.title }}</td>
+            <td>{{ item.product.title }}</td>
             <td>
-              {{ v.product.price }}
+              {{ item.product.price }}
             </td>
-            <td>{{ v.qty }}</td>
+            <td>{{ item.qty }}</td>
             <td class="text-end">
-              {{ v.qty * v.product.price }}
+              {{ item.qty * item.product.origin_price }}
             </td>
           </tr>
         </tbody>
         <tfoot>
-          <td
-            class="text-end py-2"
-            colspan="2"
-          >
-            總計
-          </td>
-          <td
-            class="text-end"
-            colspan="2"
-          >
-            <span>{{ order.total }}</span> 元
-          </td>
+          <tr>
+            <td
+              class="text-end"
+              colspan="100"
+            >
+              折扣  $ {{ $filters.currency( totalOriginPrice) }}
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="text-end py-2"
+              colspan="2"
+            >
+              總計
+            </td>
+            <td
+              class="text-end"
+              colspan="2"
+            >
+              <span>{{ order.total }}</span> 元
+            </td>
+          </tr>
         </tfoot>
       </table>
 
@@ -128,6 +138,19 @@ export default {
         user: {}
 
       }
+    }
+  },
+  computed: {
+    totalOriginPrice () {
+      // order 需有 id屬性 表示已經 ajax 回來
+      if (Object.keys(this.order).includes('id')) {
+        const res = Object.values(this.order.products).reduce((prev, next) => {
+          prev += next.product.origin_price * next.qty
+          return prev
+        }, 0)
+        return (res || 0)
+      }
+      return 0
     }
   },
   created () {

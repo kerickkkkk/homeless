@@ -2,6 +2,24 @@
   <div class="about">
     <HeaderPic title="關於我們" />
     <div class="container my-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <router-link
+              to="/"
+              class="nav-link active p-0"
+            >
+              首頁
+            </router-link>
+          </li>
+          <li
+            class="breadcrumb-item active"
+            aria-current="page"
+          >
+            關於我們
+          </li>
+        </ol>
+      </nav>
       <div class="row featurette align-items-center">
         <div class="col-md-5  order-md-1">
           <div

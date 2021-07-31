@@ -2,29 +2,55 @@
   <div>
     <HeaderPic title="商品介紹" />
     <div class="container">
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <div class="slide__main p-3">
+      <div class="row mb-3 p-3">
+        <div class="col-md-6 mb-3">
+          <div class="slide__main">
             <div
               class="bg-cover img-fluid"
               :style="`background-image: url(${productDetail.imageUrl})`"
-              style="min-height: 350px ;"
+              style="min-height: 350px;"
               :alt="productDetail.title"
             />
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="d-flex flex-column justify-content-between h-100">
-            <h1 class="text-primary p-3">
+        <div class="col-md-6 mb-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <router-link
+                  to="/"
+                  class="nav-link active p-0"
+                >
+                  首頁
+                </router-link>
+              </li>
+              <li class="breadcrumb-item">
+                <router-link
+                  to="/products"
+                  class="nav-link active py-0 pe-0"
+                >
+                  餐點
+                </router-link>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                aria-current="page"
+              >
+                {{ 內文 || category }}
+              </li>
+            </ol>
+          </nav>
+          <div class="">
+            <h1 class="text-primary mb-3">
               {{ productDetail.title }}
             </h1>
-            <section>
+            <p>
               {{ productDetail.description }}
-            </section>
-            <section>
+            </p>
+            <p>
               付款方式： ATM 、 信用卡
-            </section>
-            <div class="d-flex mb-3 align-items-center">
+            </p>
+            <div class="d-flex align-items-center mb-2">
               <div class="me-2">
                 數量:
               </div>
@@ -34,6 +60,7 @@
                 aria-label="Basic checkbox toggle button group"
               >
                 <button
+                  :disabled="numRangeLimit < 2"
                   type="button"
                   class="btn btn-primary"
                   @click="numCountHandler('minus')"
@@ -47,7 +74,6 @@
                   class="form-control rounded-0"
                   style="width:80px"
                 >
-
                 <button
                   type="button"
                   class="btn btn-primary"
@@ -58,7 +84,7 @@
               </div>
               {{ productDetail.unit }}
             </div>
-            <div class="d-flex align-items-end">
+            <div class="d-flex align-items-end mb-2">
               <div
                 :class="{'text-decoration-line-through' :
                   productDetail.origin_price !== productDetail.price
@@ -77,14 +103,14 @@
             </div>
             <div class="d-flex justify-content-end">
               <div
-                class="btn btn-primary me-2"
+                class="btn btn-outline-primary me-2"
                 @click.prevent.stop="addCart"
               >
                 加入購物車
               </div>
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn btn-primary"
                 @click.prevent="addCart(true)"
               >
                 直接結帳
@@ -93,8 +119,10 @@
           </div>
         </div>
       </div>
-      <section class="bg-light p-3 mb-5">
-        <section class="productDetail__content">
+    </div>
+    <section class="bg-light p-3 mb-5">
+      <div class="container">
+        <section>
           <h4 class="text-primary">
             產品詳細
           </h4>
@@ -124,8 +152,8 @@
             </li>
           </ul>
         </section>
-      </section>
-    </div>
+      </div>
+    </section>
     <section class="mb-5">
       <div class="container">
         <h3 class="text-primary mb-3">

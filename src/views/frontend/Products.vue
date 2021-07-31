@@ -3,6 +3,32 @@
     <HeaderPic title="各式各樣的新鮮餐點限量提供" />
     <div class="container py-5">
       <div class="row">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <router-link
+                to="/"
+                class="nav-link active p-0"
+              >
+                首頁
+              </router-link>
+            </li>
+            <li class="breadcrumb-item">
+              <router-link
+                to="/products"
+                class="nav-link active py-0 pe-0"
+              >
+                餐點
+              </router-link>
+            </li>
+            <li
+              class="breadcrumb-item active"
+              aria-current="page"
+            >
+              全部
+            </li>
+          </ol>
+        </nav>
         <div class="col-md-3">
           <div
             class="list-group sticky-top mb-3"

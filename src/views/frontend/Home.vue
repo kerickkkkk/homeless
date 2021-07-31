@@ -9,11 +9,7 @@
         <button
           class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          @click="toogleHamber"
         >
           <span class="navbar-toggler-icon" />
         </button>
@@ -42,7 +38,7 @@
           </span>
         </a>
         <div
-          id="navbarSupportedContent"
+          ref="navbarCollapse"
           class="collapse navbar-collapse"
         >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -151,6 +147,7 @@
 
 <script>
 import Tooltip from 'bootstrap/js/dist/tooltip'
+import Collapse from 'bootstrap/js/dist/collapse'
 import OrderSearch from '@/components/OrderSearch.vue'
 export default {
   name: 'Home',
@@ -167,12 +164,18 @@ export default {
       },
       goTop: false,
       cartLen: 0,
-      favoriteList: []
+      favoriteList: [],
+      bsCollapse: null
     }
   },
   computed: {
     favoriteLen () {
       return this.favoriteList?.length
+    }
+  },
+  watch: {
+    '$route' () {
+      this.toogleHamber()
     }
   },
   mounted () {
@@ -189,6 +192,7 @@ export default {
     // 增加提示 搜尋訂單
     const tooltip = new Tooltip(this.$refs.searchOrder)
     tooltip.enable()
+    this.bsCollapse = new Collapse(this.$refs.navbarCollapse)
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')
@@ -196,6 +200,9 @@ export default {
     window.removeEventListener('scroll', this.navStyle)
   },
   methods: {
+    toogleHamber () {
+      this.bsCollapse.toggle()
+    },
     getFavorite () {
       const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'
       this.favoriteList = JSON.parse(favoriteList)

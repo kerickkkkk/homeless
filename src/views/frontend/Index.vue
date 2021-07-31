@@ -75,7 +75,10 @@
         </div>
       </swiper-slide>
     </swiper>
-    <section class="about  my-4 bg-light ">
+    <section class="my-4 bg-light ">
+      <h2 class="text-center py-3">
+        沒有最好，只有更好。
+      </h2>
       <div class="container py-4">
         <div class="row featurette align-items-center">
           <div class="col-md-5  order-md-1">
@@ -86,9 +89,9 @@
           </div>
           <div class="col-md-7 order-0 order-md-1">
             <div class="p-3">
-              <h2 class="featurette-heading">
+              <h3 class="featurette-heading">
                 手工現作<span class="text-muted"> 做好每一到食物環節的把關</span>
-              </h2>
+              </h3>
               <p class="lead">
                 挑剔，限量，但更佳的珍貴，因為品質值得等待！
                 追求好 還要更好。
@@ -105,9 +108,9 @@
         <div class="row featurette align-items-center">
           <div class="col-md-7 order-1 order-md-0">
             <div class="p-3">
-              <h2 class="featurette-heading">
+              <h3 class="featurette-heading">
                 原裝進口<span class="text-muted"> 取材絕不妥協</span>
-              </h2>
+              </h3>
               <p class="lead">
                 採純淨農場所栽種出的作物，經典農莊嚴格把關，創造出最重要的核心麵條。
               </p>
@@ -135,9 +138,9 @@
           </div>
           <div class="col-md-7 order-0 order-md-1">
             <div class="p-3">
-              <h2 class="featurette-heading">
+              <h3 class="featurette-heading">
                 產地鮮採<span class="text-muted"> 鮮多少買多少</span>
-              </h2>
+              </h3>
               <p class="lead">
                 絕不囤貨，當天訂購賣完為止，出餐多寡，全看鮮材多寡。
               </p>
@@ -160,6 +163,9 @@
     </section>
     <section class=" bg-light py-4">
       <div class="container">
+        <h2 class="text-center mb-3">
+          新聞
+        </h2>
         <div class="row align-items-stretch text-center h-100">
           <div class="col-md-6">
             <div

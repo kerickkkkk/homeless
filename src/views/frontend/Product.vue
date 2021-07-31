@@ -84,7 +84,7 @@
               </div>
               {{ productDetail.unit }}
             </div>
-            <div class="d-flex align-items-end mb-2">
+            <div class="d-flex justify-content-end mb-2">
               <div
                 :class="{'text-decoration-line-through' :
                   productDetail.origin_price !== productDetail.price
@@ -94,9 +94,9 @@
               </div>
               <div
                 v-if="productDetail.origin_price !== productDetail.price"
-                class="ms-auto text-danger"
+                class="text-primary ms-auto"
               >
-                特價： <span class="h4">
+                特價：<span class="h4">
                   {{ productDetail.price }}
                 </span> 元
               </div>

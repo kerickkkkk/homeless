@@ -4,20 +4,12 @@
     <div class="container my-5">
       <div class="row">
         <template v-if="cartLen > 0">
-          <div class="text-end">
-            <button
-              class="btn btn-sm btn-outline-danger"
-              @click="deleteAllCart"
-            >
-              清空購物車
-            </button>
-          </div>
           <div class="table-responsive">
             <table class="table">
               <thead class="text-center">
                 <tr>
                   <th
-                    width="50"
+                    width="60"
                     scope="col"
                   />
                   <th
@@ -48,7 +40,7 @@
                 >
                   <td>
                     <button
-                      class="btn btn-outline-danger border-0"
+                      class="btn btn-outline-secondary border-0"
                       @click="cartHandler('delete', item.id)"
                     >
                       <i class="bi bi-trash" />
@@ -95,7 +87,7 @@
                         type="number"
                         min="1"
                         class="form-control rounded-0"
-                        style="width: 50px"
+                        style="width: 60px"
                         @change="cartHandler('put', item.id , item.product.id , item.qty)"
                       >
 
@@ -161,19 +153,27 @@
               </tfoot>
             </table>
           </div>
-          <div class="text-end">
-            <router-link
-              to="/products"
-              class="btn btn-outline-primary me-3"
+          <div class="d-flex justify-content-between">
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              @click="deleteAllCart"
             >
-              繼續選購
-            </router-link>
-            <router-link
-              to="/checkout"
-              class="btn btn-danger"
-            >
-              填寫訂單
-            </router-link>
+              清空購物車
+            </button>
+            <div>
+              <router-link
+                to="/products"
+                class="btn btn-outline-primary me-3"
+              >
+                繼續選購
+              </router-link>
+              <router-link
+                to="/checkout"
+                class="btn btn-danger"
+              >
+                填寫訂單
+              </router-link>
+            </div>
           </div>
         </template>
         <template v-else>

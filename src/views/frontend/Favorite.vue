@@ -69,7 +69,7 @@
                   </template>
                   <template v-else>
                     <del>原價： {{ item.origin_price }} 元</del>
-                    <span class="text-danger h5 ms-auto">特價： {{ item.price }} 元</span>
+                    <span class="text-primary h5 ms-auto">特價： {{ item.price }} 元</span>
                   </template>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -88,7 +88,7 @@
                     看詳細
                   </button>
                   <button
-                    class="btn btn-danger"
+                    class="btn btn-primary"
                     type="button"
                     @click.stop="addCart(item.id)"
                     @mouseenter="cartBtnMoveHandler(item.id)"

@@ -28,9 +28,15 @@
           href="#"
           @click.prevent="cartHandler"
         >
-          <span class="position-relative">
+          <span
+            :class="{'animate-scale-1': cartLen <= 0}"
+            class="position-relative d-inline-block"
+          >
             <i class="bi bi-cart" />
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span
+              v-if="cartLen > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
               {{ cartLen }}
             </span>
           </span>
@@ -101,13 +107,21 @@
             </li>
             <li class="nav-item">
               <a
+
                 class="nav-link text-danger"
                 href="#"
                 @click.prevent="cartHandler"
               >
-                <span class="position-relative">
+
+                <span
+                  :class="{'animate-scale-1': cartLen <= 0}"
+                  class="position-relative d-inline-block"
+                >
                   <i class="bi bi-cart" />
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <span
+                    v-if="cartLen > 0"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >
                     {{ cartLen }}
                   </span>
                 </span>

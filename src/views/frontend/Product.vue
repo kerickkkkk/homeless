@@ -36,7 +36,7 @@
                 class="breadcrumb-item active"
                 aria-current="page"
               >
-                {{ 內文 || category }}
+                {{ '內文' || category }}
               </li>
             </ol>
           </nav>

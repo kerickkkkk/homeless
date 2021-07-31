@@ -37,6 +37,7 @@
                 <tr
                   v-for="item in carts.carts"
                   :key="item.id"
+                  class="align-middle"
                 >
                   <td>
                     <button
@@ -47,7 +48,7 @@
                     </button>
                   </td>
                   <th class="d-sm-table-cell d-none">
-                    <div class="cart__title d-flex justify-content-center">
+                    <div class="cart__title d-flex justify-content-center align-items-center">
                       <div class="me-3 d-md-block d-none">
                         <img
                           :src="item.product.imageUrl"
@@ -57,14 +58,14 @@
                         >
                       </div>
                       <div class="cart__title__content">
-                        <div class="h6">
+                        <div class="h6 mb-0">
                           {{ item.product.title }}
                         </div>
                       </div>
                     </div>
                   </th>
                   <td class="text-end d-none d-sm-table-cell">
-                    ${{ $filters.currency(item.product.price) }}
+                    ${{ $filters.currency(item.product.origin_price) }}
                   </td>
                   <td class="text-center">
                     <span class="d-sm-none d-block">{{ item.product.title }}</span>
@@ -86,7 +87,7 @@
                         :disabled="currentCartId === item.id"
                         type="number"
                         min="1"
-                        class="form-control rounded-0"
+                        class="form-control rounded-0 text-end"
                         style="width: 60px"
                         @change="cartHandler('put', item.id , item.product.id , item.qty)"
                       >
@@ -102,7 +103,7 @@
                     </div>
                   </td>
                   <td class="text-end">
-                    ${{ $filters.currency(item.final_total) }}
+                    ${{ $filters.currency(item.product.origin_price * item.qty) }}
                   </td>
                 </tr>
               </tbody>
@@ -112,14 +113,17 @@
                     class="text-end"
                     colspan="100"
                   >
-                    原價  $ {{ $filters.currency(carts.total) }}
+                    原價  $ {{ $filters.currency(totalOriginPrice) }}
                   </td>
                 </tr>
                 <tr>
                   <td
                     colspan="100"
                   >
-                    <div class="input-group ms-auto w-75 w-sm-50">
+                    <div
+                      class="input-group ms-auto"
+                      style="width: 235px"
+                    >
                       <input
                         v-model="coupon"
                         type="text"
@@ -189,6 +193,13 @@
           >
             前往產品列表
           </router-link>
+          <hr>
+          <section class="mb-4">
+            <h2 class="text-center mb-3">
+              推薦產品
+            </h2>
+            <ProductsSwiper category="套餐" />
+          </section>
         </template>
       </div>
     </div>
@@ -199,12 +210,14 @@
 <script>
 import HeaderPic from '@/components/HeaderPic.vue'
 import SubScribe from '@/components/SubScribe.vue'
+import ProductsSwiper from '@/components/ProductsSwiper.vue'
 
 export default {
   name: 'Cart',
   components: {
     HeaderPic,
-    SubScribe
+    SubScribe,
+    ProductsSwiper
   },
   data () {
     return {
@@ -213,6 +226,19 @@ export default {
       currentCartId: null,
       coupon: '',
       couponCode: ''
+    }
+  },
+  computed: {
+    totalOriginPrice () {
+      if (this.cartLen > 0) {
+        const res = this.carts.carts.reduce((prev, next) => {
+          console.log(prev, next)
+          prev += next.product.origin_price * next.qty
+          return prev
+        }, 0)
+        return res
+      }
+      return 0
     }
   },
   created () {

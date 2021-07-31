@@ -16,7 +16,7 @@ img{
   vertical-align: middle;
 }
 
-//
+// utility
 
 .bg-cover{
   background-size: cover;
@@ -28,6 +28,23 @@ img{
   object-position: center center;
 }
 
+// keyframes
+
+@keyframes scale1 {
+  0%   {transform: scale(.8);}
+  100% {transform: scale(1.25);}
+}
+
+//
+
+// animations
+
+.animate-scale-1{
+  animation: scale1 2s alternate 5 ease-in;
+}
+/////////////////////////////
+
+// 
 .cursor-notAllow{
   cursor: not-allowed;
 }

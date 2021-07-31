@@ -1,7 +1,7 @@
 <template>
   <div
     class="parallax bg-cover"
-    style="background-image:linear-gradient(to right,rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6) ,rgba(255, 255, 255, 0)), url('https://images.unsplash.com/photo-1612966874574-e0a92ad2bc43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')"
+    style="background-image:linear-gradient(to right,rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6) ,rgba(255, 255, 255, 0)), url('https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627724231109.jpeg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=fUgPqCpt128VISMWWvt78AaZQGsx1EJVp9qLPY6HP93yuPH9fPZDDTt3S%2FgVLc53BZcaa8Zo8J3HOHJrXcMS6QvHK8DwHEPM7u%2FIeHFcdMpN1dOqssfpMnm0IFUs4qqDEb3ElL9DLkw%2F%2Fvg54qEGp2%2FAjN2iMDwii%2FcMNiPNr3XkSKBxfokzVuCmlecT7nZ8xYDEreXRUM0wwnVUAgCqMtF05ghLFKNDfHZoWazz3ZRDEh%2Fwn0ynem8xYKBSe0k26jGhim1vxzbBWdygk11cmRfbCMZPqTwi6A0nnjCN3mLrEa8HcgsNdStLXilpyk5NuwXDf46r2Ju%2Bvjce17RDpg%3D%3D')"
   >
     <div class="container">
       <div class="row p-3">

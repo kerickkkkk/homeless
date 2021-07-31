@@ -6,7 +6,7 @@
         <div class="col-md-5  order-md-1">
           <div
             class="bg-cover"
-            style="background-image:url(https://images.unsplash.com/photo-1548705085-101177834f47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1189&q=80); height:300px"
+            style="background-image:url(https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627724356442.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=mq970pQXq1koVb5CH3N5ZLXEvUXn8KUiS4N1u1gQqaE0ssLvKJ2Ss2wvF7ygJiSfJxTKCuIVTWFvqc8l2%2FM43BZ1QPEThlGIquubE7x8%2FiE7YcepFJJII8SlOV3CNlxXLvHmyx1lIHwzKekjIPPEY9k2chuNONjbZWdEDu1kI49PyngL8%2BM6FN%2B%2Fue0wRGd2qBJjcWUxaOOBJFBPFgct6oRYKWV50tHkgIzuH3YQBtwwUO1Q3BdFHhVkDPHPVx4%2BszXouuDP3oigrRhOEprDbznAdZdhLzNtVsIWb18n7BHdxjbEmLcTvIBRYJJju3wyztqkYxESdaP97OvRxXOgDA%3D%3D); height:300px"
           />
         </div>
         <div class="col-md-7 order-0 order-md-1">
@@ -27,47 +27,40 @@
         <h2 class="mb-3 featurette-heading">
           特製麵條
         </h2>
-        <p class="lead">
+
+        <p class="lead w-50 mx-auto">
           以最簡單的配方，高級麵粉、水、加上陽光炙熱的雙手，所製作出來最純粹的好吃的麵條。
         </p>
       </div>
       <div class="row justify-content-center">
-        <div class="col-2">
+        <div class="col-md-3 col-6 mb-3">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1610649332778-a8600f4ac3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627725290386.jpeg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WC5E7JNpS2%2FQW%2FMHOVcri1HXkcgWq4D8ntJor9TAC5imPxwOvPIwLATwo6raPQKGVy4DzafIpny69bJxk%2FxfNvrh3Xp0tdrrBYx0zFT0KcoKMnfro5yB0lNJhFRREoaqN0cYa9Fez7bTM4Qz4lvwlmK9pTXSE5xZnsfAC10NQFPKFP0PWkyTQO1OJTBTWVVcHU8WzIpnlIG2TfriV3%2BVSqeg3SoK%2Bdc9%2F7BpCdQjivwZNJIawsT4MoFjVpXyqRELKLi7tpMIWkQ0pg0ootkg8i1IagSueaHQBOziHiMPrA8tMNKTfryBQzJQ7CnAuW9hX78pDV62him5hq1Kvki8Vg%3D%3D"
               alt=""
             >
           </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-3 col-6 mb-3">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1610649332755-12e7701db5e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627725193170.jpeg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WaNEM8aALKX7iY7tvk77wRqiZsc%2FjKEupjYAjMEZQ8aqzu7RmAeNx%2BBnxDMLsfhvQnzoPy%2F7V%2BbcPMZCcEANehJeRcT6kFUkhYLpWKKtX3I0KQTAAhGi1MnqncXHlkCydsIrOvr1ott39kVNz%2FhGL07AteKBlGVzOkcRylxsS80Zm1FX6bSHAxbYgDC109GI3bU173TBphyY5MPnWLb71%2Fxai62ISzTaBbUgyXUiMf%2F01edjh%2BFN26ix7CNnYx4Y0WdRSVVVJbNfiRb59G5sA4Vzm1wDpGQacfufWFWyS6V1YHxzLMbbI%2Fw7VoGKL%2FcJAMATGuuykxNeGOuw7NH4wQ%3D%3D"
               alt=""
             >
           </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-3 col-6 mb-3">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1610649332744-34632bbe8256?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627725214695.jpeg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=DYiAeR7INUCEVCXplQlPihIYxtVDNA750rg1tghh4wyMIV%2BbXxDiXvCZY6oX%2BbDzZs2Rus7lblUFVb3iGgmXTxog5kquzgd7oYWMZS9fxz5qJkChkEMNHx%2BnNGCHZLziKDXOhCyRuHKc20hL9le3x074HlUGPd4l%2BRwyhylJ5t8Reh2vfNu5ROa2CKgv3%2FZkVWdTG1KFipy3mnjilItPJuJ1plrbHaQVAH9%2BQcZjP61qkF2GCBJHiRpSEXPi8fuqg9v30RiKWWKSsP2wZBo%2FHRcmfdEzO56D9nlGLSJF5c9ZnoFkuramHfeS5ayHXEUj96prWniiutU64mYOzJPs8w%3D%3D"
               alt=""
             >
           </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-3 col-6 mb-3">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1610649333217-31ea4ea0df1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-              alt=""
-            >
-          </div>
-        </div>
-        <div class="col-2">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1570700258112-e259d3dbafb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627725237848.jpeg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=QY%2FtKC6hlGPGJRCtj9VXoGki3ovgrX967ym0oH2fLMusVDNz4xacSMho46ouDiM1W%2F1tTtJ%2F%2FaJ9S4cQemI3kndkf4BKBQcAtoIL8MZCozg8qvB8zDFcaaLAyt8JtS4SszFvRP%2FiopJdx%2Bt0AAIDzZF%2BCLgXd47PXadYAMM5qBDOyxvhax0Jy%2Feu9iZZL0dGGIGsZxat3cc%2B4zhEOrBEW7Rf0Q%2Bo6%2Fm7CRGlmis2MactETpxmdHXGLHt1f8FyEJtozrYldpFRN9n6iHljIBfp0MOTxbX0RBVopdlL6i5SJZZgUzbBpKdshjyiYfJehfobbJ47Q1MCtjcEARAnl5%2F2g%3D%3D"
               alt=""
             >
           </div>

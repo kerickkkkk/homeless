@@ -1,20 +1,6 @@
 <template>
   <div>
-    <div
-      style="background-image:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)"
-      class="bg-cover position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-    >
-      <div class="col-md-5 p-lg-5 mx-auto my-5 text-white">
-        <h2 class="display-4 fw-normal">
-          今天想補充點咖啡因嗎?
-        </h2>
-        <p class="lead fw-normal">
-          這裡提供各式的精品咖啡!!
-        </p>
-      </div>
-      <div class="product-device shadow-sm d-none d-md-block" />
-      <div class="product-device product-device-2 shadow-sm d-none d-md-block" />
-    </div>
+    <HeaderPic title="各式各樣的新鮮餐點限量提供" />
     <div class="container py-5">
       <div class="row">
         <div class="col-md-3">
@@ -141,10 +127,12 @@
 
 <script>
 import Pagination from '@/components/Pagination.vue'
+import HeaderPic from '@/components/HeaderPic.vue'
 
 export default {
   name: 'Products',
   components: {
+    HeaderPic,
     Pagination
   },
   data () {

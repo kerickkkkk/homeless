@@ -152,7 +152,12 @@
         </div>
       </div>
     </section>
-
+    <section class="mb-4">
+      <h2 class="text-center mb-3">
+        本期推薦
+      </h2>
+      <ProductsSwiper category="套餐" />
+    </section>
     <section class=" bg-light py-4">
       <div class="container">
         <div class="row align-items-stretch text-center h-100">
@@ -218,10 +223,11 @@
 </template>
 <script>
 import SubScribe from '@/components/SubScribe.vue'
-
+import ProductsSwiper from '@/components/ProductsSwiper.vue'
 export default {
   components: {
-    SubScribe
+    SubScribe,
+    ProductsSwiper
   }
 }
 </script>

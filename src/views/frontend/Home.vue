@@ -265,6 +265,9 @@ export default {
     window.removeEventListener('scroll', this.navStyle)
   },
   methods: {
+    toogleNavbarHamber () {
+      this.navbarCollapse.toggle()
+    },
     closeNavbarHamber () {
       this.navbarCollapse.hide()
     },

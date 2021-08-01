@@ -85,6 +85,31 @@
         </div>
       </div>
     </section>
+    <section class="mb-5">
+      <h2 class="text-center mb-3">
+        合作夥伴
+      </h2>
+      <div class="container">
+        <Swiper
+          :loop="true"
+          :autoplay="swiper.autoplay"
+          :breakpoints="swiper.breakpoints"
+          @swiper="controlSwiper"
+          @mouseleave="startSwiper"
+        >
+          <SwiperSlide
+            v-for="slide in swiper.data"
+            :key="slide"
+          >
+            <img
+              style="height:300px;"
+              :src="slide"
+              alt="合作廠商"
+            >
+          </SwiperSlide>
+        </Swiper>
+      </div>
+    </section>
     <SubScribe />
   </div>
 </template>
@@ -99,10 +124,45 @@ export default {
     SubScribe
   },
   data () {
-    return {}
+    return {
+      swiper: {
+        breakpoints: {
+          767: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20
+          }
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true
+        },
+        data: [
+          'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627786691440.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=N%2Fjx%2Fw%2FoQBNFomKC5Uuz%2BpKOAcZtDNlDuBxmXoDtjtBe7i%2BD6D2Uj0cNMO011ZJ%2FCrqwsLImkai5QfpQColi5VotmbZ85wJDCx%2FILS3qrUQY8a6JY4p8OhiyO1x%2BgEP4RuXiMivAJn3qH98yw8B9yOp9cxWMdGzH88pMpmKSErnG8HuihTnTamETxlpDLjyCvUPxEkcqsVMhtgKXaXx9Un3Tw8Lxn%2FiIlMLf61gsYEnvA%2FDi68OOpt3eN6ZogDAJt6jvRjolhIBzvQXihNBORlGLmSl4E9ZzTL4C4AzHtgpY%2BAxgC4xaWHkQoPUltmEN%2F4NufQ58WHHten6%2BT8BDNA%3D%3D',
+          'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627786778205.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=crdO04cxwAAaL1VPwFNUcx6%2BjL2SgXsRlsGeQQuHYftCj1%2BFgu1A%2B3HmJl1kxMe2QbjYKzwY0q2g0tJm%2Bgi5VM9aX18PFvr0DCPdYLnHf5Pzsaa05Jl9UZasYceefwxStAlAQ2Y8Wl9bHDDu%2FJnS9VzwnE2Dcvf97Z%2BZUqByMPscdml1knRzMNlrIaIdeWFApxWCJvcFTJx%2F%2B%2BeLKeCvFueR2Ikdwy4xV0SQZlGYo6hQycTk2wykl6jkaYaOwYdot%2FCyCUR114f2kdLD9o%2FM0qYprbrDERiTUMRoaremU50TCy1c%2FzhFZ4JTWGM92nFmlTZZuuySh6ouLYUrsookYA%3D%3D',
+          'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627786829182.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=keTR%2B4T6szmxjSIilN3N2U4jfo5kikXvS6336yBDQOGBgITw5oVFSGJFDHMaCg7DNowGkkIczzsqWV4sLjz8p7CHbd2%2ByfD7w%2BkGqN6RHdWle8xHj8tBFyljVAaXO0iaLEQfC1Nknnx9cDITXEAsxyUnzuNEEp12QZv7r2LwI%2B%2Fo1gYz7c77CqMTO88Ohk3qUxUAQz0fhmjGM9tBXlBf%2FpYme2HRSMcEgwjiFHiJ5wraq4vxgMFCMozcCKl2bEnS96MSiNbx0mokt3JCtMllRQ9XHAiIOih64EpQkWUihZkg%2B6x44vDSNjEQtwDASg9GLij3bUKinBVKw12wXpYt8Q%3D%3D',
+          'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627786879232.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=gb3aXD6pDRuk9wU9mE5c83fxIS9k7qWft%2B6ZYsCZh7faRaJBQYBPeymn7EOh0A6FFJoU44Uq7ZREuqXzGElprCUlMA9f4NEUWQCL7mCImu3dTVW3YyQh9LjOhEIaSOD%2FeopL0S6Y%2BzHgvsGHOE5MLHQDRLO4HEQPDOvASfqY5L3ukQiInNm%2FaRTeFZBkhzYgb2SqWoOdvUq%2BHw18ldkteQcJy74cEW4yTxx6u6BegQ6ZgKfpvzLr6LA1%2FEVvZaVYVkxu0wi4sqJKGUB24cdfcbxuasTASpbbvHQcNIXZfT6PkParkfcN9a7JYbMGHWUURpdYR7lgiWzs07Uo1J4Pfw%3D%3D',
+          'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627787039807.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=gv5WQLKMWLZo3bPOXjIu2UmMxU7acFqCDoXpYG%2FdYe7QxVT9znPOU4K7uXPY0kgmUswKnoog18wgFW9W%2Fx%2B%2FlaPSv4Gxyb3AMMh8hsABrRGxK0D%2FJ3I8hrkI1XxVehDOM5Gpg4PWbAw6Yz6Gb5ZIK2i603QPHi0CjlwBEyNsb15vPV2JhpYJNOFDmYwCbvwvaxB9k4PxNBmdLa6welJbjPDHeoMTI7Zozbn0Hs22k%2FF7%2BjAoD0tYc8prUbXuc%2FJyLhqd0dxd5Fbes8aUhqrac1wmQTQ351YR7puqRARZ9HuAz6H5Bgy%2F6%2FwNuVngTdwRtbO1rj2lhDdmxbhqscxmzQ%3D%3D'
+        ]
+      }
+    }
   },
   methods: {
-
+    controlSwiper (e) {
+      this.swiperInstance = e
+    },
+    startSwiper () {
+      // 滑鼠移出畫面重新啟動
+      this.swiperInstance.autoplay.start()
+    }
   }
 }
 </script>

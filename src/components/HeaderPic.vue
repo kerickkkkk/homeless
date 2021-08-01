@@ -1,7 +1,7 @@
 <template>
   <section
     class="bg-cover text-white p-3"
-    :style="`background-image:linear-gradient(to right,rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${url})`"
+    :style="`background-image:linear-gradient(to bottom,rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${url})`"
   >
     <div class="container">
       <div class="h-100 p-5">

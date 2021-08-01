@@ -79,14 +79,14 @@
                 <i class="bi bi-journal-text" />
               </a>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <router-link
-                to="/contact"
+                to="/service"
                 class="nav-link"
               >
-                聯絡我們
+                常見問題
               </router-link>
-            </li> -->
+            </li>
             <li class="nav-item ">
               <router-link
                 class="nav-link text-secondary"

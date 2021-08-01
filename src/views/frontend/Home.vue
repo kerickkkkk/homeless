@@ -9,15 +9,20 @@
         <button
           class="navbar-toggler"
           type="button"
-          @click="toogleHamber"
+          data-bs-toggle="collapse"
+          @click="toogleNavbarHamber"
         >
           <span class="navbar-toggler-icon" />
         </button>
         <h1>
-          <a
+          <router-link
+            to="/"
             class="navbar-brand"
             href="#"
-          >HomeLess</a>
+            @click.prevent="closeNavbarHamber"
+          >
+            HomeLess
+          </router-link>
         </h1>
         <a
           class="nav-link text-danger d-block d-lg-none"
@@ -36,23 +41,6 @@
               {{ cartLen }}
             </span>
           </span>
-          <ul
-            ref="cartDropDownHamber"
-            class="dropdown-menu"
-          >
-            <li><a
-              class="dropdown-item"
-              href="#"
-            >Action</a></li>
-            <li><a
-              class="dropdown-item"
-              href="#"
-            >Another action</a></li>
-            <li><a
-              class="dropdown-item"
-              href="#"
-            >Something else here</a></li>
-          </ul>
         </a>
         <div
           ref="navbarCollapse"
@@ -64,6 +52,7 @@
                 :class="{active: $route.name === 'index'}"
                 to="/"
                 class="nav-link"
+                @click.prevent="closeNavbarHamber"
               >
                 首頁
               </router-link>
@@ -73,15 +62,17 @@
                 :class="{active: $route.name === 'about'}"
                 to="/about"
                 class="nav-link"
+                @click.prevent="closeNavbarHamber"
               >
                 關於我們
               </router-link>
             </li>
             <li class="nav-item">
               <router-link
-                :class="{active: $route.name === 'products' || 'product'}"
+                :class="{active: $route.name === ('products' || 'product')}"
                 to="/products"
                 class="nav-link"
+                @click.prevent="closeNavbarHamber"
               >
                 餐點
               </router-link>
@@ -110,7 +101,7 @@
             </li>
             <li
 
-              class="nav-item "
+              class="nav-item"
               @click.prevent="dropDownHandler('favorite')"
             >
               <a
@@ -118,6 +109,7 @@
                 :class="[ $route.name === 'favorite' ? 'text-primary': 'text-secondary']"
                 href="#"
                 to="/favorite"
+                @click.prevent="closeNavbarHamber"
               >
                 <span
                   ref="favoriteDropDown"
@@ -142,6 +134,7 @@
                     <router-link
                       to="/products"
                       class="btn btn-sm btn-primary"
+                      @click.prevent="closeNavbarHamber"
                     >
                       前往餐點
                     </router-link>
@@ -180,6 +173,7 @@
                     <router-link
                       to="/products"
                       class="btn btn-sm btn-primary"
+                      @click.prevent="closeNavbarHamber"
                     >
                       前往點餐餐點
                     </router-link>
@@ -230,7 +224,7 @@ export default {
       goTop: false,
       cartLen: 0,
       favoriteList: [],
-      bsCollapse: null,
+      navbarCollapse: null,
       favoriteDropDown: null,
       cartDropDown: null
     }
@@ -242,7 +236,7 @@ export default {
   },
   watch: {
     '$route' () {
-      this.toogleHamber()
+      this.closeNavbarHamber()
     }
   },
   mounted () {
@@ -259,7 +253,8 @@ export default {
     // 增加提示 搜尋訂單
     const tooltip = new Tooltip(this.$refs.searchOrder)
     tooltip.enable()
-    this.bsCollapse = new Collapse(this.$refs.navbarCollapse)
+    // 導覽列選單會初始都會自動跑下來...
+    this.navbarCollapse = new Collapse(this.$refs.navbarCollapse)
     // 購物車 我的最愛下拉選單
     this.favoriteDropDown = new Dropdown(this.$refs.favoriteDropDown)
     this.cartDropDown = new Dropdown(this.$refs.cartDropDown)
@@ -270,8 +265,11 @@ export default {
     window.removeEventListener('scroll', this.navStyle)
   },
   methods: {
-    toogleHamber () {
-      this.bsCollapse.toggle()
+    closeNavbarHamber () {
+      this.navbarCollapse.hide()
+    },
+    openNavbarHamber () {
+      this.navbarCollapse.show()
     },
     getFavorite () {
       const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'
@@ -329,12 +327,15 @@ export default {
           this[`${type}DropDown`].toggle()
         }
       }
+      // 點連結時關閉導覽下拉
+      this.closeNavbarHamber()
     },
     gogoTop () {
       this.$tools.goTop()
     },
     orderSearchShow () {
       this.$refs.orderSearch.show()
+      this.closeNavbarHamber()
     }
   }
 

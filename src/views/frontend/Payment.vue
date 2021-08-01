@@ -67,8 +67,11 @@
                       >
                         {{ product.product.title }}
                         <span class="d-flex">
-                          ${{ product.product.price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ product.total }}</span>
+                          ${{ product.product.origin_price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ product.product.origin_price * product.qty }}</span>
                         </span>
+                      </p>
+                      <p class="mb-0 text-end">
+                        折扣： NT${{ totalOriginPrice - order.total }}
                       </p>
                       <p class="mb-0 text-end">
                         總價： NT${{ order.total }}
@@ -119,7 +122,7 @@
             >
               <td>{{ item.product.title }}</td>
               <td>
-                {{ item.product.price }}
+                {{ item.product.origin_price }}
               </td>
               <td>{{ item.qty }}</td>
               <td class="text-end">
@@ -227,6 +230,7 @@ export default {
       // order 需有 id屬性 表示已經 ajax 回來
       if (this.orderIsBack) {
         const res = Object.values(this.order.products).reduce((prev, next) => {
+          console.log(prev)
           prev += next.product.origin_price * next.qty
           return prev
         }, 0)

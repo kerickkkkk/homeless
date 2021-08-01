@@ -20,7 +20,7 @@
         <div class="d-flex">
           <div class="input-group mb-3">
             <input
-              v-model="orderSearilNumber"
+              v-model.trim="orderSearilNumber"
               type="text"
               class="form-control"
               placeholder="輸入訂單號碼"
@@ -75,8 +75,11 @@
                 >
                   {{ product.product.title }}
                   <span class="d-flex">
-                    ${{ product.product.price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ product.total }}</span>
+                    ${{ product.product.origin_price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ product.product.origin_price * product.qty }}</span>
                   </span>
+                </p>
+                <p class="mb-0 text-end">
+                  折價： NT${{ totalOriginPrice - order.total }}
                 </p>
                 <p class="mb-0 text-end">
                   總價： NT${{ order.total }}
@@ -85,7 +88,7 @@
             </tr>
             <tr>
               <th>折價券</th>
-              <td>{{ Object.values(order.products)[0].coupon ? `${Object.values(order.products)[0].coupon.percent} 折`: '無' }}</td>
+              <td>{{ Object.values(order.products)[0].coupon ? `${Object.values(order.products)[0].coupon.percent / 10} 折`: '無' }}</td>
             </tr>
             <tr>
               <th>備註</th>
@@ -132,6 +135,21 @@ export default {
   computed: {
     hasWord () {
       return String(this.orderSearilNumber).length <= 0
+    },
+    orderIsBack () {
+      return Object.keys(this.order).includes('id')
+    },
+    totalOriginPrice () {
+      // order 需有 id屬性 表示已經 ajax 回來
+      if (this.orderIsBack) {
+        const res = Object.values(this.order.products).reduce((prev, next) => {
+          console.log(prev)
+          prev += next.product.origin_price * next.qty
+          return prev
+        }, 0)
+        return (res || 0)
+      }
+      return 0
     }
   },
   mounted () {

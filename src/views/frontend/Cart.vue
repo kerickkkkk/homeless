@@ -240,7 +240,6 @@ export default {
     totalOriginPrice () {
       if (this.cartLen > 0) {
         const res = this.carts.carts.reduce((prev, next) => {
-          console.log(prev, next)
           prev += next.product.origin_price * next.qty
           return prev
         }, 0)

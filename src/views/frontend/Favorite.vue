@@ -221,7 +221,6 @@ export default {
       localStorage.setItem('homeLessFavorite', '')
       localStorage.setItem('homeLessFavorite', favoriteStr)
       this.getFavorite()
-      console.log(this.$refs.productSwiper)
       this.$refs.productSwiper.getFavorite()
     },
     cartBtnMoveHandler (id) {

@@ -5,52 +5,52 @@ const routes = [
   // 前台路由
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: () => import('@/views/frontend/Home.vue'),
     children: [
       {
         path: '',
-        name: 'Index',
+        name: 'index',
         component: () => import('@/views/frontend/Index.vue')
       },
       {
         path: 'about',
-        name: 'About',
+        name: 'about',
         component: () => import('@/views/frontend/About.vue')
       },
       {
         path: 'products',
-        name: 'Products',
+        name: 'products',
         component: () => import('@/views/frontend/Products.vue')
       },
       {
         path: 'product/:id',
-        name: 'Product',
+        name: 'product',
         component: () => import('@/views/frontend/Product.vue')
       },
       {
         path: 'favorite',
-        name: 'Favorite',
+        name: 'favorite',
         component: () => import('@/views/frontend/Favorite.vue')
       },
       {
         path: 'cart',
-        name: 'Cart',
+        name: 'cart',
         component: () => import('@/views/frontend/Cart.vue')
       },
       {
         path: 'service',
-        name: 'Service',
+        name: 'service',
         component: () => import('@/views/frontend/Service.vue')
       },
       {
         path: 'checkout',
-        name: 'Checkout',
+        name: 'checkout',
         component: () => import('@/views/frontend/Checkout.vue')
       },
       {
         path: 'payment/:id',
-        name: 'Payment',
+        name: 'payment',
         component: () => import('@/views/frontend/Payment.vue')
       }
     ]
@@ -58,7 +58,7 @@ const routes = [
   // login
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import('@/views/dashboard/Login.vue')
   },
   // 後臺路由

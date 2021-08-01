@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <HeaderPic title="關於我們" />
+    <HeaderPic title="沒有最好 只有更好" />
     <div class="container my-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

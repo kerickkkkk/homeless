@@ -1,6 +1,9 @@
 <template>
   <div>
-    <HeaderPic title="各式各樣的新鮮餐點限量提供" />
+    <HeaderPic
+      title="各式各樣的餐點 新鮮提供"
+      :url="url"
+    />
     <div class="container py-5">
       <div class="row">
         <nav aria-label="breadcrumb">
@@ -69,7 +72,7 @@
                 @click="getProductDetail(item.id)"
               >
                 <div
-                  class="card__Favorite pe fs-2 text-secondary position-absolute"
+                  class="card__Favorite pe fs-2 text-primary position-absolute"
                   @click.stop=" setFavorite(item.id, item.title)"
                 >
                   <i
@@ -163,6 +166,7 @@ export default {
   },
   data () {
     return {
+      url: 'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627778940510.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=YSG873llFoGpjsQoOqyFPBQNtCbnFgi8Ep3DvUp0Hd740T4lFZ375jjDgrJPTCVgLt%2FAYbe2sApT94SpfR%2FiZJLPyJhb2BJOgLnl6T6%2FB7LSH37JAs4JJr%2Bu0em56ChzRS4Y6abM8ezau4L4Vnn86sEyFZCisFCVi3InnNjzKoeKuUMxvOkpFf5vzE01f4z8UbJXXZcltVIO%2BDGKxBIoe2fNhqWKzy%2B6oBQgmcb7Bd8IlimNFDpbEbfieFE4b%2F9Rp3RP976MDmUgRnoaSU3jXh54EjxnSPqcVO0hi%2BaUWu4y86ApYzZiC4QQTppc7RzQKHl21edmAUSsG61DuZ0u9w%3D%3D',
       // isLoading: false,
       loadingStatus: {
         itemLoading: false

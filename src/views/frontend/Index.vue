@@ -164,7 +164,7 @@
     <section class=" bg-light py-4">
       <div class="container">
         <h2 class="text-center mb-3">
-          新聞
+          消息
         </h2>
         <div class="row align-items-stretch text-center h-100">
           <div class="col-md-6">

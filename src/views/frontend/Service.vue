@@ -84,7 +84,7 @@ export default {
   },
   data () {
     return {
-      url: 'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627778041796.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=jbqYqb%2BnBd9rC20tRbH0q6jl5TqZRLzNoNuj50Tz2nZWwtN39CPaFRhuv9ISfSqKkET7obAxG6J7DSEecKvbUv9d%2BHyJb7ihdSoUi56lmESaILL%2FYPsY08Mp5vZewBkHHE%2Bv%2Bk2%2FJkpubgiBU0OK5GNujtsJOxa0j86sXZvyqgLrFr6baLQQuaWkdKoQ4Dzt%2BGKGunnby6kOXqgzl7piUC%2FGAlYgOC2l8orQv98a2xScKQ%2BJ9LXseFJPISoWrzUWz03QcbTpXTMAtsnZjv0Fg6Git8KJN6RAaCvvDJTM3QRwREPLrCRKoRJfTrb17c4ZMMvsZI5%2Btd8MkwX%2BKPyurQ%3D%3D'
+      url: 'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627779758371.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=gT78EFZM6IrjS%2F8RGEIeoS%2F%2Fj4nul1fEIj%2FAnOSXLOaTaHoG%2FnfwNhozRjki78%2Bt0qKxY7oyToLR%2FdEbdNk4c0FHUx1FttylH12C8XJ7B6lTxB2%2BnP%2BdhcwMFSZdCpBIptXvjlRUKypDWfZkUS86G8tDAMHhVjnwdJfFug8Zkgvx8r4y3FAGFt37AQ4fXSyOswH6G82nnENLAUPJzpSYM5RSyvS0jHyZN5L4Z3YMaIEInCklfFBgIY%2FjodzuxD9iVrnR88pSMH9M1UyLX9jXkfkw3UYVLo0yK3hrfqh8yX3Y%2F35OtzDK4wZquKZdoBauMnJo%2FzFAGGECCWCbrPNchQ%3D%3D'
     }
   }
 }

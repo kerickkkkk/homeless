@@ -1,8 +1,9 @@
 <template>
   <div class="favorite">
     <HeaderPic
-      title="我的最愛"
+      title="喜歡的 通通都在這"
       class="mb-4"
+      :url="url"
     />
     <div class="container">
       <nav aria-label="breadcrumb">
@@ -37,7 +38,7 @@
               @click="getProductDetail(item.id)"
             >
               <div
-                class="card__Favorite pe fs-2 text-secondary position-absolute"
+                class="card__Favorite pe fs-2 text-primary position-absolute"
                 @click.stop=" setFavorite(item.id, item.title)"
               >
                 <i
@@ -155,6 +156,7 @@ export default {
   },
   data () {
     return {
+      url: 'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627780826134.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=KMQXrwxi3OrY0z870p926cf80WkIhKPI7Z122qoYH5PUyCHSzvX4hpxloBJz2H5qEge9KzndKO1VczB7U1BnU5ou%2BqicJGbDM6lEz1DK5McQn9R4xOrHQp0CK%2BqGr%2B%2FL6dZUi2eVrc5OP3StJATrHHaDy56sBWbwsfc%2FPYbzcQeff36PUDtulHYFrYU%2Bw98kIuC6Xl37TMiVIeewh8byjnHg%2FlhVNXKWjmj%2FGW6MctBqoADf8EQI%2BzlpFSQWzR%2FR9MSVOWxTS5VfUN3OlRKuNAX7x2OYoDgdfWtaHW18sl2Czl%2FveTWUNWWHCUiBD9%2FQ2KS%2B6SWxKBOV2FWouOaimg%3D%3D',
       loadingStatus: {
         itemLoading: false
       },

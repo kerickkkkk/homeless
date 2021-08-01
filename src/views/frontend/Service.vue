@@ -23,32 +23,34 @@
           </li>
         </ol>
       </nav>
-      <h3>商品保存期限</h3>
-      <p class="mb-5">
+      <h3><i class="bi bi-info-circle" /> 商品保存期限</h3>
+      <p class="ps-4 mb-5">
         因食材都是新鮮現做，隔餐勿食。
       </p>
-      <h3>取餐方式</h3>
-      <p class="mb-5">
+      <h3><i class="bi bi-info-circle" /> 取餐方式</h3>
+      <p class="ps-4 mb-5">
         請您保管好您的訂單編號，屆時取餐會依照訂單編號來辨認。
       </p>
-      <h3>取餐時間</h3>
-      <p class="mb-5">
+      <h3><i class="bi bi-info-circle" /> 取餐時間</h3>
+      <p class="ps-4 mb-5">
         套餐系列準備時間較長，請於前一天預定，會依單製作，其餘系列無此規定。
       </p>
       <h3>
+        <i class="bi bi-info-circle" />
         訂單成立
       </h3>
-      <p class="mb-5">
+      <p class="ps-4 mb-5">
         完成整個訂購流程後，會看到訂購完成即表示您已經完成訂購流程，請記得保留訂單號碼，以此號碼取餐。
       </p>
       <h3>
+        <i class="bi bi-info-circle" />
         付款方式
       </h3>
-      <p class="mb-5">
+      <p class="ps-4 mb-5">
         可接受 ATM 轉帳，線上刷卡。
       </p>
-      <h3>取消、修改訂單</h3>
-      <p class="mb-5">
+      <h3><i class="bi bi-info-circle" /> 取消、修改訂單</h3>
+      <p class="ps-4 mb-5">
         訂單取消，以及修改 請直接撥打 <a
           href="tel:0800000000"
           target="_blank"
@@ -58,7 +60,7 @@
           rel="noopener noreferrer"
         >粉絲頁</a> 留言。
       </p>
-      <h3>退貨以及退款</h3>
+      <h3><i class="bi bi-info-circle" /> 退貨以及退款</h3>
       <ul>
         <li>
           您發現提供不符合訂單內容的商品，您可以透過將會退還您支付的金額。

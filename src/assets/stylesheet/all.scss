@@ -93,10 +93,23 @@ img{
   }
   &__Favorite{
     z-index: 1;
-    top: 10px;
+    background: #fff;
+    position: absolute;
+    color: $primary;
+    font-size: 1.5rem;
+    border-radius: 0 0 15px 15px;
+    // top: 10px;
+    padding: {
+      right:10px;
+      left:10px;
+    };
     left: 10px;
     &:hover{
-      color: $primary !important;
+      background-color: $primary;
+      i{
+        color: #fff;
+
+      }
     }
   }
 }

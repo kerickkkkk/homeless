@@ -38,7 +38,7 @@
               @click="getProductDetail(item.id)"
             >
               <div
-                class="card__Favorite pe fs-2 text-primary position-absolute"
+                class="card__Favorite"
                 @click.stop=" setFavorite(item.id, item.title)"
               >
                 <i

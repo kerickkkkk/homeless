@@ -22,7 +22,7 @@
         <a
           class="nav-link text-danger d-block d-lg-none"
           href="#"
-          @click.prevent="cartHandler"
+          @click.prevent="dropDownHandler('cart', true)"
         >
           <span
             :class="{'animate-scale-1': cartLen <= 0}"
@@ -36,6 +36,23 @@
               {{ cartLen }}
             </span>
           </span>
+          <ul
+            ref="cartDropDownHamber"
+            class="dropdown-menu"
+          >
+            <li><a
+              class="dropdown-item"
+              href="#"
+            >Action</a></li>
+            <li><a
+              class="dropdown-item"
+              href="#"
+            >Another action</a></li>
+            <li><a
+              class="dropdown-item"
+              href="#"
+            >Something else here</a></li>
+          </ul>
         </a>
         <div
           ref="navbarCollapse"
@@ -44,14 +61,16 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <router-link
+                :class="{active: $route.name === 'index'}"
                 to="/"
-                class="nav-link active"
+                class="nav-link"
               >
                 首頁
               </router-link>
             </li>
             <li class="nav-item">
               <router-link
+                :class="{active: $route.name === 'about'}"
                 to="/about"
                 class="nav-link"
               >
@@ -60,6 +79,7 @@
             </li>
             <li class="nav-item">
               <router-link
+                :class="{active: $route.name === 'products' || 'product'}"
                 to="/products"
                 class="nav-link"
               >
@@ -81,35 +101,64 @@
             </li>
             <li class="nav-item">
               <router-link
+                :class="{active: $route.name === 'service'}"
                 to="/service"
                 class="nav-link"
               >
                 常見問題
               </router-link>
             </li>
-            <li class="nav-item ">
-              <router-link
-                class="nav-link text-secondary"
+            <li
+
+              class="nav-item "
+              @click.prevent="dropDownHandler('favorite')"
+            >
+              <a
+                class="nav-link dropdown"
+                :class="[ $route.name === 'favorite' ? 'text-primary': 'text-secondary']"
                 href="#"
                 to="/favorite"
               >
-                <span class="position-relative">
+                <span
+                  ref="favoriteDropDown"
+                  data-bs-toggle="dropdown"
+                  class="position-relative"
+                >
                   <i class="bi bi-heart" />
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                  <span
+                    v-if="favoriteLen > 0"
+                    :class="[ $route.name === 'favorite' ? 'bg-primary': 'bg-secondary']"
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                  >
                     {{ favoriteLen }}
                   </span>
                 </span>
-              </router-link>
+                <div
+                  class="dropdown-menu dropdown-menu-lg-end"
+                >
+                  <div class="text-center">
+                    我的最愛是空的
+                    <br>
+                    <router-link
+                      to="/products"
+                      class="btn btn-sm btn-primary"
+                    >
+                      前往餐點
+                    </router-link>
+                  </div>
+                </div>
+              </a>
             </li>
             <li class="nav-item">
+              <!-- dropdown 定位用一訂要加 -->
               <a
-
-                class="nav-link text-danger"
+                class="nav-link text-danger dropdown"
                 href="#"
-                @click.prevent="cartHandler"
+                @click.prevent="dropDownHandler('cart')"
               >
-
                 <span
+                  ref="cartDropDown"
+                  data-bs-toggle="dropdown"
                   :class="{'animate-scale-1': cartLen <= 0}"
                   class="position-relative d-inline-block"
                 >
@@ -121,6 +170,21 @@
                     {{ cartLen }}
                   </span>
                 </span>
+                <!-- align 尾端 -->
+                <div
+                  class="dropdown-menu dropdown-menu-lg-end"
+                >
+                  <div class="text-center">
+                    購物車是空的
+                    <br>
+                    <router-link
+                      to="/products"
+                      class="btn btn-sm btn-primary"
+                    >
+                      前往點餐餐點
+                    </router-link>
+                  </div>
+                </div>
               </a>
             </li>
           </ul>
@@ -148,6 +212,7 @@
 <script>
 import Tooltip from 'bootstrap/js/dist/tooltip'
 import Collapse from 'bootstrap/js/dist/collapse'
+import Dropdown from 'bootstrap/js/dist/dropdown'
 import OrderSearch from '@/components/OrderSearch.vue'
 export default {
   name: 'Home',
@@ -165,7 +230,9 @@ export default {
       goTop: false,
       cartLen: 0,
       favoriteList: [],
-      bsCollapse: null
+      bsCollapse: null,
+      favoriteDropDown: null,
+      cartDropDown: null
     }
   },
   computed: {
@@ -193,6 +260,9 @@ export default {
     const tooltip = new Tooltip(this.$refs.searchOrder)
     tooltip.enable()
     this.bsCollapse = new Collapse(this.$refs.navbarCollapse)
+    // 購物車 我的最愛下拉選單
+    this.favoriteDropDown = new Dropdown(this.$refs.favoriteDropDown)
+    this.cartDropDown = new Dropdown(this.$refs.cartDropDown)
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')
@@ -247,13 +317,17 @@ export default {
         this.goTop = false
       }
     },
-    cartHandler () {
-      if (this.cartLen > 0) {
-        this.$router.push('/cart')
+    dropDownHandler (type, isMobile) {
+      if (this[`${type}Len`] > 0) {
+        this.$router.push(`/${type}`)
       } else {
-        this.$swal('購物車是空', '請選購產品', 'info').then(() => {
-          this.$router.push('/products')
-        })
+        if (isMobile) {
+          this.$swal('購物車是空', '請選購產品', 'info').then(() => {
+            this.$router.push('/products')
+          })
+        } else {
+          this[`${type}DropDown`].toggle()
+        }
       }
     },
     gogoTop () {

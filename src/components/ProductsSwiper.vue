@@ -136,25 +136,21 @@ export default {
         })
     },
     getProductDetail (id) {
-      if (this.category === '') {
-        this.$emitter.emit('fullScreenLoading', true)
-        this.$http
-          .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
-          .then((res) => {
-            if (res.data.success) {
-              this.$router.push(`/product/${id}`)
-            } else {
-              this.$swal(res.data.message, '', 'error')
-            }
-            this.$emitter.emit('fullScreenLoading', false)
-          })
-          .catch((error) => {
-            this.$swal(error, '', 'error')
-            this.$emitter.emit('fullScreenLoading', false)
-          })
-      } else {
-        this.$emit('get-product-detail', id)
-      }
+      this.$emitter.emit('fullScreenLoading', true)
+      this.$http
+        .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
+        .then((res) => {
+          if (res.data.success) {
+            this.$router.push(`/product/${id}`)
+          } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+          this.$emitter.emit('fullScreenLoading', false)
+        })
+        .catch((error) => {
+          this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
+        })
     },
     getFavorite () {
       const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'

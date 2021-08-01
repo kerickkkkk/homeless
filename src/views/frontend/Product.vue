@@ -39,7 +39,7 @@
                 class="breadcrumb-item active"
                 aria-current="page"
               >
-                {{ '內文' || category }}
+                {{ category || '餐點類型' }}
               </li>
             </ol>
           </nav>
@@ -164,7 +164,6 @@
         </h3>
         <ProductsSwiper
           :category="category"
-          @get-product-detail="getProductDetail"
         />
       </div>
     </section>
@@ -180,6 +179,12 @@ export default {
   components: {
     HeaderPic,
     ProductsSwiper
+  },
+  beforeRouteUpdate (to, from, next) {
+    // 攔截寫入
+    this.id = to.params.id
+    // 沒有觸發先改手動觸發
+    next()
   },
   data () {
     return {
@@ -200,11 +205,25 @@ export default {
       }
     }
   },
+  watch: {
+    $route: {
+      immediate: true,
+      handler (to) {
+        // 避免 非 prodcut 跳轉 會有問題
+        if (to.name === 'product') {
+          this.id = to.params.id
+          this.getProductDetail(this.id)
+        }
+      }
+    }
+  },
   mounted () {
-    this.id = this.$route.params.id
-    this.getProductDetail(this.id)
+    // 因有同樣產品 改由 watch 控制
+    // this.id = this.$route.params.id
+    // this.getProductDetail(this.id)
   },
   methods: {
+    // 更動到 global 變數
     // scrollToTop () {
     //   // 更換產品不刷新頁面要把卷軸往上拉
     //   // vue scroll to top of same route

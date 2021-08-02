@@ -326,19 +326,18 @@ export default {
       if (windowY > 100) {
         this.navClassList = {
           nav: 'navbar-dark',
-          bg: 'bg-dark',
-          padding: 'py-2'
-
+          bg: 'bg-dark'
         }
         this.goTop = true
         // 避免 縮小的時候會擠去 100 造成閃頻
       } else if (windowY < 80) {
         this.navClassList = {
           nav: 'navbar-light',
-          bg: '',
-          padding: 'py-3'
-
+          bg: ''
         }
+        // 加上高度會有一些問題先不用
+        // padding: 'py-3'
+
         this.goTop = false
       }
     },

@@ -35,10 +35,10 @@
       <swiper-slide>
         <div
           class="position-relative overflow-hidden py-5 m-md-3 text-center bg-cover text-white"
-          style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url(https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627722588476.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=VHNsVClHqY8eXln99xpGhHy4BXrcpOPBetJfDX6uO0rOXmBi86qp7D3zxXkM%2B66jJ45yJ87B0GEh5emXUoOqbkOa3eHUwvVmroXfzH7agMlQBxG31Q%2BN6xmDW41mt5fqQKcZ7OyoxH1aMV91upkpjhhsOnETRT2HiOPC%2BmblAPuagfN%2BQ30yY28stMYmjZ92ktZ44u95hx4eckRCP9zRgwwwiTL7XQsyrzrRUdwSWjA9O2MagLSDZmElifX3vo7IdRWHQCEHWyhEvU2PrEEbUL%2F6us7xmE4NKzYooBd5hfUch4ojfbvooNm8jMpsf4aIKYGTG0O87QdWNPtbLH6VKQ%3D%3D) "
+          style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url(https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627722588476.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=VHNsVClHqY8eXln99xpGhHy4BXrcpOPBetJfDX6uO0rOXmBi86qp7D3zxXkM%2B66jJ45yJ87B0GEh5emXUoOqbkOa3eHUwvVmroXfzH7agMlQBxG31Q%2BN6xmDW41mt5fqQKcZ7OyoxH1aMV91upkpjhhsOnETRT2HiOPC%2BmblAPuagfN%2BQ30yY28stMYmjZ92ktZ44u95hx4eckRCP9zRgwwwiTL7XQsyrzrRUdwSWjA9O2MagLSDZmElifX3vo7IdRWHQCEHWyhEvU2PrEEbUL%2F6us7xmE4NKzYooBd5hfUch4ojfbvooNm8jMpsf4aIKYGTG0O87QdWNPtbLH6VKQ%3D%3D)"
         >
           <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h2 class="display-4 fw-normal ">
+            <h2 class="display-4 fw-normal">
               新鮮咖啡到貨
             </h2>
             <p class="lead fw-normal">
@@ -56,10 +56,10 @@
       <swiper-slide>
         <div
           class="position-relative overflow-hidden py-5 m-md-3 text-center bg-cover text-white"
-          style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url(https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627722166219.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=V%2Bgrt7Fi9z6CxuNWUklHC8mt3dXVBB8r8Pe2kTmWKbOkV1%2BtFDuRPIGhSGUnC34W6xtxDuMhk1XZ7GLiV1g9MCeEWF3eRVvmem5i3fgdb6ycDw0uqGJltBzUdZ9yjMHSxM6BfkHCV%2F6T8TVTFSn21eAVBaBaSuxVgac9HhsnSvT%2F9UIWG%2F%2FVdd%2BT%2F%2BXBcLGxE8rQTMq3zzRUJOwr9iqmahr%2Bkl7kNVooL31rxj7U2pNqwF%2Fhc5rInD6K0CF5CbF4db3B3yQk2L64zekcSolFrH42jaqxcoLu0kqhjsZ5f7CjYgCK%2FmqyQ0adMHc9EMCFd0EbRgRzdrJWEQFUA%2B5GLw%3D%3D) "
+          style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url(https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627722166219.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=V%2Bgrt7Fi9z6CxuNWUklHC8mt3dXVBB8r8Pe2kTmWKbOkV1%2BtFDuRPIGhSGUnC34W6xtxDuMhk1XZ7GLiV1g9MCeEWF3eRVvmem5i3fgdb6ycDw0uqGJltBzUdZ9yjMHSxM6BfkHCV%2F6T8TVTFSn21eAVBaBaSuxVgac9HhsnSvT%2F9UIWG%2F%2FVdd%2BT%2F%2BXBcLGxE8rQTMq3zzRUJOwr9iqmahr%2Bkl7kNVooL31rxj7U2pNqwF%2Fhc5rInD6K0CF5CbF4db3B3yQk2L64zekcSolFrH42jaqxcoLu0kqhjsZ5f7CjYgCK%2FmqyQ0adMHc9EMCFd0EbRgRzdrJWEQFUA%2B5GLw%3D%3D)"
         >
           <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h2 class="display-4 fw-normal ">
+            <h2 class="display-4 fw-normal">
               想補充咖啡因嗎?
             </h2>
             <p class="lead fw-normal">
@@ -75,7 +75,7 @@
         </div>
       </swiper-slide>
     </swiper>
-    <section class="my-4 bg-light ">
+    <section class="my-4 bg-light">
       <h2 class="text-center py-3">
         沒有最好，只有更好。
       </h2>
@@ -161,7 +161,7 @@
       </h2>
       <ProductsSwiper category="套餐" />
     </section>
-    <section class=" bg-light py-4">
+    <section class="bg-light py-4">
       <div class="container">
         <h2 class="text-center mb-3">
           最新消息
@@ -222,6 +222,76 @@
             </div>
           </div>
         </div>
+        <hr>
+        <h3 class="text-center">
+          顧客怎麼說
+        </h3>
+        <ul class="row">
+          <li class="col-lg-3 col-md-6">
+            <div class="d-flex p-2 align-items-center">
+              <img
+                style="width:100px; height:100px"
+                src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627838978067.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Swa%2Fg3zHCNT1%2BDpinzqmvA07O8oVAZCam6rKZ6lu%2FpbeC0pBUqW09F6Kc1cmNZt653n2SEyoWiEwpaFmUW%2BsiXxi3126mhLGIFpJepUXgaAwgJRM%2FFYNLw%2F9RM3BHjSWA3YBbeK2ydLn64GsB%2FsNSqp1DGk7uYW%2BPnNjPzI4kTJDX1e6r%2Bn0MZ%2F12zs20rADoMvBG8cmEr%2FcRpAG3H4fboDR%2BaXA2BeXkM4A76VXWQpQey9tsf6X7Rb%2BoULbryOf%2FQXqtpum0iedW3X5Px%2B5LyiFUexLY3YPHVd%2FSFbbzK53QnyR%2F%2BFQT6frXKzn1Lu56tk3Vhnq1mhYYnikoVg88Q%3D%3D"
+                alt=""
+                class="rounded-circle me-2"
+              >
+              <div>
+                <h4 class="h6">
+                  雞腿
+                </h4>
+                <p>自從居無定所吃過以後，已經好久沒有吃其他的食物了!</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-lg-3 col-md-6">
+            <div class="d-flex p-2 align-items-center">
+              <img
+                style="width:100px; height:100px"
+                src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627839027501.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=PveQTCjcPWjzq3%2Fobsq%2BBN%2FoBg2bMSKLKfJPriSpgCD7smMlJp788ijr%2BQsNHrNcg0qUXrZ7GhIeG2q7fEC26bSaXHeJcPM5REDtmw02hoWjyAqDT4CQCAlPE2mUMSHLTIbZBaxvAn0I%2BUNJjjgjxmaYdrQJ%2F47CuKzhCMekNO4LRqVSw5fgclBBDOxWFfIv%2FQ8AIZt7yJYaDbPMLJUx0izNpaKn9Prkch9%2Be%2Bu48EwExXYOMXkemSMjl6ALebkGAm7uU6Bn9E3CHrFiqBMop0RTYMUtgh1GYfCMNI5UQD%2BXOQH2GdP5Z2nCB5oD5Dn9v61vljHboCaazQUpczXfJQ%3D%3D"
+                alt=""
+                class="rounded-circle me-2"
+              >
+              <div>
+                <h4 class="h6">
+                  阿龍
+                </h4>
+                <p>咖啡等級絕對推薦老闆幫你選，絕對會有讓你驚豔的感覺!</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-lg-3 col-md-6">
+            <div class="d-flex p-2 align-items-center">
+              <img
+                style="width:100px; height:100px"
+                src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627839109561.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=PRPdZnnS%2FcUfSZP4jrAKDcYVtiJou7F6a%2BbyfiNaRS9yJfIGL45xz%2F1rQ5mQWrqNYmX%2B%2Bw0o2aZR34IELIlpfjnTOT6mzBzfAD0I6l8HSRS8c9R%2B73DskJTrgcwr4MIH6hlpinxsT%2FwGTwq7XmAfz6xBK%2FJwyPFto%2Fk4K3eofcZ73p1lGAk1j%2FD%2Fcuxgkt85rNWYnKJlFAVryEMQ%2B95tjLOIOEQ%2B0UcyFmq6fcv0lDZZTziO6FhiFD1%2BmjTvsDczLKP%2BXipsPCN2e2RumS0EuBKE9WtA2bVGRuIe%2BbaKDz5LBRC5Q9Qe8d4z0xv12PHXvPWchmY1PPFM0Hz6rLa8ZQ%3D%3D"
+                alt=""
+                class="rounded-circle me-2"
+              >
+              <div>
+                <h4 class="h6">
+                  小綠
+                </h4>
+                <p>主廚超貼心，沒想到來吃過一次，第二次來就已 VIP 的享受了。</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-lg-3 col-md-6">
+            <div class="d-flex p-2 align-items-center">
+              <img
+                style="width:100px; height:100px"
+                src="https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627839205890.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=L65DU0nuQe3jo1pzO5ozziD7fAHiVmdBgJZVAEeAFGzZSnx%2B0vyE5DcscbWb9bgvGNuFtes8l8iFmN16qbsmkNS7pJUSR7BEYBcLIJLB5uOXWtzKEDa%2BOehyXuOUs0dl2fnPQVqgjkCoD00Zd2c9TeLokuoyd3uy4grUJCTfZSNaGoK5Pjw2GwfKEmagd8O6hJMJbhKu%2Bgk0CXXdn5VB%2FXaJH5xmekDumvypvXgOxi1wWs%2BdbRv03M82HSiFJlrIQsDxX7IPf3FHoTaPNyZVwf0FiUrcoOWSf6OBljjZHGzatbYlOebr73kZL7yVVcc%2BoelxGKekWsjl2cIZbZ0pGA%3D%3D"
+                alt=""
+                class="rounded-circle me-2"
+              >
+              <div>
+                <h4 class="h6">
+                  黃大瓜
+                </h4>
+                <p>超級划算實惠的價格，已經沒有店家可以和居無定所相比了</p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
     <SubScribe />

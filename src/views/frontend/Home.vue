@@ -1,6 +1,11 @@
 <template>
   <div>
     <OrderSearch ref="orderSearch" />
+    <div
+      ref="outSideNavArea"
+      class="close-navbar-toggler collapse"
+      @click.prevent="closeNavbarHamber"
+    />
     <nav
       class="navbar sticky-top navbar-expand-lg"
       :class="[navClassList.nav, navClassList.bg, navClassList.padding]"
@@ -42,6 +47,7 @@
             </span>
           </span>
         </a>
+        <!-- 如不使用 collapse 的動畫，也可以直接操作 show 相對會簡單一點 -->
         <div
           ref="navbarCollapse"
           class="collapse navbar-collapse"
@@ -254,15 +260,26 @@ export default {
     const tooltip = new Tooltip(this.$refs.searchOrder)
     tooltip.enable()
     // 導覽列選單會初始都會自動跑下來...
-    this.navbarCollapse = new Collapse(this.$refs.navbarCollapse)
+    this.navbarCollapse = new Collapse(this.$refs.navbarCollapse, {
+      toggle: false
+    })
     // 購物車 我的最愛下拉選單
     this.favoriteDropDown = new Dropdown(this.$refs.favoriteDropDown)
     this.cartDropDown = new Dropdown(this.$refs.cartDropDown)
+    const outSideNavArea = this.$refs.outSideNavArea
+    this.$refs.navbarCollapse.addEventListener('show.bs.collapse', function () {
+      outSideNavArea.classList.add('show')
+    })
+    this.$refs.navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+      outSideNavArea.classList.remove('show')
+    })
   },
   unmounted () {
     this.$emitter.off('nav-getCarts')
     this.$emitter.off('nav-getfavorite')
     window.removeEventListener('scroll', this.navStyle)
+    this.$refs.navbarCollapse.removeEventListener('show.bs.collapse')
+    this.$refs.navbarCollapse.removeEventListener('hidden.bs.collapse')
   },
   methods: {
     toogleNavbarHamber () {
@@ -361,5 +378,14 @@ export default {
 }
 .navbar-brand{
   font-family: 'Gloria Hallelujah', cursive;
+}
+.close-navbar-toggler.show{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:  100%;
+  height: 100%;
+  z-index: 1030;
+  cursor: pointer;
 }
 </style>

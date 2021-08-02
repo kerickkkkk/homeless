@@ -242,6 +242,28 @@ export default {
           this.$swal(error, '', 'error')
           this.loadingStatus.itemLoading = null
         })
+    },
+    addCart (id, qty = 1) {
+      const data = { data: { product_id: id, qty } }
+      this.loadingStatus.itemLoading = id
+      this.$emitter.emit('fullScreenLoading', true)
+      this.$http
+        .post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, data)
+        .then((res) => {
+          if (res.data.success) {
+            this.loadingStatus.itemLoading = null
+            this.$emitter.emit('nav-getCarts')
+            this.$emitter.emit('toast:push', { icon: 'success', title: `${res.data.data.product.title} ${res.data.message}` })
+          } else {
+            this.$swal(res.data.message, '', 'error')
+          }
+          this.$emitter.emit('fullScreenLoading', false)
+        })
+        .catch((error) => {
+          this.loadingStatus.itemLoading = null
+          this.$swal(error, '', 'error')
+          this.$emitter.emit('fullScreenLoading', false)
+        })
     }
   }
 }

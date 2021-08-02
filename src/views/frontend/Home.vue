@@ -267,19 +267,22 @@ export default {
     this.favoriteDropDown = new Dropdown(this.$refs.favoriteDropDown)
     this.cartDropDown = new Dropdown(this.$refs.cartDropDown)
     const outSideNavArea = this.$refs.outSideNavArea
+    // 漢堡選單收合處理
     this.$refs.navbarCollapse.addEventListener('show.bs.collapse', function () {
       outSideNavArea.classList.add('show')
     })
     this.$refs.navbarCollapse.addEventListener('hidden.bs.collapse', function () {
       outSideNavArea.classList.remove('show')
     })
+    window.addEventListener('resize', this.closeNavbarHamber)
   },
-  unmounted () {
+  beforeUnmount () {
     this.$emitter.off('nav-getCarts')
     this.$emitter.off('nav-getfavorite')
     window.removeEventListener('scroll', this.navStyle)
     this.$refs.navbarCollapse.removeEventListener('show.bs.collapse')
     this.$refs.navbarCollapse.removeEventListener('hidden.bs.collapse')
+    window.removeEventListener('resize', this.closeNavbarHamber)
   },
   methods: {
     toogleNavbarHamber () {
@@ -314,6 +317,10 @@ export default {
         })
     },
     navStyle () {
+      // 關閉漢堡選單
+      if (this.$refs.navbarCollapse.classList.contains('show')) {
+        this.closeNavbarHamber()
+      }
       const windowY = window.scrollY
       // 如果需要 dom 可以用 offSetTop
       if (windowY > 100) {

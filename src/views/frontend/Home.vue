@@ -266,25 +266,29 @@ export default {
     // 購物車 我的最愛下拉選單
     this.favoriteDropDown = new Dropdown(this.$refs.favoriteDropDown)
     this.cartDropDown = new Dropdown(this.$refs.cartDropDown)
-    const outSideNavArea = this.$refs.outSideNavArea
     // 漢堡選單收合處理
-    this.$refs.navbarCollapse.addEventListener('show.bs.collapse', function () {
-      outSideNavArea.classList.add('show')
-    })
-    this.$refs.navbarCollapse.addEventListener('hidden.bs.collapse', function () {
-      outSideNavArea.classList.remove('show')
-    })
+    // 移動到 method共用
+    // const showBsCollapse = () => { this.$refs.outSideNavArea.classList.add('show') }
+    // const hiddenBsCollapse = () => { this.$refs.outSideNavArea.classList.remove('show') }
+    this.$refs.navbarCollapse.addEventListener('show.bs.collapse', this.showBsCollapse)
+    this.$refs.navbarCollapse.addEventListener('hidden.bs.collapse', this.hiddenBsCollapse)
     window.addEventListener('resize', this.closeNavbarHamber)
   },
   beforeUnmount () {
     this.$emitter.off('nav-getCarts')
     this.$emitter.off('nav-getfavorite')
     window.removeEventListener('scroll', this.navStyle)
-    this.$refs.navbarCollapse.removeEventListener('show.bs.collapse')
-    this.$refs.navbarCollapse.removeEventListener('hidden.bs.collapse')
+    this.$refs.navbarCollapse.removeEventListener('show.bs.collapse', this.showBsCollapse)
+    this.$refs.navbarCollapse.removeEventListener('hidden.bs.collapse', this.hiddenBsCollapse)
     window.removeEventListener('resize', this.closeNavbarHamber)
   },
   methods: {
+    showBsCollapse () {
+      this.$refs.outSideNavArea.classList.add('show')
+    },
+    hiddenBsCollapse () {
+      this.$refs.outSideNavArea.classList.remove('show')
+    },
     toogleNavbarHamber () {
       this.navbarCollapse.toggle()
     },
@@ -391,7 +395,7 @@ export default {
   left: 0;
   width:  100%;
   height: 100%;
-  z-index: 1030;
+  z-index: 1025;
   cursor: pointer;
 }
 </style>

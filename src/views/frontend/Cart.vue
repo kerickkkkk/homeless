@@ -292,8 +292,9 @@ export default {
           } else {
             this.currentCartId = null
             this.$swal(res.data.message, '', 'error')
+            // 這個步驟關掉 成功關掉 loading 就給 getCarts 關避免時間差
+            this.$emitter.emit('fullScreenLoading', false)
           }
-          this.$emitter.emit('fullScreenLoading', false)
         })
         .catch((error) => {
           this.$swal(error, '', 'error')

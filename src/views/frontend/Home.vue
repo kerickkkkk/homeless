@@ -270,7 +270,7 @@ export default {
     // 移動到 method共用
     // const showBsCollapse = () => { this.$refs.outSideNavArea.classList.add('show') }
     // const hiddenBsCollapse = () => { this.$refs.outSideNavArea.classList.remove('show') }
-    this.$refs.navbarCollapse.addEventListener('show.bs.collapse', this.showBsCollapse)
+    this.$refs.navbarCollapse.addEventListener('shown.bs.collapse', this.showBsCollapse)
     this.$refs.navbarCollapse.addEventListener('hidden.bs.collapse', this.hiddenBsCollapse)
     window.addEventListener('resize', this.closeNavbarHamber)
   },
@@ -278,7 +278,7 @@ export default {
     this.$emitter.off('nav-getCarts')
     this.$emitter.off('nav-getfavorite')
     window.removeEventListener('scroll', this.navStyle)
-    this.$refs.navbarCollapse.removeEventListener('show.bs.collapse', this.showBsCollapse)
+    this.$refs.navbarCollapse.removeEventListener('shown.bs.collapse', this.showBsCollapse)
     this.$refs.navbarCollapse.removeEventListener('hidden.bs.collapse', this.hiddenBsCollapse)
     window.removeEventListener('resize', this.closeNavbarHamber)
   },
@@ -322,7 +322,7 @@ export default {
     },
     navStyle () {
       // 關閉漢堡選單
-      if (this.$refs.navbarCollapse.classList.contains('show')) {
+      if (this.$refs.outSideNavArea.classList.contains('show')) {
         this.closeNavbarHamber()
       }
       const windowY = window.scrollY

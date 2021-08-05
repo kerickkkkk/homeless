@@ -84,6 +84,15 @@
               </router-link>
             </li>
             <li class="nav-item">
+              <router-link
+                :class="{active: $route.name === 'service'}"
+                to="/service"
+                class="nav-link"
+              >
+                常見問題
+              </router-link>
+            </li>
+            <li class="nav-item">
               <a
                 ref="searchOrder"
                 class="nav-link"
@@ -95,15 +104,6 @@
               >
                 <i class="bi bi-journal-text" />
               </a>
-            </li>
-            <li class="nav-item">
-              <router-link
-                :class="{active: $route.name === 'service'}"
-                to="/service"
-                class="nav-link"
-              >
-                常見問題
-              </router-link>
             </li>
             <li
 
@@ -341,7 +341,6 @@ export default {
         }
         // 加上高度會有一些問題先不用
         // padding: 'py-3'
-
         this.goTop = false
       }
     },

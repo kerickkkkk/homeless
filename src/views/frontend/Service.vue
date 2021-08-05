@@ -80,7 +80,7 @@
 import HeaderPic from '@/components/HeaderPic.vue'
 
 export default {
-  name: 'About',
+  name: 'Service',
   components: {
     HeaderPic
   },

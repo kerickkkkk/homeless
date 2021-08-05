@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="bg-white p-5 rounded">
+            <div class="bg-white p-md-5 rounded">
               <h2 class="text-center border-bottom pb-3">
                 購買明細
               </h2>
@@ -67,14 +67,14 @@
                       >
                         {{ product.product.title }}
                         <span class="d-flex">
-                          ${{ product.product.origin_price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ product.product.origin_price * product.qty }}</span>
+                          ${{ product.product.origin_price }} x {{ product.qty }} {{ product.product.unit }} = <span class="ms-auto">${{ $filters.currency(product.product.origin_price * product.qty) }}</span>
                         </span>
                       </p>
                       <p class="mb-0 text-end">
-                        折扣： NT${{ totalOriginPrice - order.total }}
+                        折扣： NT${{ $filters.currency(totalOriginPrice - order.total) }}
                       </p>
                       <p class="mb-0 text-end">
-                        總價： NT${{ order.total }}
+                        總價： NT${{ $filters.currency(order.total) }}
                       </p>
                     </td>
                   </tr>
@@ -122,11 +122,11 @@
             >
               <td>{{ item.product.title }}</td>
               <td>
-                {{ item.product.origin_price }}
+                {{ $filters.currency(item.product.origin_price) }}
               </td>
               <td>{{ item.qty }}</td>
               <td class="text-end">
-                {{ item.qty * item.product.origin_price }}
+                {{ $filters.currency(item.qty * item.product.origin_price ) }}
               </td>
             </tr>
           </tbody>
@@ -136,7 +136,15 @@
                 class="text-end"
                 colspan="100"
               >
-                折扣  $ {{ $filters.currency( totalOriginPrice) }}
+                原價  ${{ $filters.currency(totalOriginPrice) }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                class="text-end"
+                colspan="100"
+              >
+                折扣  ${{ $filters.currency(totalOriginPrice - order.total) }}
               </td>
             </tr>
             <tr>

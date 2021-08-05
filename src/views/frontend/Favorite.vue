@@ -194,7 +194,9 @@ export default {
         })
     },
     getFavorite () {
+      // localStorage.getItem 是 str 如果初始沒 key 會是 null
       const favoriteListStr = localStorage.getItem('homeLessFavorite') || '[]'
+      // Json.parse 轉 [] 會噴錯 要轉 '[]'字串才可以
       this.favoriteList = JSON.parse(favoriteListStr)
       this.$emitter.emit('nav-getfavorite')
       this.getProducts()

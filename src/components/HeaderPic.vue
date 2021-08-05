@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'SubScribe',
+  name: 'HeaderPic',
   props: {
     title: {
       type: String,

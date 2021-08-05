@@ -57,7 +57,7 @@
               {{ product.price }}
             </td>
             <td>
-              <!-- bs4 -->
+              <!-- bs4 用法-->
               <!-- <div class="custom-control custom-switch">
                 <input
                   :id="`customSwitch${product.id}`"

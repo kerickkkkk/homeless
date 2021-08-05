@@ -9,6 +9,7 @@ export default {
     this.$emitter.on('toast:push', ({ icon, title }) => {
       // 如果傳入 undefined 會噴錯
       icon = icon || 'error'
+      // 上方式較佳的寫法
       // icon = icon ? icon : 'error'
       this.$swal({
         toast: true,

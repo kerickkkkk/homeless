@@ -244,7 +244,6 @@ export default {
       this.clearStatus()
     },
     deleteOrder (id) {
-      // /api/:api_path/admin/order/:order_id
       this.$emitter.emit('fullScreenLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
       this.$http.delete(url)

@@ -73,7 +73,6 @@ export default {
       handler () {
         this.watchPagination = { ...this.pagination }
       },
-      // immediate: true
       deep: true
     }
   },

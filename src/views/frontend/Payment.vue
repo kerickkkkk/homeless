@@ -238,7 +238,6 @@ export default {
       // order 需有 id屬性 表示已經 ajax 回來
       if (this.orderIsBack) {
         const res = Object.values(this.order.products).reduce((prev, next) => {
-          console.log(prev)
           prev += next.product.origin_price * next.qty
           return prev
         }, 0)

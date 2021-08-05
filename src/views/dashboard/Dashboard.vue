@@ -124,7 +124,6 @@ export default {
       }
     },
     signOut () {
-      // /logout
       const url = `${process.env.VUE_APP_API}/logout`
       this.$emitter.emit('fullScreenLoading', true)
       this.$http.post(url)

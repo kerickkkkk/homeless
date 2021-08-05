@@ -135,12 +135,8 @@ export default {
   },
   methods: {
     getOrders (page = 1) {
-      // /api/:api_path/admin/orders?page=:page
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
       this.$emitter.emit('fullScreenLoading', true)
-
-      // this.$emitter.emit('toast:push', { icon: 'success', title: 'title' })
-
       this.$http.get(url)
         .then((res) => {
           if (res.data.success) {
@@ -157,7 +153,6 @@ export default {
         })
     },
     changePayment (id) {
-      // /api/:api_path/admin/order/:id
       const index = this.orders.findIndex((product) => product.id === id)
       this.orders[index].is_paid = !this.orders[index].is_paid
 

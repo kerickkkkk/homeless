@@ -331,7 +331,6 @@ export default {
       this.clearStatus()
     },
     deleteProduct (id) {
-      // /api/:api_path/admin/product/:product_id
       this.$emitter.emit('fullScreenLoading', true)
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${id}`
       this.$http.delete(url)
@@ -353,7 +352,6 @@ export default {
     },
     sendProduct (type) {
       // 檢查必填欄位
-      // if(!this.checkMustFill()) return false
       const inputMap = [
         { name: 'title', columnName: '標題' },
         { name: 'category', columnName: '分類' },

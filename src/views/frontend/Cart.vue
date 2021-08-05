@@ -41,6 +41,7 @@
                 >
                   <td>
                     <button
+                      type="button"
                       class="btn btn-outline-secondary border-0"
                       @click="cartHandler('delete', item.id)"
                     >
@@ -167,6 +168,7 @@
           </div>
           <div class="d-flex justify-content-between">
             <button
+              type="button"
               class="btn btn-sm btn-outline-secondary"
               @click="deleteAllCart"
             >
@@ -253,7 +255,6 @@ export default {
   },
   methods: {
     getCarts () {
-      // this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
       this.$emitter.emit('fullScreenLoading', true)
       this.$http
         .get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
@@ -302,7 +303,6 @@ export default {
         })
     },
     useCoupon () {
-      // /api/:api_path/coupon
       this.$emitter.emit('fullScreenLoading', true)
       const data = {
         data: {
@@ -313,7 +313,6 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$emitter.emit('toast:push', { icon: 'success', title: res.data.message })
-            // console.log(res.data.data.final_total)
             this.coupon = ''
             this.couponCode = res.data.message
             this.getCarts()
@@ -351,7 +350,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   @import '@/assets/stylesheet/all';
   @include media-breakpoint-up(sm) {

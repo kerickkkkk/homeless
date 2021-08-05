@@ -85,7 +85,6 @@
                       role="status"
                       aria-hidden="true"
                     />
-                    <!-- Loading... -->
                     看詳細
                   </button>
                   <button
@@ -107,11 +106,6 @@
               </div>
             </div>
           </div>
-          <!-- <Pagination
-            :pagination="pagination"
-            :is-all-products="true"
-            @change-page="changePage"
-          /> -->
         </template>
         <div
           v-else
@@ -166,13 +160,13 @@ export default {
         ary: [],
         changeCategory: false
       },
-      products: null,
+      products: [],
       favoriteList: []
     }
   },
   computed: {
     filterProducts () {
-      return this.products?.filter((item) => this.favoriteList.includes(item.id))
+      return this.products.filter((item) => this.favoriteList.includes(item.id))
     }
   },
   mounted () {
@@ -189,8 +183,6 @@ export default {
           if (res.data.success) {
             const { products } = res.data
             this.products = products
-            // this.paginationHandler(products)
-            // this.getCategory()
           } else {
             this.$swal(res.data.message, '', 'error')
           }
@@ -202,8 +194,8 @@ export default {
         })
     },
     getFavorite () {
-      const favoriteList = localStorage.getItem('homeLessFavorite') || '[]'
-      this.favoriteList = JSON.parse(favoriteList)
+      const favoriteListStr = localStorage.getItem('homeLessFavorite') || '[]'
+      this.favoriteList = JSON.parse(favoriteListStr)
       this.$emitter.emit('nav-getfavorite')
       this.getProducts()
     },

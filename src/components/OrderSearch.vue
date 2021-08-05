@@ -175,7 +175,7 @@ export default {
           if (res.data.success) {
             const { order } = res.data
             if (order !== null) {
-              this.$emitter.emit('toast:push', { icon: 'error', title: '謝謝您的訂購' })
+              this.$emitter.emit('toast:push', { icon: 'success', title: '謝謝您的訂購' })
               this.order = order
             } else {
               this.$emitter.emit('toast:push', { icon: 'error', title: '查無訂單' })

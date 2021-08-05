@@ -9,7 +9,7 @@
         建立新優惠券
       </button>
     </div>
-    <table class="table mb-3 ">
+    <table class="table mb-3">
       <thead>
         <tr>
           <th width="100">
@@ -131,12 +131,8 @@ export default {
   },
   methods: {
     getCoupons (page = 1) {
-      // /api/:api_path/admin/coupons?page=:page
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
       this.$emitter.emit('fullScreenLoading', true)
-
-      // this.$emitter.emit('toast:push', { icon: 'success', title: 'title' })
-
       this.$http.get(url)
         .then((res) => {
           if (res.data.success) {

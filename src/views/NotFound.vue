@@ -1,7 +1,7 @@
 <template>
   <div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="wrap text-center">
-      <h1 class="mb-5 ">
+      <h1 class="mb-5">
         4 0 4
       </h1>
       <div

@@ -120,19 +120,6 @@
                       </td>
                     </tr>
                   </tbody>
-                  <!-- <tfoot>
-                    <tr>
-                      <th
-                        colspan="2"
-                        class="text-end"
-                      >
-                        總價
-                      </th>
-                      <td class="text-end">
-                        {{ `NT ${$filters.currency(tempOrder.total)}` }}
-                      </td>
-                    </tr>
-                  </tfoot> -->
                 </table>
                 <div class="d-flex justify-content-end">
                   <div class="form-check">

@@ -8,7 +8,7 @@
         1. 填寫訂單
       </div>
     </li>
-    <li class="col-md-4 ">
+    <li class="col-md-4">
       <div
         :class="[step === 'payment' ? 'text-primary' : 'text-muted']"
         class="p-3 badge rounded-pill fs-3 w-100 mb-2 bg-light"

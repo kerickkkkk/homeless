@@ -27,7 +27,7 @@
             <li class="nav-item">
               <router-link
                 to="/"
-                class="nav-link "
+                class="nav-link"
               >
                 返回前台
               </router-link>

@@ -28,7 +28,7 @@
               class="breadcrumb-item active"
               aria-current="page"
             >
-              全部
+              {{ list.currentCategory === 'all' ? '全部' : list.currentCategory }}
             </li>
           </ol>
         </nav>

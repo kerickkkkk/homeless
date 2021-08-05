@@ -9,7 +9,7 @@
         'clickable': true
       }"
       :navigation="true"
-      class="mySwiper"
+      class="mySwiper mb-5"
     >
       <swiper-slide>
         <div
@@ -24,7 +24,7 @@
               不是在食物堆內，就是在尋找好的食材的路上。
             </p>
             <router-link
-              class="btn btn-outline-primary"
+              class="btn btn-primary"
               to="/products"
             >
               看菜單
@@ -45,7 +45,7 @@
               想喝就要快~
             </p>
             <router-link
-              class="btn btn-secondary"
+              class="btn btn-primary"
               to="/products"
             >
               看菜單
@@ -66,7 +66,7 @@
               這裡提供各式的精品咖啡!!
             </p>
             <router-link
-              class="btn btn-secondary"
+              class="btn btn-primary"
               to="/products"
             >
               看菜單
@@ -75,7 +75,7 @@
         </div>
       </swiper-slide>
     </swiper>
-    <section class="my-4 bg-light">
+    <section class="mb-5 bg-light">
       <h2 class="text-center py-3">
         沒有最好，只有更好。
       </h2>
@@ -155,24 +155,23 @@
         </div>
       </div>
     </section>
-    <section class="mb-4">
+    <section class="mb-5 pt-3">
       <h2 class="text-center mb-3">
         本期推薦
       </h2>
       <ProductsSwiper category="套餐" />
     </section>
-    <section class="bg-light py-4">
+    <section class="bg-light pt-3 pb-5">
       <div class="container">
         <h2 class="text-center mb-3">
           最新消息
         </h2>
-        <div class="row align-items-stretch text-center h-100">
-          <div class="col-md-6">
+        <div class="row align-items-stretch text-center h-100 mb-5">
+          <div class="col-md-6 h-100">
             <div
               class="card"
             >
               <iframe
-                class="mb-2"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2705.754019597818!2d121.78844174966153!3d25.144199846253624!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8258934b8536e5ba!2z5YWr5paX5a2Q5ryB5riv!5e0!3m2!1szh-TW!2stw!4v1625921326345!5m2!1szh-TW!2stw"
                 width="100%"
                 height="450"
@@ -223,7 +222,7 @@
           </div>
         </div>
         <hr>
-        <h3 class="text-center">
+        <h3 class="text-center pt-3">
           顧客怎麼說
         </h3>
         <ul class="row">

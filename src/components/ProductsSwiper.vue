@@ -110,9 +110,7 @@ export default {
   },
   computed: {
     filterProducts () {
-      return this.products.filter((item) => {
-        return this.category === '' || item.category === this.category
-      })
+      return this.products.filter((item) => this.category === '' || item.category === this.category)
     }
   },
   created () {

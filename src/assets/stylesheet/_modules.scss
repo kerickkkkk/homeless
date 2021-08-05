@@ -1,0 +1,60 @@
+// cmp 行為調整
+.card{
+  &__imgWrap{
+    overflow: hidden;
+  }
+  &__img{
+    transition: transform .5s;
+  }
+  &:hover{
+    .card__img{
+      position: relative;
+      transform : scale(1.25);
+      &:before{
+        content:"";
+        position: absolute;
+        left: 0 ;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,.3);
+      }
+      &:after{
+        content:'看詳細';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+      }
+    }
+  }
+  &.moveToCart{
+    .card__img{
+      &:after{
+        content:'加入購物車 !!!';
+      }
+    }
+  }
+  &__Favorite{
+    z-index: 1;
+    background: #fff;
+    position: absolute;
+    color: $primary;
+    font-size: 1.5rem;
+    border-radius: 0 0 15px 15px;
+    // top: 10px;
+    padding: {
+      right:10px;
+      left:10px;
+    };
+    left: 10px;
+    &:hover{
+      background-color: $primary;
+      i{
+        color: #fff;
+
+      }
+    }
+  }
+}

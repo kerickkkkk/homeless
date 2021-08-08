@@ -76,11 +76,12 @@ const routes = [
       {
         path: 'coupons',
         component: () => import('@/views/dashboard/Coupons.vue')
-      },
-      {
-        path: 'articles',
-        component: () => import('@/views/dashboard/Articles.vue')
       }
+      // 未開發功能先隱藏
+      // {
+      //   path: 'articles',
+      //   component: () => import('@/views/dashboard/Articles.vue')
+      // }
     ]
   },
   // 404

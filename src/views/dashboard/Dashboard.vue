@@ -56,14 +56,15 @@
                 優惠劵列表
               </router-link>
             </li>
-            <li class="nav-item">
+            <!-- 尚未開發 先隱藏 -->
+            <!-- <li class="nav-item">
               <router-link
                 to="/admin/articles"
                 class="nav-link"
               >
                 貼文
               </router-link>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a
                 class="nav-link"

@@ -102,6 +102,7 @@
         </table>
         <div class="text-end">
           <button
+            type="button"
             :disabled="Object.keys(order).length <=0"
             class="btn btn-outline-primary me-2"
             @click="resetOrder"
@@ -109,6 +110,7 @@
             清除訂單
           </button>
           <button
+            type="button"
             class="btn btn-outline-primary"
             @click="closeOffCanvas"
           >

@@ -36,12 +36,6 @@
                   >
                     送出
                   </button>
-                  <!-- <button
-                    class="btn btn-primary"
-                    type="submit"
-                  >
-                    送出
-                  </button> -->
                 </div>
                 <ErrorMessage
                   name="email"

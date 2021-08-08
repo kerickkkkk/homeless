@@ -376,7 +376,7 @@ export default {
 
 .navbar{
   transition: background-color .8s, padding .8s;
-  /* sweet alert 1060 */
+  /* sweet alert z index : 1060 */
   z-index: 1030;
 }
 .goTop__fixed{

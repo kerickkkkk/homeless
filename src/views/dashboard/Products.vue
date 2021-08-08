@@ -149,13 +149,6 @@
     <UploadImgModal
       ref="UploadImgModal"
     />
-
-    <!-- modal upload img -->
-    <!-- <UploadImgModal
-      :api-url="
-      apiUrl"
-      :api-path="apiPath"
-    /> -->
   </div>
 </template>
 

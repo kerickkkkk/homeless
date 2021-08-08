@@ -60,12 +60,6 @@
                       </th>
                       <td>{{ $filters.date(tempOrder.create_at) }}</td>
                     </tr>
-                    <!-- <tr>
-                      <th>是否啟用</th>
-                      <td>
-                        {{ tempOrder.is_enabled ? '啟用' : '未啟用' }}
-                      </td>
-                    </tr> -->
                     <tr>
                       <th width="100">
                         付款時間
@@ -85,10 +79,6 @@
                         {{ tempOrder.is_paid ? '已付款' : '未付款' }}
                       </td>
                     </tr>
-                    <!-- <tr>
-                      <th>地址</th>
-                      <td>{{ tempOrder.user.address }}</td>
-                    </tr> -->
                     <tr>
                       <th>
                         總價

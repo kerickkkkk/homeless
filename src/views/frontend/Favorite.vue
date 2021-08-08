@@ -25,7 +25,7 @@
         </ol>
       </nav>
       <div class="row mb-5">
-        <template v-if="filterProducts?.length >0">
+        <template v-if="filterProducts.length>0">
           <div
             v-for="item in filterProducts"
             :key="item.id"
@@ -194,10 +194,9 @@ export default {
         })
     },
     getFavorite () {
-      // localStorage.getItem 是 str 如果初始沒 key 會是 null
-      const favoriteListStr = localStorage.getItem('homeLessFavorite') || '[]'
-      // Json.parse 轉 [] 會噴錯 要轉 '[]'字串才可以
-      this.favoriteList = JSON.parse(favoriteListStr)
+      // 修正 getFavorite  不應是一個字串而是一個陣列。
+      const favoriteList = JSON.parse(localStorage.getItem('homeLessFavorite')) || []
+      this.favoriteList = favoriteList
       this.$emitter.emit('nav-getfavorite')
       this.getProducts()
     },

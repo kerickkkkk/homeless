@@ -12,8 +12,9 @@
               class="bg-cover img-fluid"
               :style="`background-image: url(${productDetail.imageUrl})`"
               style="min-height: 350px;"
-              :alt="productDetail.title"
             />
+            <!-- alt 是用在 img 上面 -->
+            <!-- :alt="productDetail.title" -->
           </div>
         </div>
         <div class="col-md-6 mb-3">
@@ -189,7 +190,9 @@ export default {
   data () {
     return {
       url: 'https://storage.googleapis.com/vue-course-api.appspot.com/pet/1627778041796.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=jbqYqb%2BnBd9rC20tRbH0q6jl5TqZRLzNoNuj50Tz2nZWwtN39CPaFRhuv9ISfSqKkET7obAxG6J7DSEecKvbUv9d%2BHyJb7ihdSoUi56lmESaILL%2FYPsY08Mp5vZewBkHHE%2Bv%2Bk2%2FJkpubgiBU0OK5GNujtsJOxa0j86sXZvyqgLrFr6baLQQuaWkdKoQ4Dzt%2BGKGunnby6kOXqgzl7piUC%2FGAlYgOC2l8orQv98a2xScKQ%2BJ9LXseFJPISoWrzUWz03QcbTpXTMAtsnZjv0Fg6Git8KJN6RAaCvvDJTM3QRwREPLrCRKoRJfTrb17c4ZMMvsZI5%2Btd8MkwX%2BKPyurQ%3D%3D',
-      productDetail: {},
+      productDetail: {
+        imageUrl: ''
+      },
       num: 1,
       id: null,
       category: ''

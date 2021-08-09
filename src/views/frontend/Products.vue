@@ -73,7 +73,7 @@
               >
                 <div
                   class="card__Favorite"
-                  @click.stop=" setFavorite(item.id, item.title)"
+                  @click.stop="setFavorite(item.id, item.title)"
                 >
                   <i
                     class="bi"
